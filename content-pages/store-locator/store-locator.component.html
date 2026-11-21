@@ -1,0 +1,108 @@
+<!-- {{storelocatorccontentfuldetails | json}} -->
+<!--  hey
+{{placeInfo | json}} -->
+
+<div class="container storelocatorpage">
+  <div class="loader" *ngIf="!storelocatorccontentfuldetails">
+    <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+  </div>
+  <div *ngIf="storelocatorccontentfuldetails">
+    <div class="storetop">
+      <h1>{{ storelocatorccontentfuldetails?.pageTitle }}</h1>
+      <p>
+        Enter a location or use your device location and we will show you the
+        closest store
+      </p>
+    </div>
+    <!-- <a routerLink="" class="continueshop">{{
+        (storelocatorccontentfuldetails?.pageElements)[0]?.fields?.buttonTitle
+      }}</a> -->
+    <div class="locationblock">
+      <div class="left_block">
+
+        <div class="loactiondropdown">
+          <form [formGroup]="storeForm" (ngSubmit)="findStores(storeForm.value)">
+            <div class="province">
+              <mat-form-field>
+                <mat-label>Select State</mat-label>
+                <mat-select formControlName="city" (selectionChange)="selectState(storeForm.value.city)">
+                  <mat-option *ngFor="let ct of stateslist" [value]="ct.trim()">
+                    {{ ct }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="province">
+              <mat-form-field>
+                <mat-label>Select City</mat-label>
+                <mat-select formControlName="pincode" (selectionChange)="selectCity(storeForm.value.pincode)">
+                  <mat-option *ngFor="let pc of citieslist" [value]="pc.trim()">
+                    {{ pc }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <input class="inp-submit" type="submit" [value]="
+                  (storelocatorccontentfuldetails?.pageElements)[2]?.fields
+                    ?.buttonTitle
+                " />
+            <div class="autobtn">
+              <a (click)="identifyPlace()" [ngClass]="identifyLoading ? 'loaderbtn' : ''"><span> {{
+                        (storelocatorccontentfuldetails?.pageElements)[1]?.fields
+                          ?.buttonTitle
+                      }} </span>
+                <img src="../../assets/images/ic-location.png" class="onhover" />
+                <img src="../../assets/images/Auto-Detect.png" class="normal" />
+              </a>
+            </div>
+            <div class="clear"> </div>
+          </form>
+        </div>
+        <div class="storeresults" *ngIf="currentCityStores != '' ">
+          <h2>Your Nearest Location</h2>
+          <div class="list-wrp-fix">
+            <ul *ngFor="let store of currentCityStores">
+              <li>
+                <!--   (click)="showaddress($event)" -->
+                <h3> {{ store.storeName }}
+                  <!--{{ store.storeCity }}- <span>{{ store.pinCode }}</span> -->
+                </h3>
+                <div class="address">
+                  <p> {{ store.storeAddress }}</p>
+                  <!-- <p>State: {{ store.storeState }}</p> -->
+                  <!-- <p>Pincode: {{ store.pinCode }}</p> -->
+                  <p>Tel.: {{ store.phoneNumber }}</p>
+                  <p>Email: {{ store.email }}</p>
+                  <a *ngIf="store.hasOwnProperty('latitude') && store.hasOwnProperty('longitude')" href="https://www.google.com/maps?q={{ store.latitude }},{{
+                      store.longitude
+                    }}" target="blank">Get Directions</a>
+                  <span class="timing"> Opening Hours : 10:30 - 20:00 </span>
+                  <div class="clear"> </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="map_block">
+        <agm-map [latitude]="lati" [longitude]="longi" [zoom]="zoomLevel" (mapReady)="mapReady()">
+          <div>
+
+            <agm-marker *ngFor="let m of currentCityStores; let i = index" [latitude]="m.latitude"
+              [longitude]="m.longitude">
+              <agm-info-window>
+                <strong>
+                  Store Name: {{ m.storeName }} <br />
+                  Address: {{ m.storeAddress }} <br />
+                  City: {{ m.storeCity }} <br />
+                  State: {{ m.storeState }} <br />
+                  Pin: {{ m.pinCode }} <br />
+                </strong>
+              </agm-info-window>
+            </agm-marker>
+          </div>
+        </agm-map>
+      </div>
+    </div>
+  </div>
+</div>

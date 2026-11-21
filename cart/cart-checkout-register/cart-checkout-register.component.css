@@ -1,0 +1,273 @@
+
+
+section.register-cart{
+    display: block;
+    height: auto;
+    font-size: 13px;
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+    color: #999;
+}
+.register-cart h2{
+    text-align: center;
+    color: #333;
+    padding: 15px 0 5px;
+    font-size: 22px;
+    margin: 0;
+    font-family: 'Lato', sans-serif;
+font-weight: 700;
+}
+.register-form span{
+    display: block;
+    text-align: left;
+    font-size: 13px;
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+    margin: 0 0 0px;
+    letter-spacing: 0.5px;
+}
+.register-form input{
+    width: 100%;
+    border: 1px solid #cccccc;
+    padding: 6px 15px;
+    transition: border-color ease-in-out .3s,box-shadow ease-in-out .15s;
+    /* margin-bottom: 20px; */
+    color: #333333;
+}
+form.register-form {
+    padding: 0 15px;
+}
+.register-form input:focus {
+    outline: 0;
+    border-color: #000;
+}  
+.register-form .nameblock{
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-bottom: 20px;
+}
+.register-form .nameblock .first_name{
+    width: 50%;
+    margin:0 10px 0 0;
+}    
+.register-form .nameblock .last_name{
+    width: 50%;
+    margin:0 0px 0 10px;
+}    
+.subheading {
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+    margin: 0 10px;
+    text-align: center;
+    padding: 0 10px 10px;
+}
+.register-form .continue-btn{
+    background: #d94b2a;
+    color: white;
+    text-align: center;
+    margin: 10px 0;
+    font-family: 'Lato', sans-serif;
+font-weight: 500;
+    font-size: 13px;
+    padding: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    /* border-radius: 5px; */
+    outline: none;
+    border: 1px solid transparent;
+    -webkit-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+.register-form .continue-btn:hover{
+    background: #e7e7e7;
+    color: #333;
+    border-color: #d94b2a
+}
+.register-form .alreadyBtn{
+    font-size: 13px;
+    color: #d94b2a;
+    text-align: center;
+    display: block;
+    margin:0 0 10px 0;
+    font-family: 'Lato', sans-serif;
+font-weight: 500;
+    text-decoration: underline
+}
+.register-form .requiredSpan{
+    font-size: 14px;
+    color: #333;
+    margin:0 0 10px 0;
+    display: block;
+}
+.register-form .password-info{
+    margin-top: 0;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.invalid {
+    color: red;
+}
+.register-form span.additionalText{
+    color: #666766;
+    font-size: 12px;
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+    letter-spacing: 0;
+}
+.additionalText i a{
+    color: #d94b2a;
+}
+.register-form  .loaderbtn{    
+    background-color: #d94b2a;
+    color: #fff;
+    pointer-events: none;
+    opacity: 0.6;
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, .3) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .3) 50%, rgba(255, 255, 255, .3) 75%, transparent 75%, transparent);
+    -webkit-transition: width .5s ease-in-out;
+    transition: width .5s ease-in-out;
+    background-size: 50px 50px;
+    -webkit-animation: animate-stripes 3s infinite linear;
+    animation: animate-stripes 3s infinite linear;
+    cursor: default;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+@keyframes animate-stripes {
+    0% {
+        background-position: 0 0
+    }
+    100% {
+        background-position: 50px 0
+    }
+}
+@-webkit-keyframes animate-stripes {
+    0% {
+        background-position: 0 0
+    }
+    100% {
+        background-position: 50px 0
+    }
+}
+@-moz-keyframes animate-stripes {
+    0% {
+        background-position: 0 0
+    }
+    100% {
+        background-position: 50px 0
+    }
+} 
+.forgetpassword {
+    color: #d94b2a;
+    font-size: 14px;
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.inputblock{
+    position: relative;
+    padding-bottom: 20px;
+}
+.inputblock .invalid{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.nameblock .invalid , .nameblock .invalid{
+    position: absolute;
+    bottom: 0px;
+    color: red;
+    font-size: 13px;
+}
+.inputblock .error , .nameblock .error{
+    border-color: red;
+}
+
+   
+.register-form .continue-btn.loaderbtn{    
+    background-color: #d94b2a;
+    color: #fff;
+    pointer-events: none;
+    opacity: 0.6;
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, .3) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .3) 50%, rgba(255, 255, 255, .3) 75%, transparent 75%, transparent);
+    -webkit-transition: width .5s ease-in-out;
+    transition: width .5s ease-in-out;
+    background-size: 50px 50px;
+    -webkit-animation: animate-stripes 3s infinite linear;
+    animation: animate-stripes 3s infinite linear;
+    cursor: default;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+@keyframes animate-stripes {
+    0% {
+        background-position: 0 0
+    }
+    100% {
+        background-position: 50px 0
+    }
+}
+@-webkit-keyframes animate-stripes {
+    0% {
+        background-position: 0 0
+    }
+    100% {
+        background-position: 50px 0
+    }
+}
+@-moz-keyframes animate-stripes {
+    0% {
+        background-position: 0 0
+    }
+    100% {
+        background-position: 50px 0
+    }
+}
+
+
+
+.logininput{
+    position: relative;
+    padding-bottom: 15px;
+    /* margin-bottom: 10px; */
+}
+
+.logininput input.error{
+    border-color: #ff0000;
+}
+
+.inputblock a.show {
+    /* background-image: url('../../assets/images/showEye.png'); */
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: 22px;
+    right: 0px;
+    width: 25px;
+    height: 25px;
+  }
+  .inputblock a.hid {
+    /* background-image: url('../../assets/images/hideEye.png'); */
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    top: 22px;
+    right: 0px;
+    width: 25px;
+    height: 25px;
+  }
+  .hid {
+    display: block;
+  }
+  .loginfailure {
+    color: #ff0000;
+    /* position: absolute; */
+    bottom: -25px;
+    left: 0;
+    display: block;
+  }

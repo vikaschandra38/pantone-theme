@@ -1,0 +1,15 @@
+span#sizeGuideSeperator {
+  font-size: 0;
+  display: none !important;
+}
+.snf5342-template.ng-scope span {
+  font-size: 12px;
+  font-family: 'Montserrat', sans-serif;
+font-weight: 500;
+  color: #d94b2a;
+  margin: 0 3px 0 0;
+} 
+.snf5342-template {
+  float: none;
+  padding-left: 0;
+}

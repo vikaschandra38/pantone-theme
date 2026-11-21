@@ -1,0 +1,120 @@
+<ul class="cart-privew">
+    <h2>You have {{totalQuantity || 0}} item{{totalQuantity > 1 ? 's' : ''}} in your cart</h2>   
+
+    <div class="scroll">
+        <li *ngFor="let item of let item of items">
+            <div class="item-block">
+                <div class="item-img" routerLink="/products/id/{{item?.product?.slug}}">
+                    <img [src]="item?.product?.images[0]?.file?.url + '?width=75' " />
+                </div>
+                <div class="item-info">
+                    <span class="remove-item" (click)="removeItem(item)"><a><img src=".../../../../assets/images/ic-delete.png" width="16" ></a></span>
+                    <h3 routerLink="products/id/{{item?.product?.slug}}">{{item?.product?.name}}</h3>
+                    <!-- <div class="color" *ngIf="item?.product?.attributes?.colour">Colour: {{item?.product?.attributes?.colour}} 
+                </div>-->
+
+                    <!-- <p> <span  *ngIf="item?.options" class="size">Size: {{item?.variant?.name}}</span><span>Qty: {{item?.quantity }} </span></p> -->
+                    <p class="sale-price" *ngIf="item?.variant === null">₹ {{item?.product?.sale_price | number:0}}&nbsp; ({{item?.quantity}}) </p>
+                    <p class="sale-price" *ngIf="item?.variant != null">₹ {{item?.variant?.sale_price | number:0}}&nbsp; ({{item?.quantity}})</p>
+                </div>
+            </div>
+        </li>
+    </div>
+    <div class="view">
+        <a class="" routerLink="/checkout/cart" (click)="closeCart()"> Proceed to Checkout</a>
+    </div>
+</ul>
+
+
+
+<div *ngIf="">
+    <div class="preview-product-wrapper" *ngFor="let item of items">
+        <div class="wrapper">
+            <div class="preview-product-image" routerLink="products/id/{{item?.product?.slug}}">
+                <img src="{{item?.product?.images[0]?.file?.url + '?width=150'}}" alt="{{item?.product?.name}}">
+            </div>
+            <div class="preview-product-details">
+                <span class="close-btn" (click)="removeItem(item)"><img src=".../../../../assets/images/cross.png" /></span>
+                <div class="product-name" routerLink="products/id/{{item?.product?.slug}}">{{item?.product?.name}}</div>
+
+                <!-- <div class="color" *ngIf="option.name === 'Color' || option.name === 'Colour' ">Colour : {{option?.value}}</div> -->
+                <!-- <div class="color" *ngIf="item?.product?.attributes?.colour">Sold By: {{item?.product?.attributes?.sold_by}} </div>-->
+                <div class="color" *ngIf="item?.product?.attributes?.colour">Colour : {{item?.product?.attributes?.colour}}
+                </div>
+
+
+                <div class="modal-overlay" *ngIf="modaloverlay" (click)="closesizeqty()"></div>
+                <div class="modal-block" *ngIf="sizepopup">
+                    <div class="inner">
+                        <h2>Select Size</h2>
+                        <ul>
+                            <button *ngFor="let size of variantList" (click)="updateSize(size)" [ngClass]="selectedSize?.variant?.name === size.name?'active':''" [disabled]='checksize(size?.name)'>
+                            {{size?.name}}
+                            <span class="strike"></span>
+                        </button>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-block" *ngIf="qtypopup">
+                    <div class="inner">
+                        <h2>Select Quantity</h2>
+                        <ul>
+                            <li *ngFor="let qty of selectedQtyNumbers" (click)="updateQty(qty)" [ngClass]="selectedQty.quantity=== qty?'active':''">{{qty}}
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="sizeqtyblock">
+                    <div class="size" *ngIf="item?.options">
+                        <!-- <p (click)="sizeclick(item)">Size: {{item?.variant?.name}} <span><img
+                                src="../assets/images/drop-arrow.png" /></span></p> -->
+                        <p style="background: none;">Size: {{item?.variant?.name}}</p>
+                    </div>
+                    <div class="size">
+                        <p (click)="qtyclick(item)">Qty: {{item?.quantity }} <span><img
+                                src="../assets/images/drop-arrow.png" /></span></p>
+                    </div>
+                    <div class="stock">
+                        <p class="stock-status" *ngIf="item?.variant?.stock_level=== null || item?.variant?.stock_level === undefined ? item?.product?.stock_level === 0: item?.variant?.stock_level === 0">
+                            Out of Stock</p>
+                        <p class="stock-status" *ngIf="item?.variant?.stock_level === null || item?.variant?.stock_level === undefined ? (item?.product?.stock_level <= (item?.variant?.attributes?.alert_stock_quantity|| item?.product?.attributes?.alert_stock_quantity | number ) && item?.product?.stock_level > 0) : (item?.variant?.stock_level <= ( item?.variant?.attributes?.alert_stock_quantity|number) && item?.variant?.stock_level > 0)">
+                            {{item?.variant?.stock_level || item?.product?.stock_level}} Left</p>
+                        <!-- <span class="stock-status"
+                        *ngIf="(item?.variant?.stock_level || item?.product?.stock_level)<item.quantity && placeOrderSubmitted">
+                            Selected quantity is more than the available stock, please decrease the quantity!</span> -->
+                    </div>
+                </div>
+                <p class="stock-status" *ngIf="(item?.variant?.stock_level || item?.product?.stock_level) < item?.quantity">
+                    <strong>Selected quantity is more than the available stock, please decrease the quantity!</strong>
+                </p>
+                <div class="price-block">
+                    <!-- <a class="edit"><img src="../assets/images/edit-btn.png" /></a> -->
+                    <p class="sale-price">₹ {{item?.product?.price !== item?.product?.sale_price ? makeprice(item?.product?.sale_price) : makeprice(item?.product?.price) }}
+                    </p>
+                    <p class="mrp">
+                        <del *ngIf="item?.product?.price !== item?.product?.sale_price">₹
+                        {{makeprice(item?.product?.price)}}</del>
+                        <span class="discount" *ngIf="item?.product?.price !== item?.product?.sale_price">({{((item.product.price-item.product.sale_price)/(item.product.price))*100 | number : '1.0-0'}}%
+                        OFF)</span>
+                    </p>
+                </div>
+                <!-- <div *ngFor="let option of item?.options">
+            <div class="size" *ngIf="item?.options[0]?.value">Size : {{item?.options[0]?.value}}</div>            
+        </div>
+        <span class="category error-red" *ngIf="item?.variant?.stock_level=== null || item?.variant?.stock_level === undefined ? item?.product?.stock_level === 0: item?.variant?.stock_level === 0">Out of Stock</span>
+        <span class="category error-red" *ngIf="item?.variant?.stock_level === null || item?.variant?.stock_level === undefined ? (item?.product?.stock_level <=2 && item?.product?.stock_level > 0) : (item?.variant?.stock_level <=2 && item?.variant?.stock_level > 0)" >{{item?.variant?.stock_level  || item?.product?.stock_level}} Stock available.</span>
+        <span class="price" [ngClass]="(item?.product?.price !== item?.product?.sale_price) ? 'sale_on' : 'sale_off'">
+            <span class="sale_price" *ngIf="item?.product?.price !== item?.product?.sale_price" >₹&nbsp;<del>{{makeprice(item?.product?.price)}}</del></span>
+            ₹ {{makeprice(item?.product?.sale_price)}}</span>
+        <div class="Qty">
+            <span>Quantity: <b>{{item?.quantity}} </b></span>
+            <button class="minus_btn" (click)="decreaseCartItems(item)" >-</button>
+            <button *ngIf=" ((item?.variant?.stock_level > item?.quantity) && !(item?.quantity === 6)) || (item && !item.variant && item.product.stock_level > item.quantity  )" class="plus_btn" (click)="increaseCartItems(item)">+</button> 
+        </div> -->
+                <!-- {{item.variant.stock_level}} -- {{item.quantity}} -->
+            </div>
+        </div>
+    </div>
+</div>

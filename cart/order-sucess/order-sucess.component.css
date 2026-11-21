@@ -1,0 +1,329 @@
+.headertop {
+  text-align: center;
+  padding: 20px 0;
+  background: #ece5ff;
+  border-bottom: 1px solid #d7d7d7;
+  position: relative;
+  z-index: 99;
+}
+.orderblock {
+  text-align: center;
+  margin: 0 0 0px;
+  position: relative;
+}
+.orderblock h2 {
+  font-size: 24px;
+  color: #644ea2;
+  margin: 45px 0 7px;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  font-family: 'lato', sans-serif;
+  font-weight: 600;
+  line-height: 34px;
+}
+.orderblock .orderno {
+  font-size: 17px;
+  color: #666666;
+  font-family: 'Lato', sans-serif;
+font-weight: 700;
+margin-bottom: 12px;
+}
+.orderblock .orderno span {
+  color: #644ea2;
+  margin-right: 10px;
+}
+.ordremsg {
+  color: #999999;
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+font-weight: 400;
+  margin: 5px 0 40px;
+}
+.shopingbtn a.trackorder {
+  background: #ede7ff;
+  font-size: 16px;
+  border: 1px solid #644ea2;
+  color: #644ea2;
+  height: 44px;
+  display: inline-block;
+  line-height: 42px;
+  max-width: 230px;
+  width: 100%;
+  margin-right: 15px;
+  font-family: 'Lato', sans-serif;
+font-weight: 500;
+  /* border-radius: 5px; */
+}
+.shopingbtn a.trackorder:hover {
+  background: #644ea2;
+  color: #fff;
+}
+.shopingbtn a.continuebtn {
+  color: #fff;
+  font-size: 16px;
+  border:1px solid #644ea2;
+  background: #644ea2;
+  height: 44px;
+  display: inline-block;
+  line-height: 42px;
+  max-width: 230px;
+  width: 100%;
+  margin-left: 15px;
+  font-family: 'Lato', sans-serif;
+font-weight: 500;
+  /* border-radius: 5px; */
+}
+.shopingbtn a.continuebtn:hover {
+  border: 1px solid #644ea2;
+  color: #644ea2;
+  background: #ede7ff;
+}
+.newsletter h3 {
+  font-size: 18px;
+  font-family: 'Lato', sans-serif;
+font-weight: 400;
+  color: #666;
+  margin: 50px 0 10px;
+}
+.newsletter ul {
+  display: flex;
+  align-items: center;
+  max-width: 510px;
+  margin: 30px auto;
+  justify-content: center;
+}
+.newsletter ul li {
+  margin: 10px;
+  position: relative;
+}
+.newsletter ul li h4 {
+  background: #909090;
+  padding: 5px;
+  display: block;
+  color: #fff;
+  font-size: 14px;
+  text-transform: uppercase;
+  margin: 0;
+}
+.newsletter ul li .overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+.newsletter ul li .overlay img {
+  width: 100%;
+  height: 100%;
+}
+.joinbtn a.selectall {
+  padding: 5px 15px;
+  border: 1px solid #999;
+  color: #999;
+  font-size: 16px;
+  width: 150px;
+  display: inline-block;
+  height: 40px;
+  line-height: 27px;
+  margin: 30px 15px;
+  font-family: 'lato', sans-serif;
+font-weight: 500;
+}
+.joinbtn a.joinclark {
+  padding: 5px 15px;
+  border: 1px solid #00782e;
+  color: #fff;
+  font-size: 16px;
+  width: 150px;
+  display: inline-block;
+  height: 40px;
+  line-height: 27px;
+  margin: 30px 15px;
+  background: #00782e;
+  font-family: 'lato', sans-serif;
+font-weight: 500;
+}
+.orderblock .youmaylike {
+  max-width: 80%;
+  margin: auto;
+}
+.orderblock .youmaylike h2 {
+  font-family: 'lato', sans-serif;
+font-weight: 500;
+  font-size: 20px;
+  margin: 50px 0 20px;
+}
+.youmaylike ul li .wishlistbar {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  top: 0px;
+}
+.youmaylike ul li .wishlistbar a.wishlisticon {
+  width: 50%;
+  text-align: left;
+}
+.youmaylike ul li .wishlistbar .offer {
+  width: 50%;
+  font-size: 2rem;
+  text-transform: uppercase;
+  color: #a98e70;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  text-align: right;
+  margin: 0 0 0;
+  z-index: 99;
+}
+.youmaylike ul li .pro_img {
+  text-align: center;
+  margin: auto;
+  max-width: 80%;
+}
+.youmaylike ul li .bottomblock {
+  display: flex;
+  align-items: flex-start;
+  margin: 25px 0;
+}
+.youmaylike ul li .bottomblock h2 {
+  color: #333;
+  font-family: "Latosemibold";
+  font-size: 17px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 0 10px;
+}
+.youmaylike ul li .bottomblock p {
+  color: #666666;
+  font-family: "Latosemibold";
+  font-size: 14px;
+  margin: 3px 0;
+}
+.youmaylike ul li .bottomblock .nameblock {
+  width: 60%;
+  text-align: left;
+}
+.youmaylike ul li .bottomblock .price {
+  letter-spacing: 1px;
+  font-family: "Latosemibold";
+  font-size: 17px;
+  color: #ff0000;
+  width: 40%;
+}
+.youmaylike ul li .bottomblock .price .srp {
+  color: #333;
+}
+
+.recentproduct li .pro_bottom {
+  /* display: flex;
+  align-items: flex-start; */
+  margin: 15px 0;
+}
+.recentproduct li .pro_bottom .titleblock {
+  /* width: 70%;
+  text-align: left;
+  padding-left: 40px; */
+}
+.recentproduct li .pro_bottom .priceblock {
+  font-size: 13px;
+  color: #333;
+  font-family: 'Lato', sans-serif;
+font-weight: 700;
+}
+.recentproduct li .pro_bottom .titleblock h3 {
+  font-family: 'lato', sans-serif;
+font-weight: 400;
+  font-size: 14px;
+  color: #644ea2;
+  margin: 0 0 5px;
+  text-transform: capitalize;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: normal;
+}
+.recentproduct {
+  position: relative;
+}
+.recentproduct .arrow a.prev {
+  position: absolute;
+  left: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.recentproduct .arrow a.next {
+  position: absolute;
+  right: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.recentproduct li {
+  display: inline-block;
+  width: 25%;
+  padding: 10px;
+  margin-top: 0;
+  padding-top: 0;
+}
+.recentproduct li .pro_bottom p.category {
+  font-family: 'Lato', sans-serif;
+font-weight: 500;
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 5px;
+}
+.recentproduct li .pro_bottom span.febric {
+  font-family: 'Lato', sans-serif;
+font-weight: 500;
+  font-size: 14px;
+  color: #999;
+  margin: 0 0 5px;
+  padding: 0;
+}
+.recentproduct li .img {
+  width: 100%;
+  margin: 0 auto 20px;
+  text-align: center;
+  /* height: 190px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.recentproduct li .img img {
+  /* max-width: 170px; */
+}
+.arrow .disabled {
+  display: none;
+}
+
+.newsletter ul li.active:before {
+  content: "";
+  /* background: url(../../assets/images/tick_arrow.png); */
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-size: cover;
+}
+
+.ordernoloader {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  margin: auto;
+}
+
+.product-color {
+  color: #999;
+  font-size: 14px;
+  font-family: 'lato', sans-serif;
+font-weight: 400;
+  text-transform: capitalize;
+  margin: 3px 0;
+}
+.order_value{display: none;}

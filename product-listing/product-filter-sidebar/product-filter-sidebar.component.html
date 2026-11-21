@@ -1,0 +1,148 @@
+<!-- <ul>
+  <li>
+    <div class="filters-header">
+      <h4>Filter by:</h4>
+    </div>
+  </li>
+</ul> -->
+
+<!-- {{ getFilters | json }} -->
+<div class="wrapper">
+  <div class="container">
+    <ul class="filters-wrapper" *ngIf="getFilters.length > 0">
+      <!-- <div class="pricerange" [ngClass] = "  ( pricefilter ) ? 'active': ''" *ngIf="">
+            <b class="filter_title" (click)="pricefilter = !pricefilter" [ngClass] = "  ( pricefilter ) ? 'minuschange': ''">Price</b>
+            <div class="pricefilter" *ngIf="pricefilter">
+            </div>
+            <div (click)="onPriceChange(min_price, max_price, true)">Filter By Price Range: {{min_price}} - {{max_price}}</div>
+          </div> -->
+      <!-- <li *ngFor="let filter of getFilters; let i = index " [ngClass] = "(i == currentindex) ? 'active' : 'inactive'" >
+        <b class="filter_title filter-{{ makeClass(filter.key) }}"  *ngIf="filter.value.length > 0 && (filter.key === 'attributes.colour_code')" (click)="showFilters(filter.key, i)">Color</b>
+        <ul *ngIf="filter.value.length > 0 && currentindex == i && (filter.key === 'attributes.colour_code')">
+          <div class="filterlist">
+          <li *ngFor="let subFilter of filter.value" class="filter-{{ makeClass(filter.key) }}">
+              <div (click)="onChange(filter.key, subFilter.value, (subFilter.selected) ? false : true, filter.value)">
+                  <mat-checkbox *ngIf="subFilter.selected" checked = "true" (change)="onChange(filter.key, subFilter.value, $event.checked, filter.value)" ><div class="filtertext color-swatch active"><span class="style" [ngStyle]="{'background-color': subFilter.value }"></span> {{subFilter.value }}<span> ({{ subFilter.count }})</span></div></mat-checkbox>
+                  <mat-checkbox *ngIf="!subFilter.selected" (change)="onChange(filter.key, subFilter.value, $event.checked, filter.value)" > <div class="filtertext color-swatch"> <span class="style" [ngStyle]="{'background-color': subFilter.value }"></span>{{subFilter.value }}<span> ({{ subFilter.count }})</span></div></mat-checkbox>        
+              </div>
+          </li>
+          </div>
+        </ul>
+      </li> -->
+
+      <li *ngFor="let filter of getFilters; let i = index" [ngClass]="i == currentindex ? 'active' : 'inactive'">
+        <b class="filter_title filter-{{ makeClass(filter.key) }}" *ngIf="
+            filter.value.length > 0 &&
+            titleKeyArray.indexOf(filter.key) >= 0 &&
+            filter.key.length > 1
+          "
+          (click)="showFilters(filter.key, i)"
+          ><span> {{ changeTitle(filter.key) }} </span></b
+        >
+        <ul
+          *ngIf="
+            filter.value.length > 0 &&
+            titleKeyArray.indexOf(filter.key) >= 0 &&
+            filter.key.length > 1
+          "
+        >
+          <div class="filterlist">
+            <li *ngFor="let subFilter of filter.value" class="filter-{{ makeClass(filter.key) }}">
+              <mat-checkbox *ngIf="subFilter.selected" checked="true" (change)="
+                  onChange(
+                    filter.key,
+                    subFilter.value,
+                    $event.checked,
+                    filter.value
+                  )
+                ">
+                <div class="filtertext">
+                  <span *ngIf="filter.key === 'attributes.colour_code'" class="color-swatch"
+                    [ngStyle]="{ 'background-color': subFilter.value }">
+                  </span><span class="value">{{ subFilter.value }}</span>
+                </div>
+              </mat-checkbox>
+              <mat-checkbox *ngIf="!subFilter.selected" (change)="
+                  onChange(
+                    filter.key,
+                    subFilter.value,
+                    $event.checked,
+                    filter.value
+                  )
+                ">
+                <div class="filtertext">
+                  <span *ngIf="filter.key === 'attributes.colour_code'" class="color-swatch"
+                    [ngStyle]="{ 'background-color': subFilter.value }"></span><span
+                    class="value">{{ subFilter.value }}</span>
+                </div>
+              </mat-checkbox>
+            </li>
+          </div>
+        </ul>
+      </li>
+      <li
+        class="filter-short"
+        [ngClass]="showsortfilter ? 'active' : 'inactive'"
+      >
+        <b (click)="sortfilter()" class="filter_title filter-attributes sort"
+          ><span>Sort By </span></b
+        >
+        <ul>
+          <div class="filterlist">
+            <li [ngClass]="{ active: currentFilter == 'ws_pantone_products' }">
+              <a (click)="sortBy('ws_pantone_products')">Relevance</a>
+            </li>
+            <li
+              [ngClass]="{
+                active: currentFilter == 'ws_pantone_products_price_asc'
+              }"
+            >
+              <a (click)="sortBy('ws_pantone_products_price_asc')"
+                >Price Ascending</a
+              >
+            </li>
+            <li
+              [ngClass]="{
+                active: currentFilter == 'ws_pantone_products_price_dec'
+              }"
+            >
+              <a (click)="sortBy('ws_pantone_products_price_dec')"
+                >Price Descending</a
+              >
+            </li>
+            <li
+              [ngClass]="{
+                active: currentFilter == 'ws_pantone_products_alphabet_asc'
+              }"
+            >
+              <a (click)="sortBy('ws_pantone_products_alphabet_asc')">Aa-Zz</a>
+            </li>
+            <li
+              [ngClass]="{
+                active: currentFilter == 'ws_pantone_products_alphabet_dec'
+              }"
+            >
+              <a (click)="sortBy('ws_pantone_products_alphabet_dec')">Zz-Aa</a>
+            </li>
+            
+          </div>
+        </ul>
+      </li>
+
+      <!-- <div class="item-count">
+        <h4 *ngIf="nbHits">{{ nbHits }} {{ nbHits > 1 ? "Items" : "Item" }}</h4>
+      </div> -->
+    </ul>
+  </div>
+</div>
+<!-- {{ getFilters | json }} -->
+<!-- <div
+  class="filteroverlay"
+  [ngClass]="currentindex ? 'visible' : ''"
+  (click)="hidefilter()"
+></div>
+<div
+  class="filteroverlay"
+  [ngClass]="showsortfilter ? 'visible' : ''"
+  (click)="hidefilter()"
+></div> -->

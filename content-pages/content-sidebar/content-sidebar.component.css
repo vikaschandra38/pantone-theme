@@ -1,0 +1,38 @@
+.contentsidebar a {
+    display: block;
+    /* border-top: 1px dashed #ccc; */
+    padding: 10px 0;
+    color: #333;
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+}
+
+.contentsidebar .active a {
+    color: #644EA2;
+}
+
+.contentsidebar h3 {
+    color: #3d2d17;
+    font-weight: normal;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    text-transform: capitalize;
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+    box-shadow: none;
+}
+
+.mat-expansion-panel-header {
+    padding: 0 10px;
+}
+
+.contentsidebar h2 {
+    color: #3d2d17;
+    margin: 0 0 10px;
+    font-size: 20px;
+    text-transform: capitalize;
+    font-family: 'Lato', sans-serif;
+}

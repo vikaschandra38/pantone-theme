@@ -1,0 +1,31 @@
+<ul class="recentproduct">
+  <li *ngFor = "let product of slider; trackBy:trackById" [lazy-load-images]="{ rootMargin: '10px' }">
+    <a routerLink="../{{product?.slug}}" >
+    <div class="img"><img [attr.data-src]="product?.images[0]?.file.url | DetailMainImageKitPipe : this.mobiledetailSimilarImageWidth" src="./assets/images/details-img.jpg" alt="{{ product.name }}" /></div>
+      <div class="pro_bottom">
+        <div class="titleblock">
+          <h3>{{ product.name }}</h3>
+        </div>
+        <div class="product-color">{{ product?.attributes?.product_description }}</div> 
+        <div class="priceblock">
+          <div class="price">
+            <span *ngIf="product && product.sale">
+              <span [ngClass]="(product && product.sale) ? 'sale_on' : 'sale_off'"> ₹ {{makeprice(product?.sale_price)}}</span>
+            </span>
+            <span>
+              <span *ngIf="product && product.sale"><del>₹&nbsp;{{makeprice(product?.price)}} </del></span>
+              <span *ngIf="product && !product.sale">₹&nbsp;{{makeprice(product?.price)}}</span>
+            </span>
+            <div class="offer">
+              <span *ngIf=" percentage(product.sale_price, product.price) > 0">({{ percentage(product.sale_price, product.price) }}% OFF)</span>
+            </div>
+            </div>
+        </div>
+      </div>
+    </a>
+  </li>
+  <!-- <div class="arrow">
+  <a class="prev" [ngClass] = "first == 0? 'disabled':''" (click) = "prevSlider()" ><img src="assets/duke-assets/images/arrow-left.png" /></a>
+  <a class="next" [ngClass] = "((last == (data.length)) || data.length < 2 )? 'disabled':''" (click) = "nextSlider()" ><img src="assets//duke-assets/images/arrow-right.png" /></a>
+    </div> -->
+</ul>

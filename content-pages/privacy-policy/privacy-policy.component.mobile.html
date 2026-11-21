@@ -1,0 +1,26 @@
+<!-- {{ privacypolicydata | json }} -->
+<section class="page">
+  <div class="container">
+    <div class="flexblock">
+      <div class="sidebar">
+        <!-- <content-sidebar></content-sidebar> -->
+      </div>
+      <div class=""  *ngIf = "!privacypolicydata">
+        <div class="animationtop w-100 lightgrey"></div>
+        <div class="animationbackground h-40 lightgrey"></div>
+        <div class="animationtop w-60 lightgrey"></div>
+        <div class="animationtop w-70 lightgrey"></div>
+        <div class="animationtop w-50 lightgrey"></div>
+        <div class="animationtop w-30 lightgrey"></div>
+        <div class="animationtop w-40 lightgrey"></div>
+        <div class="animationtop w-50 lightgrey"></div>
+        <div class="animationtop w-100 h-50 lightgrey"></div>
+      </div>
+      <div class="rightbar" *ngIf = "privacypolicydata">
+          <h1 style="font-family:'Lato', sans-serif">{{ privacypolicydata?.pageTitle }}</h1>
+          <p style="font-family:'Lato', sans-serif" [innerHTML]="privacypolicydata?.addComponents[0]?.fields?.description">{{ privacypolicydata?.addComponents[0]?.fields?.description }}</p>          
+        </div>
+
+    </div>
+  </div>
+</section>

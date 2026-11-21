@@ -1,0 +1,267 @@
+
+<div class="" id="no-order" *ngIf = "noOrders && (!userorderloading)">
+    <div class="select-menu" (click)="showDropMenu()">
+        <h1 class="categoryname">Orders & Returns</h1>
+        <span class="arrow-icon"><img src="../assets/images/down.png"></span>
+        <div class="overlay"  [ngClass]="showDropdown ? 'show': 'hide'"></div>
+        <ul class="drop-menu" [ngClass]="showDropdown ? 'show': 'hide'">
+            <li> <a  [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'overview'}">Overview</a></li>
+            <li> <a  [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'profile'}">My Profile </a></li>                                
+            <li> <a  [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'addresses'}">Address Book </a></li>
+            <li> <a  [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'orders'}">Order & Returns </a></li>
+        </ul>
+    </div>
+    <h2>Your Orders and Returns </h2>
+    <div class="no-order_inner">
+        <span class="no-cart"></span>
+        <h3 class="heading">No Active Orders</h3>
+        <p>There are no recent orders to show</p>        
+    </div>
+    <a routerLink="" class=" btn_green">Start shopping </a>
+  </div><!-- no-order block div -->
+  
+  <div class="" *ngIf = "noOrders && userorderloading && !userorderloaded">
+    <div class="loader-spinner loader" ><mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner></div>
+  </div><!-- no-order block div -->
+  <div id="account" *ngIf = "showorders">
+        <div class="account_main">
+            <div class="account_right border-no">
+                <div class="order_return_block" id="order_return_block">
+                    <div class="select-menu" (click)="showDropMenu()">
+                        <h1 class="categoryname">Orders & Returns</h1>
+                        <span class="arrow-icon"><img src="../assets/images/down.png"></span>
+                        <div class="overlay"  [ngClass]="showDropdown ? 'show': 'hide'"></div>
+                        <ul class="drop-menu" [ngClass]="showDropdown ? 'show': 'hide'">
+                            <ul class="drop-menu" [ngClass]="showDropdown ? 'show': 'hide'">
+                                <li> <a  [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'overview'}">Overview</a></li>
+                                <li> <a  [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'profile'}">My Profile </a></li>                                
+                                <li> <a  [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'addresses'}">Address Book </a></li>
+                                <li> <a  [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'orders'}">Order & Returns </a></li>
+                            </ul>
+                        </ul>
+                    </div>
+                    <div class="order_item_block">
+                        <h2>Your Orders and Returns </h2>
+                        <ul>
+                            <li class="progress_item" *ngFor="let orders of nonDraftOrders">
+                                <div *ngIf="orders.status !==  'draft'">
+                                <div class="orderno" *ngIf="orders.number">Order No. <span>{{orders.number}}</span></div>
+                                <div class="order_item_list" *ngFor="let articles of orders.items">
+                                <div class="item_info_block">
+                                    <div class="item_thumbnail">
+                                        <a routerLink="/products/id/{{articles?.product?.slug}}"><img src="{{articles?.product?.images[0]?.file.url + '?width=160'}}" /></a>
+                                    </div>
+                                    <div class="item_info">
+                                        <div class="item_productName">{{articles?.product?.name}}</div>
+                                        <!-- <div class="ordernumber">{{orders.number}}</div> -->
+                                        <div class="item-priceInfo">
+                                            ₹ {{findTotal(articles) | number:0}} 
+                                            <!-- <a (click)="show_price_details($event)" class="orderpriceplus "></a> -->
+                                           
+                                            <div class="oder_price_details">
+                                                <ul>
+                                                    <li>
+                                                        <span>Total Item Price:</span>
+                                                        <span >₹ {{articles.product.price * articles.quantity  | number:0}}</span>
+                                                    </li>
+                                                    <li>
+                                                      <span>Item Discount:</span>
+                                                      <span class="bifurcation-info">-₹ {{(articles.product.price - articles.product.sale_price) * (articles.quantity) | number:0}}</span>
+                                                  </li>
+                                                    <li>
+                                                      <span>Coupon Discount:</span>
+                                                      <span class="bifurcation-info">-₹ {{articles.discount_total | number:0}}</span>
+                                                      <!-- <span class="bifurcation-info">-Rs {{orders.account_credit_amount === 'null' ? '0' : orders.account_credit_amount }}</span> -->
+                                                  </li>
+                                                  <!-- <li>
+                                                      <span>Coupon Discount: {{ orders?.shipment_tax }}</span>
+                                                      <span class="bifurcation-info"></span>
+                                                  </li> -->
+                                                    <!-- <li>
+                                                        <span>Payment Method:</span>
+                                                        <span>{{orders.billing.method}}</span>
+                                                    </li>
+                                                    <li>
+                                                        <span>Oder Date:</span>
+                                                        <span>{{ articles?.product?.date_created | date:"dd/MM/yyyy , h:mma" }}</span> <br />
+                                                    </li> -->
+                                                    <li>
+                                                      <span>Shipping Fee:</span>
+                                                      <span class="bifurcation-info">{{ orders.shipment_price === '0' ? 'Free' : orders.shipment_price | number:0}}</span>
+                                                      <!-- <span class="bifurcation-info">{{ orders.shipment_price | number:0}}</span> -->
+                                                  </li>
+                                                    <li class="total">
+                                                        <span>Total:</span>
+                                                        <span>₹ {{findTotal(articles) | number:0}} </span>
+                                                        <!-- <span>₹ {{articles.price | number:0}}</span> -->
+                                                        <!-- <span>₹ {{(articles.price_total - articles.discount_total) | number:0}}</span> -->
+                                                    </li>
+  
+                                                </ul>
+                                            </div> <!-- oder_price_details -->
+                                        </div>
+                                        <span class="item-size" *ngIf="articles && articles.options && articles.options[0] && articles.options[0].value">Size: <b>{{articles?.options[0].value}}</b> | Qty: <b>{{articles.quantity}}</b></span>
+                                        <!-- <span>Colour: {{articles?.product?.attributes.colour}}</span> -->
+                                        <!-- <div class="qty">Qty - {{articles.quantity}}</div> -->
+  
+                                        <div class="order-date">
+                                          <span>Order Date:</span>
+                                          <span>{{orders?.date_created | date:"dd/MM/yyyy" }}</span>
+                                        </div>
+                                        <span class="cancelled-order" *ngIf="articles?.quantity_canceled > 0 "> (Cancelled) </span>
+                                        <a class="trackorder" *ngIf="(orders?.billing?.method=='COD' || (orders?.billing?.method=='ONLINE' && orders?.paid==true))" (click)="trackOrder(orders.number,orders?.billing, articles?.product?.sku )">Track </a>
+                                        
+                                        <!-- <li>
+                                          <span>Order Date:</span>
+                                          <span>{{ articles?.product?.date_created | date:"dd/MM/yyyy" }}</span> <br />
+                                        </li> -->
+  
+                                        
+                                    </div>
+                                    <div class="order_right">
+                                        <a class="order-status">{{orders.billing.method}}</a>
+                                        <a class="order-status pending" [ngClass]="orders?.status == 'sucess' ? 'sucess':''" *ngIf="orders.billing.method !== 'COD' && orders?.status != 'delivery_pending' && orders?.status != 'payment_pending' ">{{orders.status}}</a>
+                                        <!-- <a class="trackorder" *ngIf="(orders?.billing?.method=='COD' || (orders?.billing?.method=='ONLINE' && orders?.paid==true)) && (articles?.quantity_canceled <= 0 )" (click)="trackOrder(orders.number,orders?.billing, articles?.product?.sku )">Track Order</a> -->
+                                    
+                                        <!-- <a class="trackorder" *ngIf="articles?.quantity_canceled <= 0 ">Item 00 {{ articles?.quantity_canceled}}</a> -->
+                                    </div>
+                                </div>
+                                <div class="ordered" *ngIf="">
+                                    <div class="order_status">
+                                        <ul>
+                                            <li>
+                                                <h3>Ordered</h3>
+                                                <h4>{{orders.date_created | date: longDate}}</h4>
+                                            </li>
+                                            <li class="delivery_status">
+                                                <h3>Cash On Delivery</h3>
+                                                <div class="status_line">
+                                                    <span class="active_border"></span>
+                                                    <span class="active"></span>
+                                                    <span class="active_circle"></span>
+                                                    <span class="active_border active_border_last"></span>
+                                                    <span class="active_border circle_border"></span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <h3>Delivery</h3>
+                                                <h4>--</h4>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                </div>
+                                </div>
+                            </li>
+  
+  
+                        <!--     <li>
+                                <div class="orderno">Order No. <span>253614748596</span></div>
+                                <div class="order_item_list">
+                                <div class="item_info_block">
+                                    <div class="item_thumbnail">
+                                        <img src="https://cdn.schema.io/eshopboxecommerce/5bb897e6a1772d5d073fa567/7aabca2550cb1194326743e074cdc09c" />
+                                    </div>
+                                    <div class="item_info">
+                                        <div class="item_productName">TriActive Run</div>
+                                        <div class="item_cat">Mens Trigenic Collection</div>
+                                        <span class="item-size">Size: M</span>
+                                        <span> ,  Colour: Light grey</span>
+                                        <div class="qty">Qty - 1</div>
+                                        <div class="item-priceInfo">
+                                            Rs 480.25 <a (click)="show_price_details($event)" class="orderpriceplus "></a>
+                                            <div class="oder_price_details">
+                                                <ul>
+                                                    <li>
+                                                        <span>MRP:</span>
+                                                        <span>2,513.00</span>
+                                                    </li>
+                                                    <li>
+                                                        <span>VAT/ GST:</span>
+                                                        <span>62.00</span>
+                                                    </li>
+                                                    <li>
+                                                        <span>Item Discount(-):</span>
+                                                        <span>535.00</span>
+                                                    </li>
+                                                    <li>
+                                                        <span>Cash On Delivery: </span>
+                                                        <span>2,040.15</span>
+                                                    </li>
+                                                    <li class="total">
+                                                        <span>Total:</span>
+                                                        <span>2,040.15</span>
+                                                    </li>
+  
+                                                </ul>
+                                            </div>
+                                            <div class="canceled">Cancelled <span>(Apr 25,2018)</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="order_right">
+                                        <a href="#" class="cross">X</a>
+                                    </div>
+                                </div>
+  
+                                </div>
+                            </li>
+                             <li>
+                                <div class="orderno">Order No. <span>253614748596</span></div>
+                                <div class="order_item_list">
+                                <div class="item_info_block">
+                                    <div class="item_thumbnail">
+                                        <img src="https://cdn.schema.io/eshopboxecommerce/5bb5b40b4e4dc66d1848eea8/025fad5b858878576a1dd72cb7346d84" />
+                                    </div>
+                                    <div class="item_info">
+                                        <div class="item_productName">Chartli Diva</div>
+                                        <div class="item_cat">Womens Shoes</div>
+                                        <span class="item-size">Size: M</span>
+                                        <span> ,  Colour: Nude Pink Combi</span>
+                                        <div class="qty">Qty - 1</div>
+                                        <div class="item-priceInfo">
+                                            Rs 480.25 <a (click)="show_price_details($event)" class="orderpriceplus "></a>
+                                            <div class="oder_price_details">
+                                                <ul>
+                                                    <li>
+                                                        <span>MRP:</span>
+                                                        <span>2,513.00</span>
+                                                    </li>
+                                                    <li>
+                                                        <span>VAT/ GST:</span>
+                                                        <span>62.00</span>
+                                                    </li>
+                                                    <li>
+                                                        <span>Item Discount(-):</span>
+                                                        <span>535.00</span>
+                                                    </li>
+                                                    <li>
+                                                        <span>Cash On Delivery: </span>
+                                                        <span>2,040.15</span>
+                                                    </li>
+                                                    <li class="total">
+                                                        <span>Total:</span>
+                                                        <span>2,040.15</span>
+                                                    </li>
+  
+                                                </ul>
+                                            </div>
+                                            <div class="delivered">Delivered <span>(Apr 25,2018)</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="order_right">
+                                        <a href="#" class="exchange_return">Exchange/Return</a>
+                                    </div>
+                                </div>
+  
+                                </div>
+                            </li>
+                        -->
+  
+                        </ul>
+                    </div>
+                </div><!-- order_return_block -->
+  
+            </div><!-- account_right div -->
+        </div>   <!-- account_main div -->
+  </div><!-- account main div -->
+  

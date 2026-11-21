@@ -1,0 +1,79 @@
+.recentproduct li .pro_bottom{
+    text-align:center;
+}
+.arrow .disabled {
+    display: none;
+}
+.recentproduct li .pro_bottom .priceblock{
+    font-family: 'TradeGothicLTBold';
+    font-size: 16px;
+    color: #999;
+}
+.recentproduct li .pro_bottom .titleblock h3{
+    font-family: 'TradeGothicLTBold';
+    font-size: 16px;
+    color: #333;
+    margin: 0 0 5px;
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.recentproduct {
+    position: relative;
+    text-align: left;
+}
+.recentproduct .arrow a.prev {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.recentproduct .arrow a.next {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.recentproduct li {
+    display: inline-block;
+    width: 22%;
+    border: 1px solid #9990;
+    padding: 10px;
+    margin: 1%;
+}
+.recentproduct li:hover{
+  box-shadow: 0 0 3px #9999997d;
+  border-radius: 4px;
+}
+.recentproduct li .pro_bottom p.category{
+    font-family: 'Lato', sans-serif;
+font-weight: 500;
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 5px;
+}
+.recentproduct li .pro_bottom span.febric{
+    font-family: 'Lato', sans-serif;
+font-weight: 500;
+    font-size: 14px;
+    color: #999;
+    margin: 0 0 5px;
+    padding: 0;
+}
+.recentproduct li .img {
+    width: 100%;
+    margin:0 auto 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.recentproduct li .img img{
+  position: relative;
+  height: 190px;
+  -o-object-fit: cover;
+  object-fit: scale-down;
+  width: 100%;
+}

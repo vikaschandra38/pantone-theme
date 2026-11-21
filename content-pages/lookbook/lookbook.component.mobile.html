@@ -1,0 +1,32 @@
+
+  <!-- {{ lookbook | json }} -->
+
+  <section id="lookbook">
+
+    <div class="full-width-container">
+      <div class="container">
+        <div class="row">
+            <div class="col-md-4" *ngFor="let image of lookbook?.pageElements[0]?.fields?.pageElements">
+              <div>
+                <img class="img-responsive" [src]="image.fields?.desktopImagesvideo[0]?.fields?.file?.url" alt="lookbook1" />
+              </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="container">
+          <div class="row">
+             <div class="col-md-12">
+              <div class="logo">
+                  <img class="img-responsive" [src]="lookbook?.pageElements[1]?.fields?.desktopImagesvideo[0]?.fields?.file?.url" alt="lookbook" >
+              </div>
+              <div class="content">
+                  <p>{{ lookbook?.pageElements[1]?.fields?.displayMainText }} </p>
+              </div>
+             </div>
+          </div>
+      </div>
+
+    </div>
+
+  </section>

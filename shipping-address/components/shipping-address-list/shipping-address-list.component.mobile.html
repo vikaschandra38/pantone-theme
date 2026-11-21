@@ -1,0 +1,133 @@
+<!-- <div class="checkoutsavedaddress" *ngIf="savedaddress"> -->
+<div class="checkoutsavedaddress">
+
+    <h1 class="mainheading"><a routerLink="/checkout/cart"><img src="../../assets/images/left-sign-arrow.png"
+                width="15" /></a>
+        Address</h1>
+    <div class="cart-header">
+        <div class="container">
+            <div class="flex-block">
+                <div class="status-bar">
+                    <ul>
+                        <li routerLink="/checkout/cart"><a>Bag</a></li>
+                        <li><a class="active">Address</a></li>
+                        <li><a>Payment</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="" *ngIf="savedlist">
+        <div class="deliver-info">
+            <p class="deliver-text">Where do you want us to deliver?</p>
+        </div>
+
+        <mat-radio-group [formControl]="shippingAddressId">
+            <mat-radio-button [value]="addresses" *ngFor="let addresses of addressList;let i=index">
+                <div class="list_inner">
+                    <div class="address">
+                        <h3>{{addresses.name}} {{addresses.last_name}}<span
+                                *ngIf="userInfo?.default_address_id == addresses?.add_id" class="default"> Default</span></h3>
+                        <p class="address-field">{{addresses.address}}</p><p>, {{addresses.city}}, {{addresses.pincode}} <br />{{addresses.state}},
+                        </p>
+                        <p>Mobile: <b>{{addresses.mobile}}</b></p>
+                        <!-- <div class="location">
+                            <p *ngIf="addresses?.address_type=='1'" class="location">Home</p>
+                            <p *ngIf="addresses?.address_type=='2'" class="location">Office</p>
+
+                        </div> -->
+                        <ul>
+                            <li
+                                *ngIf="pincodeData?.pincodeErrorMsg && ( shippingAddressId && shippingAddressId?.value?.add_id == addresses?.add_id)">
+                                <img src="../../../assets/images/icon-cash.png" /> {{pincodeData?.pincodeErrorMsg}}</li>
+                        </ul>
+                        <!-- <p>{{addresses.cod}}</p> -->
+                    </div>
+
+                    <div class="editbtn editremoveblock xxx"
+                        *ngIf="shippingAddressId && shippingAddressId?.value?.add_id == addresses?.add_id">
+
+                        <a class="remove" (click)="remove(addresses.add_id)">Remove</a>
+                        <a class="edit" (click)="editaddressclick(addresses.add_id)">Edit</a>
+
+                    </div>
+                </div>
+            </mat-radio-button>
+
+
+        </mat-radio-group>
+
+        <!-- <div class="showContinueError">Please select a shipping address</div> -->
+        <!-- <div *ngIf="submitted && showPincodeError" class="showContinueError">Invalid Pincode</div>
+        <div *ngIf="submitted && (pincodeDetails && pincodeDetails?.isServiceable==false)" class="showContinueError">This
+            Pincode is not serviceable.
+    
+        </div> -->
+        <div class="addaddress">
+            <a (click)="addnewaddress()">+ Add a New Address</a>
+            <a class="arrow-right"><img src="../../../assets/images/arrow_right.png"></a>
+        </div>
+        <div class="arrow-block">
+            <!-- <a class="arrow-down"><img src="../../assets/images/arrow-down-red.png" /></a> -->
+            <!-- <a *ngIf="isShowAddress" (click)="showLessAddress()" class="arrow-up"><img
+                    src="../../assets/images/arrow-down-red.png" /></a> -->
+        </div>
+
+        <!-- <div class="btncontinue">
+            <button class="submit_btn" (click)="continueShipping()">CONTINUE</button>
+            <button class="submit_btn">CONTINUE</button>
+        </div> -->
+        <div class="placeorder">
+            <!-- <a class="summery">INR 7, 990<b>View Details</b></a> -->
+            <a class="place-order-btn confirmbtn" [ngClass]="  ( shippingLoading ) ? 'loaderbtn': ''"
+                (click)="confirmShipping()">Confirm</a>
+            <!-- <a class="place-order-btn" (click)="continueShipping()"
+        [ngClass]="  ( shippingDetails ) ? 'loaderbtn': ''" >Confirm</a> -->
+        </div>
+
+        <!-- <div class="purchase-summary" >
+        <app-purchase-summary [cartInfo]="cartInfo" 
+        [shippingLoading]="shippingLoading" [shippingLoaded]="shippingLoaded"
+         ></app-purchase-summary>
+    </div> -->
+    </div>
+
+    <div class="" *ngIf="selectedadddress">
+        <div class="selectedadddress">
+            <div class="address">
+                <h3>{{shippingAddressId?.value.name}} {{shippingAddressId?.value.last_name}}
+                    <span *ngIf="userInfo?.default_address_id == shippingAddressId?.value?.add_id" class="default"> Default</span>
+                </h3>
+                <p class="address-field">{{shippingAddressId?.value.address}}</p>
+                <p>
+                    {{shippingAddressId?.value.city}}-{{shippingAddressId?.value.pincode}}
+                    <br />{{shippingAddressId?.value.state}}</p>
+                <p class="mob">Mobile: <b>{{shippingAddressId?.value.mobile}}</b></p>
+
+                <!-- <div class="editbtn">
+                    <p *ngIf="addresses?.address_type=='1'" class="location">Home</p>
+                    <p *ngIf="addresses?.address_type=='2'" class="location">Office</p>
+                </div> -->
+                <div class="adit-change">
+                    <a (click)="editandchange()">Edit/Change ({{addressList?.length||0}})</a>
+                    <a (click)="addnewaddress()">Add New Address</a>
+                </div>
+            </div>
+        </div>
+        <div class="purchase-summary">
+            <app-purchase-summary [cartInfo]="cartInfo" [shippingLoading]="shippingLoading"
+                [shippingLoaded]="shippingLoaded" (grandTotalDetail)="getGrandTotal($event)"></app-purchase-summary>
+
+            <div class="placeorder">
+                
+                <a class="place-order-btn" (click)="continueShipping()"
+                    [ngClass]="( shippingLoading ) ? 'loaderbtn': ''">Continue</a>
+                    <a (click)="scrollToDetails()" class="summery">INR {{cartInfo?.grand_total | number:0 }}
+                        <!-- <b>ViewDetails</b> -->
+                    </a>
+            </div>
+        </div>
+    </div>
+
+
+</div>

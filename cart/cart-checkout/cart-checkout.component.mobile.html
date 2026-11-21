@@ -1,0 +1,31 @@
+<section class="checkout-cart">
+    <h2>Hi there!</h2>
+
+    <div style="color: red" *ngIf="sociallogineerror">
+        <span>Unable to Login, Something Went Wrong!</span>
+    </div>
+
+    <div class="socialLoader" *ngIf = "(socialLoading && !socialLoaded)">
+        <div class="loader-spinner loader"></div>
+    </div>
+
+    <div class="checkout-form">
+        <form [formGroup]="registerForm" (ngSubmit)="registerUserEmit()">
+        <span>Email Address* </span> 
+        <div class="inputfield">
+            <input type="text" (keyup)="ChangeInavlid()" formControlName="global_email" >
+            <span *ngIf="isnotemail" class="invalidemail">Please enter a valid email address</span>
+        </div>
+        <span class="field-required">*Field Required</span>
+        <input type="submit" value="Continue" class="btn_continue" >
+        <!-- <a (click)="registerUserEmit()" class="btn_continue">Continue</a> -->
+        <!-- <div class="guest-login">
+           <div><a>Shop as Guest</a></div>
+           <div><a>Log In</a></div>
+        </div> -->
+        </form>
+    </div>
+    <!-- <p>Don't want to create a new account? Use any of your exisiting accounts</p>
+    <a class="fb-btn" (click)="socialSignIn('facebook')"><img src="../assets/images/signin-facebook.png" /></a>
+    <a class="gp-btn" (click)="socialSignIn('google')"><img src="../assets/images/signin-google.png" /></a> -->
+</section>

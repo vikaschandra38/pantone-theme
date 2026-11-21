@@ -1,0 +1,157 @@
+<div class="shippingform-wrapper">
+    <h2>Where do you want us to deliver?</h2>
+    <form class="shipping-form" [formGroup]="addressForm">
+        <!-- <button mat-button mat-dialog-close tabindex="-1"
+            *ngIf="data?.formType ==='addForm' || data?.formType ==='editForm'"><img
+                src="../../assets/images/cross.png" /></button> -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="inputblock">
+                    <mat-form-field>
+                        <mat-label>First Name* </mat-label>
+                        <input matInput placeholder="" formControlName="name" autocomplete="new_name" maxlength="30">
+                        <mat-error *ngFor="let validation of validationMessages.name">
+                            <mat-error *ngIf="addressForm.get('name').hasError(validation.type)">
+                                {{ validation.message }}</mat-error>
+                        </mat-error>
+
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="inputblock">
+                    <mat-form-field>
+                        <mat-label>Last Name </mat-label>
+                        <input matInput placeholder="" formControlName="last_name" autocomplete="new_last_name"
+                            maxlength="30">
+                        <mat-error *ngFor="let validation of validationMessages.last_name">
+                            <mat-error class="error-message"
+                                *ngIf="addressForm.get('last_name').hasError(validation.type)">
+                                {{ validation.message }}</mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="inputblock">
+                    <mat-form-field>
+                        <mat-label>Zip Code* </mat-label>
+                        <input matInput placeholder="" formControlName="pincode" maxlength="6"
+                            autocomplete="new_pincode" (input)="checkPincodeServiceable('addressForm')">
+                        <mat-error *ngFor="let validation of validationMessages.pincode">
+                            <mat-error class="error-message"
+                                *ngIf="addressForm.get('pincode').hasError(validation.type)">
+                                {{ validation.message }}</mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="inputblock">
+                    <mat-form-field>
+                        <mat-label>Mobile No* </mat-label>
+                        <input matInput placeholder="" formControlName="mobile" maxlength="10" autocomplete="new_mobile"
+                            (keypress)="keyPress($event)">
+                        <mat-error *ngFor="let validation of validationMessages.mobile">
+                            <mat-error class="error-message"
+                                *ngIf="addressForm.get('mobile').hasError(validation.type)">
+                                {{ validation.message }}</mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="inputblock">
+                    <mat-form-field>
+                        <mat-label>Address* </mat-label>
+                        <textarea matInput placeholder="" maxlength="70" formControlName="address"
+                            autocomplete="new_address"></textarea>
+                        <mat-error *ngFor="let validation of validationMessages.address">
+                            <mat-error class="error-message"
+                                *ngIf="addressForm.get('address').hasError(validation.type)">
+                                {{ validation.message }}</mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="inputblock">
+                    <mat-form-field>
+                        <mat-label>City* </mat-label>
+                        <input matInput placeholder="" formControlName="city" readonly>
+                        <!-- <mat-error *ngFor="let validation of validationMessages.city">
+                            <mat-error class="error-message" *ngIf="addressForm.get('city').hasError(validation.type)">
+                                {{ validation.message }}</mat-error>
+                        </mat-error> -->
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="inputblock">
+                    <mat-form-field>
+                        <mat-label>State* </mat-label>
+                        <input matInput placeholder="" readonly formControlName="state">
+                        <!-- <mat-error *ngFor="let validation of validationMessages.state">
+                            <mat-error class="error-message" *ngIf="addressForm.get('state').hasError(validation.type)">
+                                {{ validation.message }}</mat-error>
+                        </mat-error> -->
+                    </mat-form-field>
+                </div>
+            </div>
+        </div>
+
+        <div class="type_ofaddress">
+            <!-- <p>Type Of Address </p>
+            <ul class="type_address">
+                <mat-radio-group>
+                    <mat-radio-button value="1" selected>Home</mat-radio-button>
+                    <mat-radio-button value="2">Office</mat-radio-button>
+                </mat-radio-group>
+
+            </ul> -->
+            <label class="weekendsoff">
+                <mat-checkbox (change)="defaultSelection($event)" formControlName="default" > Make this my
+                    default address
+                </mat-checkbox>
+            </label>
+
+            <div class="btnblock"  *ngIf="addressList?.length>0">
+                <div class="button-save">
+                    <button type="button" class="cancelbtn" mat-raised-button (click)="closingAddressForm()">
+                        CANCEL
+                    </button>
+                </div>
+                <div class="button-save">
+                    <span *ngIf="addressForm.invalid" class="tooltip">All the fields are mandatory.</span>
+                    <button type="button" (click)="saveAddressDetails()"
+                        [ngClass]="( userAddressSaveLoading || userEditAddressSaveLoading ) ? 'loaderbtn': ''" [disabled]="addressForm.invalid"
+                        aria-label="Button that displays a tooltip when focused or hovered over">
+                        SAVE
+                    </button>
+                </div>
+            </div>
+            
+            <div class="btnblock emptyeddress" *ngIf="addressList == null || addressList == 0">
+                <div class="button-save">
+                    <span *ngIf="addressForm.invalid" class="tooltip">All the fields are mandatory.</span>
+                    <button type="button" (click)="saveAddressDetails()"
+                        [ngClass]="( userAddressSaveLoading || userEditAddressSaveLoading) ? 'loaderbtn': ''" [disabled]="addressForm.invalid"
+                        aria-label="Button that displays a tooltip when focused or hovered over">
+                        SAVE
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+</div>

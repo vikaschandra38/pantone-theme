@@ -1,0 +1,61 @@
+<div class="checkoutsavedaddress">
+    <div class="saveaddressheading">
+        <h2>Where do you want us to deliver?</h2>
+        <a (click)="addnewaddress()"><b>+</b> Add a New Address</a>
+    </div>
+    
+    <mat-radio-group [formControl]="shippingAddressId">
+        <mat-radio-button value="{{addresses.add_id}}" *ngFor="let addresses of showAllAdrresses">
+            <div class="list_inner">
+                <div class="address">
+                    <h3>{{addresses.name}} {{addresses.last_name}}</h3>
+                    <p>{{addresses.address}}, {{addresses.city}}, {{addresses.pincode}} <br />{{addresses.state}},
+                        </p>
+                    <p>Mobile: {{addresses.mobile}}</p>
+                </div>
+                <div class="editbtn">
+                    <a class="edit" (click)="editaddressclick(addresses.add_id)">Edit</a>
+                    <a class="remove" (click)="remove(addresses.add_id)">Remove</a>
+                    <p class="location" *ngIf="addresses.address_type=='1'">Home</p>
+                    <p class="location" *ngIf="addresses.address_type=='2'">Office</p>
+                </div>
+            </div>
+        </mat-radio-button>
+    </mat-radio-group>
+
+    <!-- <div *ngIf="submitted && !shippingAddressId" class="showContinueError">Please select a shipping address
+    </div>
+    <div *ngIf="submitted && showPincodeError" class="showContinueError">Invalid Pincode</div>
+    <div *ngIf="submitted && (pincodeDetails && pincodeDetails?.isServiceable==false)" class="showContinueError">This
+        Pincode is not serviceable.
+
+    </div> -->
+    <!-- <div *ngIf="submitted && showPincodeError" class="showContinueError">This Pincode is not
+          serviceable
+
+        </div> -->
+    <div *ngIf="alladdress && alladdress.length > 2" class="arrow-block">
+        <a *ngIf="!isShowAddress" (click)="showMoreAddress()" class="arrow-down"><img
+                src="../../assets/images/arrow-down-red.png" /></a>
+        <a *ngIf="isShowAddress" (click)="showLessAddress()" class="arrow-up"><img
+                src="../../assets/images/arrow-down-red.png" /></a>
+    </div>
+    <div style="color: red;" *ngIf="showPincodeValidity==='true'">
+        <span>{{pincodeErrorMessage}}</span><br>
+    
+    </div>
+    <div class="btnblock">
+        <!-- <button class="submit_btn "
+            [ngClass]="( shippingloading ) ? 'loaderbtn': ''">CONTINUE</button> -->
+
+
+        <div class="button-save">
+            <span *ngIf="shippingAddressId.invalid" class="tooltip">Select Delivery Address</span>
+            <button mat-raised-button (click)="continueShipping()" [disabled]="shippingAddressId.invalid"
+                [ngClass]="( shippingloading ) ? 'loaderbtn': ''"
+                aria-label="Button that displays a tooltip when focused or hovered over">
+                CONTINUE
+            </button>
+        </div>
+    </div>
+</div>

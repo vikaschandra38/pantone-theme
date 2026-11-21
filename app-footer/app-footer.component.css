@@ -1,0 +1,234 @@
+footer {
+    background: #333;
+    /* padding: 20px 0; */
+    height: 55%;
+}
+
+.footerblock {
+    display: flex;
+    align-items: flex-start;
+}
+
+.footerlnk {
+    display: flex;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+
+.footer-links .col-2 {
+    width: 32%;
+}
+
+.footer-links .col-2.company-url {}
+
+.footer-links .col-2 h4 {
+    font-size: 13px;
+    font-weight: normal;
+    letter-spacing: 0.5px;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 0 0 5px;
+    text-decoration: none;
+}
+
+.footer-links .col-2 ul {
+    font-size: 1.5rem;
+}
+
+.footer-links .col-2.company-url ul {
+    display: block;
+}
+
+.footer-links .col-2 ul li {
+    margin: 0 0 10px;
+    color: #fff;
+    font-size: 16px;
+    font-family: lato, sans-serif;
+    font-weight: 500;
+    display: block;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+}
+
+.footer-links .col-2 ul li a {
+    margin: 0 0 10px;
+    color: #fff;
+    font-size: 14px;
+    font-family: lato, sans-serif;
+    font-weight: 500;
+    display: inline-block;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+}
+
+.footer-links .col-2 ul li a:hover {
+    color: #a797e2
+}
+
+.footer .social-media {
+    padding: 30px 0;
+    width: 10%;
+}
+
+.social-links ul {
+    display: inline-flex;
+    margin: 10px 0 0 -5px;
+}
+
+.footer .social-links ul li ul li {
+    padding-left: 10px;
+}
+
+.social-links ul li a {
+    background: url('../assets/images/web-icon/css_sprites.png') no-repeat;
+    height: 22px;
+    width: 24px;
+    display: block;
+    margin-right: 10px;
+}
+
+.social-links ul .facebook a {
+    background-position: -461px -46px;
+}
+
+
+/* .social-links ul .facebook a:hover{
+background-position:-364px -403px
+} */
+
+.social-links ul .twitter a {
+    background-position: -367px -334px
+}
+
+
+/* .social-links ul .twitter a:hover{
+background-position: -400px -403px
+} */
+
+.social-links ul .instagram a {
+    background-position: -322px -334px;
+}
+
+
+/* .social-links ul .instagram a:hover{
+background-position: -440px -403px
+} */
+
+.social-links ul .googleplus a {
+    background-position: -109px -379px;
+}
+
+
+/* .social-links ul .googleplus a:hover{
+background-position: -109px -20px
+} */
+
+.social-links ul .linkedin a {
+    background-position: -178px -390px;
+}
+
+
+/* .social-links ul .linkedin a:hover{
+background-position: -526px -403px
+} */
+
+.social-links ul .youtube a {
+    background-position: -152px 0;
+}
+
+
+/* .social-links ul .youtube a:hover{
+background-position: -194px -20px
+} */
+
+.social-links ul li a:last-child {
+    border: none;
+}
+
+.social-links ul li a:hover {
+    opacity: 0.8;
+}
+
+.social-links h3 {
+    font-family: 'lato', sans-serif;
+    font-weight: 500;
+    color: #fff;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    margin: 0 0 10px;
+}
+
+.blockimg img {
+    border: 1px solid #ddd;
+    padding: 1px;
+}
+
+.social-links {
+    width: 50%;
+}
+
+.top-footer {
+    display: flex;
+    align-items: flex-start;
+    margin: 40px auto 0;
+    max-width: 1024px;
+    justify-content: space-between;
+}
+
+.footer-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    max-width: 100%;
+    margin: 15px auto;
+    margin-bottom: 5px;
+    align-items: center;
+    text-align: center;
+}
+
+.error-text {
+    position: absolute;
+    color: #ff0000;
+}
+
+.coprighttext a {
+    color: #fff;
+    text-decoration: none;
+    cursor: auto;
+}
+
+.coprighttext a.blacklink {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.coprighttext a.blacklink:hover {
+    color: #644EA2;
+    text-decoration: none;
+}
+
+.coprighttext {
+    color: #ffffff;
+    font-size: 12px;
+    text-align: right;
+    font-family: lato, sans-serif;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.Disclaimer {
+    background: rgb(97 93 93);
+    height: 55%;
+    color: white;
+    font-family: 'Lato';
+    font-weight: 800;
+}
+
+.Disclaimer p {
+    max-width: 100%;
+    text-align: center;
+    padding: 0px 220px;
+}

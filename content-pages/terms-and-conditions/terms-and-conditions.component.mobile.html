@@ -1,0 +1,15 @@
+<!-- {{ termandconditionsdata | json }} -->
+<section class="page">
+  <div class="container">
+    <div class="flexblock">
+      <div class="sidebar">
+        <!-- <content-sidebar></content-sidebar> -->
+      </div>
+      <div class="loader" *ngIf = "!termandconditionsdata"><mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner></div>
+      <div class="rightbar" *ngIf = "termandconditionsdata">
+          <h1 style="font-family:'Lato', sans-serif" [innerHTML]="termandconditionsdata?.addComponents[0]?.fields?.displayMainText">{{ termandconditionsdata?.addComponents[0]?.fields?.displayMainText }}</h1>
+          <p style="font-family:'Lato', sans-serif" [innerHTML]="termandconditionsdata?.addComponents[0]?.fields?.description">{{ termandconditionsdata?.addComponents[0]?.fields?.description }}</p>          
+      </div>
+    </div>
+  </div>
+</section>

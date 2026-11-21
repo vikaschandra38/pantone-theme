@@ -1,0 +1,17 @@
+<div class="account_left">
+<ul class="checkout_order">
+    <h3>Shopping</h3>
+    <li><a class="js-gtm-click-mob-order&return" (click)="OrderReturn()">Order & Return</a></li>
+    <li><a class="js-gtm-click-mob-rewardPoints" id="reward-point">Reward Points</a></li>
+    <li><a class="js-gtm-click-mob-wishlist" id="wishlist">Wishlist</a></li>
+</ul>
+<ul class="checkout_account">
+    <h3>Account</h3>
+    <li class="js-gtm-click-mob-profile"[routerLinkActive]="['active']"><a>Profile</a></li>
+    <li><a class="js-gtm-click-mob-address" (click)="empty_address()" id="address">Address</a></li>
+    <li><a class="js-gtm-click-mob-saveCards" id="savecards">Save Cards</a></li>
+    <li><a  class="js-gtm-click-mob-newsletter" id="newsletter">Newsletter Preferences</a></li>
+    <li><a  class="js-gtm-click-mob-reviews" id="pro_reviews">Product Reviews</a></li>
+</ul>
+
+</div>

@@ -1,0 +1,64 @@
+<div class="checkoutsavedaddress" *ngIf="savedaddress">
+
+    <h1 class="mainheading"><a><img src="../../assets/images/left-sign-arrow.png" width="15" /></a> Address</h1>    
+    <div class="cart-header">
+        <div class="container">
+            <div class="flex-block">
+                <div class="status-bar">
+                    <ul>
+                        <li><a >Cart</a></li>
+                        <li><a class="active">Address</a></li>
+                        <li><a>Payment</a></li>
+                    </ul>
+                </div>            
+            </div>
+        </div>
+    </div>
+    
+    <!-- <div class="addaddress">
+        <a (click)="addnewaddress()">+ Add a New Address</a>
+    </div> -->
+    <mat-radio-group [(ngModel)]="shippingAddressId">
+        <mat-radio-button value="{{addresses.add_id}}" *ngFor="let addresses of showAllAdrresses; trackBy:trackById">
+            <div class="list_inner">
+                <div class="address">
+                    <h3>{{addresses.name}} {{addresses.last_name}}</h3>
+                    <p>{{addresses.address}}, {{addresses.city}}, {{addresses.state}}, {{addresses.pincode}}</p>
+                    <p>{{addresses.city}} {{addresses.state}} {{addresses.pincode}}</p>
+                    <p>Mobile: {{addresses.mobile}}</p>
+                </div>
+
+                <div class="editbtn">
+                    <a class="edit" (click)="editaddressclick(addresses.add_id)">Edit</a>
+                    <!-- <a class="remove" (click)="remove(addresses.add_id)">Remove</a> -->
+                    <a (click)="addnewaddress()">+ Add a New Address</a>
+                    <p class="location" *ngIf="addresses.address_type=='1'">Home</p>
+                    <p class="location" *ngIf="addresses.address_type=='2'">Office</p>
+                </div>
+            </div>
+        </mat-radio-button>
+
+
+    </mat-radio-group>
+
+    <div *ngIf="submitted && !shippingAddressId" class="showContinueError">Please select a shipping address
+    </div>
+    <div *ngIf="submitted && showPincodeError" class="showContinueError">Invalid Pincode</div>
+    <div *ngIf="submitted && (pincodeDetails && pincodeDetails?.isServiceable==false)" class="showContinueError">This
+        Pincode is not serviceable.
+
+    </div>
+
+    <div *ngIf="alladdress && alladdress.length > 2" class="arrow-block">
+        <a *ngIf="!isShowAddress" (click)="showMoreAddress()" class="arrow-down"><img
+                src="../../assets/images/arrow-down-red.png" /></a>
+        <a *ngIf="isShowAddress" (click)="showLessAddress()" class="arrow-up"><img
+                src="../../assets/images/arrow-down-red.png" /></a>
+    </div>
+
+    <div class="btncontinue">
+        <button class="submit_btn" (click)="continueShipping()"
+            [ngClass]="( shippingloading ) ? 'loaderbtn': ''">CONTINUE</button>
+    </div>
+
+</div>

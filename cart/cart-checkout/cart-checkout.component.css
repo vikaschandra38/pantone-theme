@@ -1,0 +1,111 @@
+.checkout-cart{
+    text-align: center;
+    padding: 0 15px;
+}
+.checkout-cart h2{
+    color: #333;
+    padding: 15px 0;
+    font-size: 22px;
+    margin: 0;
+    font-family: 'latobold'
+}
+.checkout-cart p{
+    margin: 35px 0 15px;
+    color: #999;
+    font-family: 'Lato', sans-serif;
+font-weight: 500;
+    font-size: 13px;
+}
+
+.checkout-cart .fb-btn , .checkout-cart .gp-btn{
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.checkout-form span{
+    display: block;
+    text-align: left;
+    color: #999;
+    padding: 8px 0px;
+}
+.checkout-form span.field-required{
+    display: block;
+    text-align: left;
+    color: #999;
+    padding: 0 0px 3px;
+    font-size: 12px;
+
+}
+.checkout-form input{
+    width: 100%;
+    border: 1px solid #cccccc;
+    padding: 6px 15px;
+    transition: border-color ease-in-out .3s,box-shadow ease-in-out .15s;
+    margin-bottom: 20px;
+    /* border-radius: 5px; */
+}
+.checkout-form input:focus {
+    outline: 0;
+    border-color: #000;
+}    
+.checkout-form .btn_continue:focus{
+    border-color: #d94b2a;   
+}
+.checkout-form .btn_continue{
+    background: #d94b2a;
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+    font-family: 'Lato', sans-serif;
+font-weight: 500;
+    font-size: 13px;
+    padding: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    /* border-radius: 5px; */
+    outline: none;
+    border: 1px solid transparent;
+    -webkit-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+    border: 0;
+}
+.checkout-form .btn_continue:focus{
+    background: #d94b2a;
+}
+.inputfield{
+    position: relative;
+    padding-bottom:7px;
+}
+.checkout-form .invalidemail {
+    color: #ff0000;
+    padding: 0 0 0px;
+    position: absolute;
+    bottom: 5px;
+}
+.socialLoader .loader-spinner.loader {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+.guest-login {
+    display:flex;
+    align-items: center;
+    margin: 10px 0 15px
+}
+.guest-login div{
+    width: 50%;
+    text-align: left;
+}    
+.guest-login div a{
+    color: #0195ff;
+    font-size: 13px;    
+    text-decoration: underline;
+    display: inline-block;
+}    
+.guest-login div:last-child{
+    text-align: right;
+}

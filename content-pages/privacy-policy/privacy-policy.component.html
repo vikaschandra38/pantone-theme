@@ -1,0 +1,29 @@
+<!-- {{ privacypolicydata | json }} -->
+<section class="page">
+    <div class="container">
+      <div class="flexblock">
+        <div class="sidebar">
+          <content-sidebar></content-sidebar>
+        </div>
+        <div class="loader" *ngIf = "!privacypolicydata"></div>
+        <div class="rightbar" *ngIf = "privacypolicydata">
+            <div class="accordion" >
+                <h1>{{ privacypolicydata?.pageTitle }}</h1>
+                <p  [innerHTML]="privacypolicydata?.addComponents[0]?.fields?.description"></p>
+                <!-- <mat-accordion>
+                    <mat-expansion-panel *ngFor="let privacy of privacypolicydata?.pageElements">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <h4 [innerHTML]="( privacy?.fields?.displayMainText )">{{ privacy?.fields?.displayMainText }}</h4>
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <p [innerHTML]="( privacy?.fields?.description )">{{ privacy?.fields?.description }}</p>
+                    
+                    </mat-expansion-panel>
+                  </mat-accordion> -->
+  
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>

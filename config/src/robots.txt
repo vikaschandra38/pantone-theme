@@ -1,0 +1,17 @@
+User-agent: *
+Disallow: */cart
+Disallow: */checkout*
+Disallow: */my-account*
+Disallow: */ordersuccess
+Disallow: */ordererror
+Disallow: /shop
+Disallow: /search
+Disallow: /checkout/cart
+Disallow: /checkout/address
+Disallow: /checkout/payment
+Disallow: /m/
+Disallow: /login
+
+Sitemap: https://pantone.com/sitemaps/sitemap_index.xml
+
+Image Sitemap: https://pantone.com/sitemaps/image_sitemap_index.xml

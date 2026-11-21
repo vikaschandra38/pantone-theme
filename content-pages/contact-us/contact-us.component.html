@@ -1,0 +1,89 @@
+<!-- {{ contactusdata | json }} -->
+
+
+
+
+<section class="page">
+
+
+
+    <div class="container">
+        <div class="flexblock">
+            <div class="sidebar">
+                <content-sidebar></content-sidebar>
+                <!-- <corporate-sidebar></corporate-sidebar> -->
+            </div>
+            <div class="rightbar">
+                <div *ngIf="!contactusdata" class="page-loader">
+                    <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+                </div>
+
+                <div class="contact-page">
+                    <div class="contact-wrp">
+                        <div class="heading">
+
+                            <h1> Customer Service </h1>
+                        </div>
+
+                        <div class="contact-block">
+                            <div class="col-left">
+                                <div class="col-2">
+                                    <div class="box-heading">
+                                        <h3> Corporate Address </h3>
+                                    </div>
+                                    <div class="toggle-box">
+                                        <h3 class="toggle-heading" (click)="emailclick()" [ngClass]="showemail ? 'active':'in-active'"> <img src="../../assets/images/address-icon.png" /> {{contactusdata?.addComponents[0]?.fields?.relatedContent[2]?.fields?.displayMainText}} </h3>
+                                        <div class="toggle-info" [ngClass]="showemail ? 'active':'in-active'">
+                                            <p [innerHTML]="contactusdata?.addComponents[0]?.fields?.relatedContent[2]?.fields?.description"></p>
+                                        </div>
+                                    </div>
+                                    <div class="toggle-box">
+                                        <h3 class="toggle-heading" (click)="telclick()" [ngClass]="telnumber ? 'active':'in-active'"> <img src="../../assets/images/tel-icon.png" /> {{contactusdata?.addComponents[0]?.fields?.relatedContent[0]?.fields?.displayMainText}} </h3>
+                                        <div class="toggle-info" [ngClass]="telnumber ? 'active':'in-active'">
+                                            <p [innerHTML]="contactusdata?.addComponents[0]?.fields?.relatedContent[0]?.fields?.description"></p>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="toggle-box">
+                        <h3 class="toggle-heading" (click)="telclick()" [ngClass]="telnumber ? 'active':'in-active'"> <img src="../../assets/images/tel-icon.png" />  {{contactusdata?.pageElements[0]?.fields?.relatedContents[1]?.fields?.displayMainText}}  </h3>
+                        <div class="toggle-info" [ngClass]="telnumber ? 'active':'in-active'">
+                            <p> <a href='tel:{{contactusdata?.pageElements[0]?.fields?.relatedContents[1]?.fields?.description}}' [innerHTML]="contactusdata?.pageElements[0]?.fields?.relatedContents[1]?.fields?.description"></a> {{contactusdata?.pageElements[0]?.fields?.relatedContents[1]?.fields?.relatedContent[0]?.fields?.displayMainText}} </p>  
+                        </div>
+                      </div> -->
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-right">
+                                <div class="col-1">
+                                    <div class="box-heading">
+                                        <h3> {{contactusdata?.addComponents[0]?.fields?.displayMainText}} </h3>
+                                    </div>
+                                    <div class="toggle-box">
+                                        <h3 class="toggle-heading" (click)="addressclick()" [ngClass]="showaddress ? 'active':'in-active'"> <img src="../../assets/images/mail-icon.png" /> {{contactusdata?.addComponents[0]?.fields?.relatedContent[1]?.fields?.displayMainText}} </h3>
+                                        <div class="toggle-info" [ngClass]="showaddress ? 'active':'in-active'">
+                                            <p>
+                                                <a href="mailto:{{contactusdata?.addComponents[0]?.fields?.relatedContent[1]?.fields?.description}}" [innerHTML]="contactusdata?.addComponents[0]?.fields?.relatedContent[1]?.fields?.description"></a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="toggle-box">
+                          <h3 class="toggle-heading" (click)="telclick()" [ngClass]="telnumber ? 'active':'in-active'"> <img src="../../assets/images/tel-icon.png" />  {{contactusdata?.pageElements[1]?.fields?.relatedContents[0]?.fields?.displayMainText}}  </h3>
+                          <div class="toggle-info" [ngClass]="telnumber ? 'active':'in-active'">
+                              <p> <a href='tel:{{contactusdata?.pageElements[1]?.fields?.relatedContents[0]?.fields?.description}}' [innerHTML]="contactusdata?.pageElements[1]?.fields?.relatedContents[0]?.fields?.description"></a> {{contactusdata?.pageElements[0]?.fields?.relatedContents[1]?.fields?.relatedContent[0]?.fields?.displayMainText}} </p>  
+                          </div>
+                        </div> -->
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</section>

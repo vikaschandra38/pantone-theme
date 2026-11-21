@@ -1,0 +1,207 @@
+.recentproduct li .pro_bottom{
+    text-align:center;
+    padding-top: 14px;
+}
+.arrow .disabled {
+    display: none;
+}
+.recentproduct li .pro_bottom .priceblock{
+    font-size: 18px;
+    color: #333;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+}
+.recentproduct li .pro_bottom .titleblock h3{
+    font-family: 'lato', sans-serif;
+    font-size: 18px;
+    color: #343434;
+    margin: 0 0 5px;
+    text-transform: capitalize;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: normal;
+}
+.recentproduct {
+    position: relative;
+    text-align: left;
+}
+.recentproduct .arrow a.prev {
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.recentproduct .arrow a.next {
+    position: absolute;
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.recentproduct li {
+    display: block;
+    /* width: 31%; */
+    border: 1px solid #9990;
+    padding: 0px 20px;
+    text-align: center;
+    /* margin:0 1%; */
+}
+.recentproduct li:hover .img{
+  box-shadow: 0 0 3px #9999997d;
+  /* border-radius: 4px; */
+}
+.recentproduct li .img .two{
+    display: none;
+}
+.recentproduct li:hover .img .two{
+    display: block;
+}
+.recentproduct li:hover .img .one{
+    display: none;
+}
+.recentproduct li .pro_bottom p.category{
+    font-family: 'Lato', sans-serif;
+font-weight: 500;
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 5px;
+}
+.recentproduct li .pro_bottom span.febric{
+    font-family: 'Lato', sans-serif;
+font-weight: 500;
+    font-size: 14px;
+    color: #999;
+    margin: 0 0 5px;
+    padding: 0;
+}
+.recentproduct li .img {
+    /* width: 100%; */
+    margin:0 auto 10px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.recentproduct li .img img{
+  position: relative;
+  height: 380px;
+  -o-object-fit: cover;
+  object-fit: cover;
+  /* width: 100%; */
+}
+
+.product-color {
+    color: #666;
+    font-size: 14px;
+    font-family: 'lato', sans-serif;
+    font-weight: 400;
+    padding: 10px 15px;
+    position: absolute;
+    bottom: 0;
+    background: #fff;
+    height: 80px;
+    overflow: hidden;
+    letter-spacing: 1px;
+    line-height: 22px;
+    opacity: 0;
+  }
+  .recentproduct li:hover .product-color{
+    opacity: 1;
+  }
+  .offer {
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #644ea2;
+    margin: 0px 0 0 0px;
+    font-family: 'lato', sans-serif;
+    font-weight: 500;
+    z-index: 6;
+}
+
+.price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.price del {
+    color: #666;
+    font-size: 14px;
+    margin: 0 5px;
+}
+
+span.sale_on {
+    color: #333;
+}
+.product-image {
+    /* border-bottom: 1px solid #ebebeb; */
+    display: flex;
+    align-items: center;
+    /* height: 200px; */
+    overflow: hidden;
+    position: relative;
+
+  }
+  .recentproduct:hover .product-image {
+    box-shadow: 0px 0px 5px #3336;
+  }
+  .product-image .img-two{
+    display: none
+  }
+  .product-image:hover .img-two{
+    display: block
+  }
+  
+  .product-image:hover .img-one{
+    display: none
+  }
+  .product-size {
+  position: absolute;
+  background-color:#fff;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  font-family: 'Lato', sans-serif;
+font-weight: 500;
+  color: #666;
+  letter-spacing: 1px;
+  padding: 5px 10px;
+  text-align: center;
+  opacity: 0;
+  height: 90px;
+  overflow: hidden;
+}
+.product-img-container:hover .product-size {
+ opacity: 1;
+}
+.product-size > span {
+  margin-right: 5px;
+  border: 1px solid #333;
+  height: 30px;
+  width: 30px;
+  display: inline-block;
+  line-height:30px;
+  border-radius: 50%;
+  margin: 8px 8px;
+  color: #333;
+  background: #fff;
+  font-size: 11px;
+  font-family: 'Montserrat', sans-serif;
+font-weight: 500;
+  transition: all 0.3s linear;
+}
+ .product-img-src {
+    -webkit-transition: all 0.5s ease 0s;
+    -o-transition: all 0.5s ea;
+    transition: all 0.5s ease 0s;
+    position: relative;
+    /* height: 300px; */
+    object-fit: contain;
+    width: 100%;
+    height: 398px;
+   }
+ .product-img-src img {
+    height: 250px;
+    margin-bottom: 15px;
+  }

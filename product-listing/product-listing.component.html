@@ -1,0 +1,159 @@
+<!-- <title>{{categoryEntity.name}}</title>
+{{ products | json }}-->
+<div class="loader-spinner loader" *ngIf="
+    (!loadedCat && loadingCat) ||
+    (!loaded && loading) ||
+    (!loadedFilter && loadingFilter)
+  ">
+  <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+</div>
+<div class="listpage">
+  <!-- < div
+   class="search-results" infiniteScroll [infiniteScrollDistance]="0" [infiniteScrollThrottle]="300"
+ (scrolled)="loadMore()"> -->
+  <!-- <div class="loader-spinner" *ngIf="(!loadedCat && loadingCat) || (!loaded && loading)"><mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner></div>    -->
+  <h2 class="not-found" *ngIf="
+      (products?.length === 0 || products == null) &&
+      !loadingCat &&
+      loadedCat &&
+      !loading &&
+      loaded
+    ">
+    Sorry, no results found! Please check the spelling or try searching for
+    something else.
+  </h2>
+  <div class="listcontainer" *ngIf="!loadingCat && loadedCat && categoryexists && products?.length > 0">
+    <app-product-listing-header *ngIf="products?.length > 0" [categoryexists]="categoryexists" [filters]="filters"
+      [categoryEntity]="categoryEntity" [categoryChildren]="categoryChildren" [prodlen]="products?.length"
+      [loadedFilter]="loadedFilter"></app-product-listing-header>
+    <div class="container1">
+      <div class="categorybanner" *ngIf="
+            categoryEntity &&
+            categoryEntity.images &&
+            categoryEntity.images[0] &&
+            categoryEntity.images[0].file &&
+            categoryEntity.images[0].file.url">
+          <div class="imagesbanner">
+            <img [src]="(categoryEntity?.images)[0]?.file?.url  | CategoryImageKitPipe : this.ListingPageCategoryImageWidth" alt="{{ categoryEntity?.name }}" />
+          </div>
+          <div id="products"></div>
+      </div>
+      
+      
+      <div class="container">
+
+        <div class="filter-block">
+          <h1 class="category-name">{{ categoryEntity?.name }}</h1>
+          <!-- <app-product-filter-sidebar [filters]="filters" (sortEvent)="sortEvent($event)"
+            (selectedCheckboxFilters)="applyCheckedFilters($event)" (retainEvent)="retainEvent($event)"
+            (closefilterpopup)="closefilter($event)" [facets]="facetslist" [facetStats]="facetStats"
+            [getUpdatedFilter]="getUpdatedFilter" [loadedFilter]="loadedFilter" [loadingFilter]="loadingFilter"
+            [nbHits]="nbHits">
+          </app-product-filter-sidebar> -->
+        </div>
+
+        
+        <div class="ps-header">
+          <div class="resultcount">
+            <div class="selected_tags" *ngIf="selectedFilterTag.length > 0">
+              <ul>
+                <!-- <li class="clearall filterby">
+                  <a>Filter By</a>
+                </li> -->
+                <li *ngFor="let filter of selectedFilterTag">
+                  <span>{{ filter.value }}</span>
+                  <a (click)="clearSingleFilter(filter.key, filter.value)">X</a>
+                </li>
+                <li class="clearall">
+                  <a (click)="clearFilter()">Clear All</a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- <h4 *ngIf="nbHits && categoryexists && ((loaded && !loading) || (loadedFilter && !loadingFilter))">{{nbHits-stockOutProducts?.length }} Items</h4> -->
+          </div>
+          <div class="row product-main-block">
+            <div class=" product-section col-sm-12">
+              <div class="product-icon"> 
+                <div class="row" *ngIf="categoryexists">
+                  <div *ngFor="let product of products | paginate: config; let i = index">
+                    <div class="product-img-container col-sm-6 col-md-3" [id]="'product' + i" [lazy-load-images]="{ rootMargin: '10px' }">
+                      <div class="out-of-stock" *ngIf="checkOutOfStock(product)">
+                        <h5>OUT OF STOCK</h5>
+                      </div>
+                      <a [routerLink]="'/products/id/' + product?.slug" [state]="{ category: categoryEntity?.name }"
+                        (click)="measureProductClicks(product, i)" title="{{ product?.name }}">
+                        <div class="product-image">
+                          <img [attr.data-src]="
+                            (product?.images)[0]?.file.url | ImageKitPipe : this.ListingPageImageWidth"
+                            class="product-img-src" src="../assets/images/details-img.jpg"
+                            alt="{{ product?.name }}" />
+                          <!-- <img [attr.data-src]="
+                            (product?.images)[1]?.file.url | ImageKitPipe : this.ListingPageImageWidth"
+                            src="../assets/images/details-img.jpg" class="product-img-src img-two"
+                            alt="{{ product?.name }}" /> -->
+                          <div>
+                            <div class="text-center product-size" *ngIf="product?.description ">
+                              <P [innerHTML]="(product?.description)">{{ product?.description }}</P>
+                            </div>
+                          </div>
+
+                        </div>
+                        <div class="product-description">
+                          <div class="name-section">
+                            <div class="product-name">
+                              {{ product?.name }}
+                            </div>
+                          </div>
+                          <div class="price-section" *ngIf="product?.price || product?.sale_price">
+                            <span *ngIf="product && product.sale"><span [ngClass]="
+                                product && product.sale
+                                  ? 'sale_on'
+                                  : 'sale_off'
+                              ">₹ {{ makeprice(product?.sale_price) }}</span>
+                            </span>
+                            <span><span *ngIf="product && product.sale"><del>₹&nbsp;{{
+                                    makeprice(product?.price | number: 0)
+                                  }}</del></span><span *ngIf="product && !product.sale">₹&nbsp;{{
+                                  makeprice(product?.price | number: 0)
+                                }}</span></span>
+
+                            <div class="offer" *ngIf="percentage(product.sale_price, product.price)">
+                              <span
+                                *ngIf=" percentage(product.sale_price, product.price) > 0">{{ percentage(product.sale_price, product.price) }}%
+                                Off</span>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bottom-btn-area" *ngIf="nbPages > 1">
+                <!-- <div class="product_count" *ngIf="products?.length !== 0"> -->
+                <div class="product_count">
+                    <span>Displaying Page {{ config?.currentPage }} out of {{nbPages}}</span>
+                </div>
+                <!-- <div *ngIf="products?.length < nbHits && products?.length >= 12">
+                    <a class="load-more-btn" [ngClass]="moreloading ? 'loaderbtn' : ''"
+                        (click)="loadMore($event)"><span>SEE MORE</span></a>
+                </div> -->
+                <div class="loader-spinner" *ngIf="!moreloaded && moreloading">
+                    <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+                </div>
+
+                <pagination-controls class="page-control" (pageChange)="loadMore($event)"
+                  responsive="true" maxSize="11" previousLabel="" nextLabel=""
+                ></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <ngx-json-ld [json]="schema"></ngx-json-ld> -->
+    </div>
+  </div>
+  <!-- <ngx-json-ld [json]="schema"></ngx-json-ld> -->
+  <!-- <ngx-json-ld [json]="Breadcrumbschema"></ngx-json-ld> -->
+</div>
+</div>

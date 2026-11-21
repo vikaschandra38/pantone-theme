@@ -1,0 +1,18 @@
+<ng-container *ngIf="Eventdata">
+    <div class="container">
+      <div class="event-list">
+          <div class="event" *ngFor="let item of Eventdata?.addComponents[0]?.fields?.addComponents[0]?.fields?.addComponents">
+              <!-- <sup>Webinar</sup> -->
+              <h2>{{item?.fields?.displayMainText}}</h2>
+              <p class="sort-details">{{item?.fields?.description}}</p>
+    
+              <div class="datetime">
+                <p><img src="../../assets/images/calendar.svg" />{{item?.fields?.relatedContent[0]?.fields?.displayMainText}}</p>
+                <p style="margin-right: 0;"><img src="../../assets/images/clock.svg" />{{item?.fields?.relatedContent[1]?.fields?.displayMainText}}</p>
+              </div>
+              <div class="location"><img src="../../assets/images/map-pin.svg" />{{item?.fields?.relatedContent[2]?.fields?.displayMainText}}</div>
+              <a class="learnmore" [routerLink]="item?.fields?.redirectionUrl" >Learn More <img src="../../assets/images/arrow-right.svg" /></a>
+          </div>
+      </div>
+    </div>
+    </ng-container>

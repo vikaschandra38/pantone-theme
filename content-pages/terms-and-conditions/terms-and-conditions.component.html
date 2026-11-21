@@ -1,0 +1,32 @@
+<!-- {{ termandconditionsdata | json }} -->
+<section class="page">
+  <div class="container">
+    <div class="flexblock">
+      <div class="sidebar">
+        <content-sidebar></content-sidebar>
+      </div>
+      <div class="loader" *ngIf = "!termandconditionsdata"></div>
+      <div class="rightbar" *ngIf = "termandconditionsdata">
+        <h1 [innerHTML]="termandconditionsdata?.addComponents[0]?.fields?.displayMainText">{{ termandconditionsdata?.addComponents[0]?.fields?.displayMainText }}</h1>
+        <p  [innerHTML]="termandconditionsdata?.addComponents[0]?.fields?.description">{{ termandconditionsdata?.addComponents[0]?.fields?.description }}</p>
+        
+        
+        <!-- <div class="accordion">
+            {{ termandconditionsdata?.pageElements[0]?.fields?.displayMainText}}
+            <mat-accordion>
+                <mat-expansion-panel *ngFor="let term of termandconditionsdata?.pageElements">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h4>{{ term?.fields?.displayMainText }}</h4>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <p [innerHTML]="( term?.fields?.description )">{{ term?.fields?.description }}</p>
+                
+                </mat-expansion-panel>
+              </mat-accordion>
+        </div> -->
+
+      </div>
+    </div>
+  </div>
+</section>

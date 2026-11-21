@@ -1,0 +1,669 @@
+.account_top h2{
+    margin: 10px 0 5px;
+    font-size: 20px;
+    color: #644ea2;
+    font-family: 'lato', sans-serif;
+    font-weight: 500;
+}
+.account_top p {
+    color: #666;
+    font-size: 16px;
+    margin-left: 25px;
+    margin: 0 0 0 20px;
+    position: relative;
+    top: -3px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+.account_top {
+    text-align: center;
+    margin: 0 0 30px;
+    display: flex;
+    align-items: baseline;
+}
+/* #profile_view {
+    max-width: 75%;
+    margin: auto;
+} */
+h3.acccount_heading {
+    margin: 0px 0 0;
+    font-size: 20px;
+    color: #644ea2;
+    padding: 0px 0px 0;
+    margin-bottom: 15px;
+    font-weight: normal;
+    font-family: 'lato', sans-serif;
+font-weight: 500;
+}
+.primary_box ul li{
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+    color: #999;
+    line-height: 24px;
+    font-size: 13px;
+    /* display: flex; */
+    align-items: center;
+    letter-spacing: 0.5px;
+    margin-bottom: 15px;
+}
+.primary_box ul li .btn-block{
+
+}
+.primary_box ul li span:first-child{
+    max-width: 170px;
+    width: 100%;
+    color: #666;
+    display: block;
+    font-size: 14px;
+}
+.edit_account_form label{
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+    color: #999;
+    letter-spacing: 0.5px;
+    display: block;
+    margin-bottom: 10px;
+    font-weight: normal;
+    text-transform: capitalize;
+}
+.edit_account_form input , .edit_account_form textarea , .edit_account_form select{
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+    color: #999;
+    display: block;
+    /* margin-bottom: 10px; */
+    border: 1px solid rgb(175, 175, 175);
+    width: 100%;
+    padding:7px 10px;
+    /* font-weight: bold; */
+    letter-spacing: 0.5px;
+    box-sizing: border-box;
+    outline: 0;
+}
+
+.edit_account_form .btn_green , .btn_green{
+    max-width: 195px;
+    width: 100%;
+    height: 43px;
+    font-size: 18px;
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+    text-align: center;
+    line-height: 40px;
+    text-transform: initial;
+    color: #fff;
+    background-color: #644ea2;
+    border: 0;
+    border-bottom: 2px solid #644ea2;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 20px 0 20px auto;
+    /* border-radius: 5px; */
+    padding: 0;
+    text-transform: capitalize;
+}    
+.btn_green:hover {
+    background-color: #c18a39;
+    border-color: #c18a39;
+}
+.edit_account_form .edit_input_box.dob input {
+    border: 0;
+    height: 34px;
+}    
+.edit_input_box {
+    margin-bottom: 25px;
+}
+.edit_account_form .cancel_btn{
+    background: none;
+    border: 1px solid #666;
+    margin: 0 20px 0 0;
+    color: #666;
+}
+.edit_account_form .cancel_btn:hover {
+    background-color: transparent;
+    border-color: #666666;
+}
+.date_of_birth{
+    display: flex;
+    align-items: flex-start;
+}
+.date_of_birth div{
+    width: 33%;
+}
+.date_of_birth div.month{
+    width: 33%;
+    margin:0 20px;
+}
+.edit_account_input{
+    margin: 0px 4% 40px 0px;
+    position: relative;
+    float: left;
+    width: 48%;
+}
+.edit_account_input.account_address_input{
+    width: 100%;
+    margin-right: 0;
+}
+.edit_account_input:nth-child(even) , .edit_account_input.account_district_input {
+    margin-right: 0;
+}
+
+.edit_account_input.account_locality_input {
+    margin-right: 4%;
+}
+.edit_account_input input.edit_input_value{
+    width: 100%;
+    border: 0px;
+    border-bottom: 1px solid #d4d5d9;
+    color: #333333;
+    outline: none;
+    padding-bottom: 5px;
+    -webkit-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+.edit_account_input .edit_account_label{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    pointer-events: none;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    font-size: 14px;
+    color: #666;
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+    letter-spacing: 0.5px;
+}  
+.edit_account_input input:focus{
+    border-bottom: 1px solid #0BC6A0;
+}
+.edit_account_input input:focus + label {
+    top: -18px;
+    color: #0BC6A0;
+}  
+.edit_account_input .edit_account_label.top{
+    top: -18px;
+    font-size: 12px;
+}
+#add_new_address h3.acccount_heading {
+    border: none;
+    color: #666;
+}
+
+/* #edit_account_details , #empty_address , #add_new_address , #order_return_block{
+    display: none;
+} */
+
+.edit_top_block{
+    display: flex;
+    align-items: flex-start;
+    padding: 0 10px 20px;
+}
+.edit_top_block div{
+    width: 50%;
+}
+.edit_top_block .email{
+    margin-right: 20px;
+}
+
+.cancel_btn:hover {
+    background-color: #ffffff;
+    border-color: #333;
+    color: #333;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.span-error {
+    /* position: absolute;
+    bottom: -6px; */
+    color: #ff0000;
+}
+.edit_input_box.radiobutton {
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+    color: #999;
+    letter-spacing: 0.5px;
+    margin: 0 10px;
+}
+.edit_top_block input[type="email"] {
+    background: #fff;
+    cursor: no-drop;
+}
+.row {
+    display: flex;
+    margin: 0;
+}
+.row .edit_input_box {
+    width: 50%;
+    margin: 10px;
+}
+.editbtn {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+#edit_account_details {
+    max-width: 850px;
+    margin: auto;
+}
+
+
+
+
+
+.my-profile {
+    box-sizing: border-box;
+    max-width: 450px;
+    border:1px solid #e4e4e4;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    padding: 20px 20px 0;
+}
+.acccount_heading span {
+    color: #666666;
+    font-weight: 500;
+    letter-spacing: 1.07px;
+    position: relative;
+    top: -3px;
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    margin-left: 30px;
+}
+.editmobile {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: none;
+    padding: 0;
+}
+.my-profile .mat-form-field{
+display: block;
+}
+#editMobile{
+    position: fixed;
+    background: #0000003d;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+}
+
+#editMobile .popup-header {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+}
+.verifybtn {
+    display: block;
+    width: 100%;
+    font-size: 11px;
+    border: 1px solid #644ea2;
+    border-radius: 2px;
+    background-color: #644ea2;
+    color: #fff;
+    padding: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 20px;
+    outline: none;
+    height: 44px;
+}
+.editMobile-inner h2{
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.75px;
+    line-height: 29px;
+    text-align: center;
+    margin: 0;
+}
+.editMobile-inner h2 + p{
+    text-align: center;
+    margin: 10px 0 20px;
+    font-family: lato;
+    font-weight: 500;
+    font-size: 13px;
+    color: #666;
+    letter-spacing: 0.5px;
+}
+.ProfileForm h3.acccount_heading {
+    font-family: 'lato', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 17px;
+    color: #333;
+    margin: 0 0 15px;
+}
+.edit_primary_btn {
+    height: 44px;
+    width: 170px;
+    border: 1px solid #644ea2;
+    border-radius: 2px;
+    background-color: #644ea2;
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+    line-height: 42px;
+    text-transform: capitalize;
+}
+.edit_primary_btn:hover {
+    color: #644ea2;
+    background: #fff;
+}
+.ProfileForm.my-profile {
+    margin-top: 35px;
+}
+form.ProfileForm.my-profile {
+    margin-top: 35px;
+}
+.cancel_btn {
+    height: 44px;
+    width: 180px;
+    border: 1px solid #999999;
+    border-radius: 2px;
+    background-color: #9999994d;
+    display: inline-block;
+    line-height: 42px;
+    text-align: center;
+    color: #333333;
+    opacity: .6;
+    margin-left: 20px;
+}
+#profile_view {
+    /* max-width: 450px; */
+    /* margin: 25px auto 40px; */
+}
+
+.btn{
+    border-radius: 2px;
+    border: 1px solid rgba(51, 51, 51, 0.2);
+    background: rgba(153, 153, 153, 0.2);
+    width: 100%;
+    font-family: 'lato';
+    text-transform: uppercase;
+    font-size: 12px;
+    color: rgba(51, 51, 51, 0.5);
+    font-weight: 700;
+    margin-top: 20px;
+    padding: 15px 0;
+}
+.btn.btn-active{
+    background-color: #644ea2;
+    border-color: #644ea2;
+    color: #fff;
+}
+
+.loaderbtn{
+    background-color: #644ea2;
+    color: #fff;
+    pointer-events: none;
+    opacity: 0.6;
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, .3) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .3) 50%, rgba(255, 255, 255, .3) 75%, transparent 75%, transparent);
+    -webkit-transition: width .5s ease-in-out;
+    transition: width .5s ease-in-out;
+    background-size: 50px 50px;
+    -webkit-animation: animate-stripes 3s infinite linear;
+    animation: animate-stripes 3s infinite linear;
+    cursor: default;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.datepicker{
+    position: relative;
+}
+
+
+#editMobile{
+    position: fixed;
+    background: #0000003d;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;
+}
+.editMobile-inner {
+    position: fixed;
+    z-index: 99999;
+    width: 400px;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top:25%;
+    padding: 20px;
+    background: #fff;
+    box-sizing: border-box;
+    /* border-radius: 15px; */
+    padding-bottom: 35px;
+}
+#editMobile .popup-header {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+    background: url(../../assets/images/close.png) 1px 0px;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+}
+#editMobile .popup-header:hover{
+    opacity: 0.8;
+}
+.verifybtn {
+    display: block;
+    width: 100%;
+    font-size: 11px;
+    border: 1px solid #644ea2;
+    border-radius: 2px;
+    background-color: #644ea2;
+    color: #fff;
+    padding: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 20px;
+    outline: none;
+    height: 44px;
+}
+.editMobile-inner h2{
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.75px;
+    line-height: 29px;
+    text-align: center;
+    margin: 0 0 35px;
+}
+.editMobile-inner .otpscreen h2 {
+    margin: 0 0 15px;
+}
+.editMobile-inner .otpscreen p {
+    margin: 0 0 30px;
+}
+.editMobile-inner h2 + p{
+    text-align: center;
+    margin: 10px 0 20px;
+    font-family: lato;
+    font-weight: 500;
+    font-size: 13px;
+    color: #666;
+    letter-spacing: .5px;
+}
+.ProfileForm h3.acccount_heading {
+    font-family: 'lato', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 17px;
+    color: #333;
+    margin: 0 0 15px;
+}
+.edit_primary_btn {
+    height: 44px;
+    width: 170px;
+    border: 1px solid #644ea2;
+    border-radius: 2px;
+    background-color: #644ea2;
+    color: #fff;
+    display: inline-block;
+    text-align: center;
+    line-height: 42px;
+    text-transform: capitalize;
+}
+.edit_primary_btn:hover {
+    color: #644ea2;
+    background: #fff;
+}
+.ProfileForm.my-profile {
+    margin-top: 35px;
+}
+form.ProfileForm.my-profile {
+    margin-top: 35px;
+}
+.cancel_btn {
+    height: 44px;
+    width: 180px;
+    border: 1px solid #999999;
+    border-radius: 2px;
+    background-color: #9999994d;
+    display: inline-block;
+    line-height: 42px;
+    text-align: center;
+    color: #333333;
+    opacity: .6;
+    margin-left: 20px;
+}
+.otpScreen .resend-otp {
+    /* position: absolute; */
+    /* top: 126px;
+    right: 40px; */
+    color: #644ea2;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.otpScreen .resend-otp:hover {
+    color: #644ea2;
+}
+.btn{
+    border: 1px solid rgba(51, 51, 51, 0.2);
+    background: rgba(153, 153, 153, 0.2);
+    width: 100%;
+    font-family: lato;
+    text-transform: capitalize;
+    font-size: 14px;
+    color: rgb(51 51 51 / 64%);
+    font-weight: 500;
+    margin-top: 20px;
+    padding: 15px 0;
+    letter-spacing: 1px;
+    border-radius: 4px;
+}
+.btn.btn-active{
+    background-color: #644ea2;
+    border-color: #644ea2;
+    color: #fff;
+}
+.loaderOtp {
+    width: 20px !important;
+    height: 20px !important;
+    margin: 0 auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+} 
+.loaderbtn{
+    background-color: #644ea2;
+    color: #fff;
+    pointer-events: none;
+    opacity: 0.6;
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, .3) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .3) 50%, rgba(255, 255, 255, .3) 75%, transparent 75%, transparent);
+    -webkit-transition: width .5s ease-in-out;
+    transition: width .5s ease-in-out;
+    background-size: 50px 50px;
+    -webkit-animation: animate-stripes 3s infinite linear;
+    animation: animate-stripes 3s infinite linear;
+    cursor: default;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.datepicker{
+    position: relative;
+}
+
+.back {
+    position: absolute;
+    top: 20px;
+    left: 15px;
+    font-size: 0;
+    z-index: 999;
+    display: inline-block;
+}
+.back:after{
+    content: "";
+    background: url(../../assets/images/left-sign-arrow.png) 0px 0px ;
+    width: 22px;
+    height: 16px;
+    display: inline-block;
+    background-size: 22px;
+    background-repeat: no-repeat;
+  }
+  .back:hover::after{
+    background-position: 0.8;
+  }
+.invalid{
+    text-align: center;
+}
+#showResend .didntget {
+    font-size: 14px;
+    margin: 0px 0 0;
+    font-family: 'lato';
+    letter-spacing: .5px;
+    color: #666;
+    text-align: center;
+}
+
+#showResend .didntget span {
+    color: #644ea2;
+    font-size: 14px;
+    cursor: pointer;
+}
+#showResend .didntget span:hover {
+    text-decoration: underline;
+}
+.countblock {
+    height: 30px;
+    margin-top: 32px;
+}
+#showResend .didntget span.count{
+    color: #666;
+    cursor: default;
+}
+#showResend .didntget span.count:hover{
+ text-decoration: none;
+}
+.otpScreen .mat-progress-spinner {
+    display: block;
+    position: relative;
+    margin: 15px auto 0;
+}
+.my-profile li {
+    border: 0 !important;
+}

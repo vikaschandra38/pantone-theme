@@ -1,0 +1,116 @@
+.btn-sale {
+    border-radius: 0;
+    border: aliceblue;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 100;
+    margin-bottom: 15px;
+    color: #fff;
+    padding: 6px 0;
+    max-width: 152px;
+    display: inline-block;
+}
+.add-cart .btn-sale {
+    background-color: #d44b2b;
+    border-color: #d44b2b;
+}
+.cancel .btn-sale {
+    background-color: #487e4c;
+    border-color: #487e4c;
+    color: #fff;
+}
+.web-pop.bg-img .cancel .btn-sale {
+    background-color: #ffffff;
+    border-color: #ffffff;
+    color: #d44b2b;
+}
+.add-cart-wrapper .text p {
+    font-size: 15px;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 24px;
+    margin-bottom: 15px;
+}
+.mat-card {
+    background-color: #fff;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+}
+.web-pop {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+}
+.btn-sale:focus{
+    border: 0;
+    box-shadow: none;
+    outline: none;
+}
+.campaign-sale {
+    display: flex;
+}
+
+.add-cart-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px 20px;
+}
+.web-pop.bg-img .add-cart-wrapper{
+    background: rgb(199, 203, 228);
+    background: linear-gradient(90deg, rgb(208, 214, 230) 0%, rgb(212, 218, 232) 35%, rgb(215, 224, 240) 100%);
+}
+.sale-overlay {
+    background: #0000003d;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 99999;
+}
+.sale-popup {
+    background-color: transparent;
+    position: fixed;
+    max-width: 600px;
+    width: 100%;
+    top: 30px;
+    /* top: 10%; */
+    z-index: 999999;
+    margin: auto;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    /* bottom: 0; */
+    justify-content: center;
+    max-height: 330px;
+}
+.popup-close {
+    text-align: right;
+    width: 22px;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    z-index: 99999;
+    cursor: pointer;
+}
+.tp20 {
+    top: 18% !important;
+}
+
+.tp20 {
+    top: 18% !important;
+}
+
+@media only screen and (max-width: 1024px) {
+    .sale-popup {
+        max-width: 350px;
+        max-height: none;
+        /* position: relative; */
+    }
+  }

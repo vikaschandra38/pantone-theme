@@ -1,0 +1,102 @@
+.listiingtop {
+  /* min-height: 270px; */
+}
+.heading {
+  font-size: 16px;
+  color: #333333;
+  text-align: left;
+  margin: 0 0 0px;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0px;
+}
+.description {
+  font-size: 16px;
+  padding: 00px 0 20px;
+  color: #585858;
+  font-family: 'Lato', sans-serif;
+font-weight: 400;
+  width: 70%;
+  margin: auto;
+}
+.header-tags-btns {
+  margin: 10px 0 35px;
+}
+.header-tags-btns ul {
+  text-align: center;
+  display: inline;
+}
+.header-tags-btns ul li {
+  display: inline-block;
+}
+.header-tags-btns ul li a {
+  color: #414141;
+  border: 1px solid #ccc;
+  padding: 10px 25px;
+  font-size: 13px;
+  font-family: "Latosemibold";
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0 10px;
+  border-radius: 3px;
+}
+.header-tags-btns ul li:hover a {
+  cursor: pointer;
+  background: #2e2e2e;
+  color: #fff;
+  border-color: #2e2e2e;
+}
+.tags-wrapper {
+  background: #f3f3f3;
+}
+.no-found {
+  color: #d94b2a;
+  font-size: 14px;
+  font-weight: normal;
+  font-family: 'Montserrat', sans-serif;
+font-weight: 500;
+  text-align: center;
+  padding: 150px 15px;
+}
+
+.breadcrumb {
+  background: #f6f6f6;
+  min-height: 30px;
+  padding: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.selected-tags ul li {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+font-weight: 400;
+  color: #666666;
+  font-size: 12px;
+  line-height: 30px;
+  letter-spacing: 0.5px;
+  margin: 0 17px -3px 0;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  -ms-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  position: relative;
+  outline: none;
+}
+.selected-tags ul li:after {
+  content: "/";
+  /* background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAKCAYAAAB4zEQNAAAAGXRFW…FKnAGJM0tJSbkC6R1A/A2IXWAuhbnWE4gPQnU8RnYDQIABAMD7NRXV8NYAAAAAAElFTkSuQmCC) 0 0/5px no-repeat; */
+  display: block;
+  height: 10px;
+  width: 10px;
+  position: absolute;
+  right: -16px;
+  top: 0px;
+}
+.selected-tags ul li:last-child:after {
+  display: none;
+}
+.selected-tags ul li:hover {
+  cursor: pointer;
+  color: #000;
+}

@@ -1,0 +1,129 @@
+<h2 *ngIf="!userwishlistloading" class="heading">
+  Saved Items <!--<span>({{ wishlistCount }} Item)</span> -->
+  <p>Keep track of any items you like or want to save for later</p>
+</h2>
+
+<div
+ class="primary_box"
+ id="emptywishlist"
+ *ngIf="emptywishlist && !userwishlistloading && !wishlistremoveloading"
+>
+ <div class="wishlist_empty_inner">
+   <img
+     src="../../assets/images/ic-empty-wishlist.png"
+     alt=" Empty Wishlist"
+   />
+   <div class="emptytext">Your Wishlist is Empty</div>
+   <a class="continuebtn" routerLink="">Continue Shopping</a>
+ </div>
+</div>
+<!-- empty wishlish block div -->
+<div
+ class="loaderwrraper"
+ *ngIf="
+   (userwishlistloading && !userwishlistloaded) ||
+   itemaddingcart ||
+   wishlistremoveloading
+ "
+>
+ <div class="loader-spinner loader"><mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner></div>
+</div>
+
+<div
+ class="primary_box"
+ id="wishlistitem"
+ *ngIf="wishlist && !userwishlistloading"
+>
+ <div class="wishlist_inner">
+   <div class="wishlistitem">
+     <ul>
+       <!-- <li class="wislisttop">
+         <div>PRICE</div>
+       </li> -->
+       <!-- {{ allwishlist | json }} -->
+       <li *ngFor="let wishlist of allwishlist.reverse()">
+         <div class="wishlistinneritem">
+           <a [routerLink]="'/products/id/' + wishlist?.wishlist_item?.product_info_slug">
+             <div class="itemthumb">
+               <img src="{{ wishlist?.wishlist_item?.product_image }}"/>
+             <div class="addremove">
+               <a class="remove" (click)="removewishlist(wishlist.wislist_id)" [ngClass]="wishlistremoveloading ? 'loaderbtn' : ''">Remove</a>
+               <a class="addcart" (click)=" addToCart(wishlist?.wishlist_item, wishlist.wislist_id)" [ngClass]="itemaddingcart ? 'loaderbtn' : ''" >Move to Cart</a>
+             </div>
+             </div>
+           </a>
+           <div class="proinfo">
+             <div class="product_info">
+               <a
+                 [routerLink]="
+                   '/products/id/' + wishlist?.wishlist_item?.product_info_slug
+                 "
+               >
+                 <h2>{{ wishlist?.wishlist_item?.product_name }}</h2>
+               </a>
+               <!-- <p class="category">Women Outlets</p> -->
+               <p class="sizecolor">
+                 <span
+                   >Colour: {{ wishlist?.wishlist_item?.product_colour }}</span
+                 >
+               </p>
+               
+             </div>
+             <div class="price">
+               {{ wishlist?.wishlist_item?.product_currency }}
+               {{ wishlist?.wishlist_item?.product_sale_price }}
+             </div>
+           </div>
+           <!-- <div class="date">{{wishlist.wislist_id | date: mediumDate}}</div> -->
+         </div>
+       </li>
+     </ul>
+   </div>
+ </div>
+</div>
+<!-- empty wishlish block div -->
+<div
+ class="closesizeblock"
+ (click)="closesizeblock()"
+ *ngIf="showsizechart"
+></div>
+<div class="selectsize" *ngIf="showsizechart">
+ <div class="block">
+   <a class="crosspoup" (click)="closesizeblock()"
+     ><img src="../../../duke-theme/assets/images/cross.png"
+   /></a>
+   <h2>Select Size</h2>
+   <div *ngIf="showSelectSize" style="margin-left: 120px; color: red;">
+     Please Select Size
+   </div>
+   <div *ngIf="selectedProduct == null" class="loader">Loading....</div>
+   <ul class="sizelist" *ngIf="selectedProduct">
+     <li
+       *ngFor="
+         let sizes of selectedProduct &&
+           selectedProduct[0] &&
+           selectedProduct[0].options &&
+           selectedProduct[0].options[0] &&
+           selectedProduct[0].options[0].values
+       "
+       [ngClass]="activesize == sizes.id ? 'activesize' : ''"
+     >
+       <span
+         class="size-box"
+         *ngIf="sizes.stock > 0"
+         (click)="selectedSize(sizes.id)"
+         >{{ sizes?.name }}</span
+       >
+       <span class="size-box disabled" *ngIf="sizes.stock == 0">{{
+         sizes.name
+       }}</span>
+     </li>
+   </ul>
+   <a
+     class="addtocart"
+     (click)="addToCart1()"
+     [ngClass]="itemaddingcart ? 'loaderbtn' : ''"
+     >Move to Cart</a
+   >
+ </div>
+</div>

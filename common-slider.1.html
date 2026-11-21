@@ -1,0 +1,42 @@
+<ul class="recentproduct">
+
+  <owl-carousel #owlElement
+  [options]="{items: 3, dots: false, nav: true, loop:false, autoplay: false, autoplayTimeout:5000, autoplayHoverPause:false}"
+  [items]="slider" [carouselClasses]="['owl-theme', 'sliding' ]">
+    <div class="item" *ngFor="let product of slider; let i = index">
+      <li [lazy-load-images]="{ rootMargin: '10px' }">
+        <a routerLink="../{{product?.slug}}" title="{{ product.name }}">
+        <div class="product-image">
+          <img  class="product-img-src" [attr.data-src]="product?.images[0]?.file.url | DetailMainImageKitPipe : this.detailSimilarImageWidth" src="./assets/images/details-img.jpg" alt="{{ product.name }}" />
+          <!-- <img class="two" [attr.data-src]="product?.images[1]?.file.url | DetailMainImageKitPipe : this.detailSimilarImageWidth" src="./assets/images/details-img.jpg" alt="{{ product.name }}" /> -->
+          <div class="product-color" *ngIf="product && product?.description">
+            <P [innerHTML]="(product?.description)">{{ product?.description }}</P>
+          </div> 
+        </div>
+
+          <div class="pro_bottom">
+            <div class="titleblock">
+              <h3>{{ product.name }}</h3>
+            </div>
+            
+            <div class="priceblock">
+              <div class="price">
+              <span *ngIf="product && product.sale">
+                <span [ngClass]="(product && product.sale) ? 'sale_on' : 'sale_off'"> ₹ {{makeprice(product?.sale_price)}}</span>
+              </span>
+              <span>
+                <span *ngIf="product && product.sale"><del>₹&nbsp;{{makeprice(product?.price)}} </del></span>
+                <span *ngIf="product && !product.sale">₹&nbsp;{{makeprice(product?.price)}}</span>
+              </span>
+              <div class="offer">
+                <span *ngIf=" percentage(product.sale_price, product.price) > 0">({{ percentage(product.sale_price, product.price) }}% OFF)</span>
+              </div>
+              </div>
+                                          
+            </div>
+          </div>
+        </a>
+      </li>
+    </div>
+  </owl-carousel>
+</ul>

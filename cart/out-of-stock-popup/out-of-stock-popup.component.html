@@ -1,0 +1,18 @@
+<div class="coupon-overlay" [ngClass]="showPopup ? 'visible':''" (click)="closeMessagePopup()"></div>
+<div class="coupon-main out-of-stock" [ngClass]="showPopup ? 'visible':''">
+  <div class="coupon-inner">
+    <div class="topbar">
+      <h2>Information</h2>
+      <a class="cross" (click)="closeMessagePopup()"><img src="../assets/images/close.png" /></a>
+    </div>
+   
+    <div class="coupon-list">
+      <li>
+        <p>Some of the items are out of stock, kindly remove them from cart</p>
+      </li>
+    </div>
+    <div class="applybtn-block">
+      <a class="apply" (click)="onReviseCart()" >{{btnText}}</a>
+    </div>
+  </div>
+</div>

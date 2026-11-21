@@ -1,0 +1,36 @@
+<div class="listiingtop">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-sm-12">
+        <div class="wrapper" *ngIf="search">
+          <div class="heading" *ngIf="(filters?.search?.length > 0 || search?.length > 0)  && prodlen !==0">
+            RESULTS FOR "{{ filters.search }}"
+          </div>
+          <div class="no-found" *ngIf="prodlen === 0 && search !=='' && loadedFilter">
+            Sorry, no results found! Please check the spelling or try searching for something else.
+          </div>
+          <!-- <div class="description">
+          </div> -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="breadcrumb" *ngIf="(filters?.search?.length > 0 || search?.length > 0)  && prodlen !==0">
+    <div class="container">
+      <div class="breadcrumb-inner">
+        <div class="selected-tags" *ngIf="prodlen !==0">
+          <ul>
+            <li routerLink="/">Home</li>
+            <li *ngIf="categoryEntity?.name !== parentcategory?.name">
+              {{ categoryEntity?.name }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+</div>

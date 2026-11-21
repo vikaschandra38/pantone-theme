@@ -1,0 +1,36 @@
+.campaign{
+    text-align: center;
+}
+h2{
+    color: #333;
+    margin: 50px 0 20px;
+    font-family: lato,sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 30px;
+}
+.campaign ul{
+    max-width: 300px;
+    margin:20px auto 10px;
+}
+.campaign ul li{
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-size: 16px;
+    margin: 0px 0 5px;
+    letter-spacing: .5px;
+    line-height: 22px;
+    font-family: Lato,sans-serif;
+}
+.campaign ul li span:nth-child(2) {
+    text-align: left;
+    width: 60%;
+}
+.campaign ul li span:nth-child(1) {
+    width: 30%;
+}
+.link{
+    margin: 20px 0;
+    display: inline-block;
+}

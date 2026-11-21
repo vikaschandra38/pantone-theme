@@ -1,0 +1,116 @@
+.contact-wrp .heading h1 {
+    color: #644ea2;
+    font-size: 22px;
+    text-transform: uppercase;
+    text-align: left;
+    font-family: 'lato', sans-serif;
+font-weight: 500;
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+.contact-wrp {
+    max-width: 100%;
+    /* margin: 87px auto 87px auto; */
+    margin-bottom: 45px;
+}
+.contact-wrp .col-1{
+    width: 100%;
+    float: none;
+    }
+.contact-wrp .col-2{
+    width: 100%;
+    float: none;
+    /* margin-left: 15%; */
+}
+.contact-wrp .box-heading h3{
+    font-family: 'lato', sans-serif;
+font-weight: 600;
+    font-size: 16px;
+    color: #333;
+    margin: 0 0 5px 0;
+    text-transform: capitalize;
+}
+.contact-wrp .box-heading p{
+    font-size: 13px;
+    color: #666;
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+}
+.contact-wrp .toggle-box h3{
+    font-size: 14px;
+    color: #644ea2;
+    font-family: 'Lato', sans-serif;
+font-weight: 700;
+    padding: 10px 0 10px 15px;
+    margin: 0;
+    line-height: 30px;
+    cursor: pointer;
+    position: relative;
+}
+.contact-wrp .toggle-box h3:after{
+    content: "+";
+    position: absolute;
+    right: 11px;
+}
+
+.contact-wrp .toggle-box h3.active:after{
+    content: "-";
+}
+.contact-wrp .box-heading + .toggle-box{
+    border-top: 1px solid #d7d7d7;
+}
+.contact-wrp .toggle-box{
+    border-bottom: 1px solid #d7d7d7;
+}
+.contact-wrp .toggle-box .toggle-info, .contact-wrp .toggle-box .toggle-info.active {
+    overflow-y: hidden;
+	max-height: 100%; /* approximate max height */
+    box-sizing: border-box;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+.contact-wrp .toggle-box .toggle-info.in-active {
+    height: 0;
+}
+.contact-wrp .toggle-box .toggle-info p{
+    font-size: 14px;
+    color: #666;
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+    padding: 0 20px;
+}
+.contact-wrp .toggle-box .toggle-info p p{
+    margin-bottom: 0;
+}
+.contact-wrp .toggle-box .toggle-info p a{
+    color: #666;
+    display: inline-block;
+}
+.contact-wrp .toggle-box h3 img{
+    margin-right: 10px;
+}
+.contact-wrp .box-heading {
+    margin-bottom: 20px;
+    margin-top: 45px;
+}
+.clearfix{
+    clear: both;
+}
+/* .margin-top-70{
+    margin-top: 70px;
+} */
+.email-btn{
+    margin-left: 20px;
+    color: #ffff;
+    background-color: #644ea2;
+    border: 1px solid #644ea2;
+    width: 35%;
+    height: 30px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+.email-btn a{
+    color: #ffff;
+}

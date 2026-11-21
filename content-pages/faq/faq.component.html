@@ -1,0 +1,35 @@
+<!-- {{ faqs | json }} -->
+<section class="page">
+    <div class="container">
+        <div class="flexblock">
+            <div class="sidebar">
+                <content-sidebar></content-sidebar>
+            </div>
+            <div class="rightbar" *ngIf="faqs">
+                <div *ngIf="!faqs" class="page-loader">
+                    <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+                </div>
+                <div class="accordion">
+                    <h2>{{ faqs?.pageTitle }}</h2>
+
+                    <mat-accordion>
+                        <mat-expansion-panel *ngFor="let faqsdata of faqs?.addComponents; let isFirst = first" [expanded]="isFirst">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    <h4 [innerHTML]="( faqsdata?.fields?.displayMainText )">{{ faqs?.fields?.displayMainText }}</h4>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <p [innerHTML]="( faqsdata?.fields?.description )">{{ faqs?.fields?.description }}</p>
+                            <div *ngIf="faqsdata?.fields?.relatedContent">
+                                <img [src]="faqsdata?.fields?.relatedContent[0]?.fields?.desktopImage[0]?.fields?.file?.url">
+
+                            </div>
+
+                        </mat-expansion-panel>
+                    </mat-accordion>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

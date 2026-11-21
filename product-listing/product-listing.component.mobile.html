@@ -1,0 +1,191 @@
+<div class="loader-spinner loader" *ngIf="(!loadedCat && loadingCat) ||
+    (!loadedFilter && loadingFilter) ">
+    <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+</div>
+<div class="loader-spinner loader" *ngIf="(!loaded && loading)">
+    <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+</div>
+<div class="listpage">
+    <!-- <div class="" *ngIf="(!loadedCat && loadingCat) || (!loaded && loading)">
+        <br />
+        <div class="animationbackground h-5 w-50 lightgrey"></div>
+        <br /> -->
+    <!-- <div class="animationtop w-40 h-5 lightyellow"></div><br /> -->
+
+    <!-- <div class="row">
+            <div class="col-xs-6 paddingnone product-img-container " *ngFor="let count of loadingCount">
+                <div class="animationtop w-100 h-40 lightgrey paddingnone marginnone"></div>
+            </div>
+        </div>
+    </div> -->
+    <!-- <div *ngIf="products?.length > 0">
+        <div class="search-results" infinite-scroll
+        [infiniteScrollDistance]="scrollDistance"
+        [infiniteScrollUpDistance]="scrollUpDistance"
+        [infiniteScrollThrottle]="throttle"
+        (scrolled)="loadMore()"
+        (scrolledUp)="onUp()"> -->
+    <!-- <div class="loader-spinner" *ngIf="(!loadedCat && loadingCat) || (!loaded && loading)"><mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner></div>    -->
+    <h2 class="not-found" *ngIf="
+       (products?.length === 0 || products == null) &&
+       !loadingCat &&
+       loadedCat &&
+       !loading &&
+       loaded
+     ">
+        Sorry, no results found! Please check the spelling or try searching for
+        something else.
+    </h2>
+    <div class="listcontainer" *ngIf="!loadingCat && loadedCat && categoryexists && products?.length > 0">
+        <div class="filterblock" *ngIf="filtershow">
+            <app-product-filter-sidebar [filters]="filters" (selectedCheckboxFilters)="applyCheckedFilters($event)"
+                (clearFilterAll)="clearFilterAll()" (closefilterpopup)="closefilter($event)" [facets]="facetslist"
+                (retainEvent)="retainEvent($event)" [facetStats]="facetStats" [getUpdatedFilter]="getUpdatedFilter"
+                [loadedFilter]="loadedFilter" [loadingFilter]="loadingFilter"></app-product-filter-sidebar>
+        </div>
+        <div class="sortoverlay" (click)="sorting = !sorting" [ngClass]="sorting ? 'visible' : ''"></div>
+        <div id="select_sorting" *ngIf="sorting">
+            <ul class="sorting">
+                <li class="sortby">SORT BY</li>
+
+                <li [ngClass]="{ active: currentFilter == 'ws_pantone_products' }" (click)="sorting = !sorting">
+                    <a (click)="sortBy('ws_pantone_products')">Relevance</a>
+                </li>
+                <li [ngClass]="{ active: currentFilter == 'ws_pantone_products_price_asc' }"
+                    (click)="sorting = !sorting">
+                    <a (click)="sortBy('ws_pantone_products_price_asc')">Price Ascending</a>
+                </li>
+                <li [ngClass]="{
+            active: currentFilter == 'ws_pantone_products_price_dec'
+          }" (click)="sorting = !sorting">
+                    <a (click)="sortBy('ws_pantone_products_price_dec')">Price Descending</a>
+                </li>
+                <li [ngClass]="{
+            active: currentFilter == 'ws_pantone_products_alphabet_asc'
+          }" (click)="sorting = !sorting">
+                    <a (click)="sortBy('ws_pantone_products_alphabet_asc')">Aa-Zz</a>
+                </li>
+                <li [ngClass]="{
+            active: currentFilter == 'ws_pantone_products_alphabet_dec'
+          }" (click)="sorting = !sorting">
+                    <a (click)="sortBy('ws_pantone_products_alphabet_dec')">Zz-Aa</a>
+                </li>
+              
+            </ul>
+        </div>
+        <!-- ============ category banner ============== -->
+        <div class="categorybanner" *ngIf="
+        categoryEntity &&
+        categoryEntity.images &&
+        categoryEntity.images[0] &&
+        categoryEntity.images[0].file &&
+        categoryEntity.images[0].file.url
+      ">
+            <div class="imagesbanner">
+                <img [src]="(categoryEntity?.images)[0]?.file?.url  | CategoryImageKitPipe : this.ListingPageCategoryImageWidth"
+                    alt="{{ categoryEntity?.name }}" />
+            </div>
+            <div id="products"></div>
+        </div>
+        <!-- ============ category banner ============== -->
+
+        <app-product-listing-header [filters]="filters" [categoryEntity]="categoryEntity"
+            [categoryChildren]="categoryChildren | async" [prodlen]="products?.length || 0"
+            [loadedFilter]="loadedFilter"></app-product-listing-header>
+        <div class="container">
+            <div class="loader-spinner loader" *ngIf="!loaded && loading">
+                <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+            </div>
+            <div class="wrapper row" *ngIf="loaded && !loading">
+
+                <div class="col-sm-12 product-section" *ngIf="products.length !== 0">
+                    <div class="ps-header">
+                        <div class="resultcount">
+                            <h1 class="categoryname">{{ categoryEntity?.name }}</h1>
+                        </div>
+                    </div>
+                    <!--  {{ selectedFilterTag | json }} -->
+                    <!--  *ngIf = "filters.filters.length > 0" -->
+                    <div class="selected_tags" *ngIf="selectedFilterTag.length > 0">
+                        <h6>Filtered by</h6>
+                        <ul>
+                            <li *ngFor="let filter of selectedFilterTag">
+                                <span>{{ filter.value }}</span>
+                                <!-- <a (click) = "clearSingleFilter(filter.key, filter.value)">X</a> -->
+                            </li>
+                            <li class="clearall">
+                                <a (click)="clearFilter()">Clear All</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- <div *ngIf="getuserwishlistloading" class="wishlistloader loader"><mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner></div>
+                <div *ngIf="getwishlistremoveloading" class="wishlistloader loader"><mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner></div> -->
+                    <div class=" product-icon">
+                        <div class="row" *ngIf="loadedFilter && !loadingFilter">
+                            <!-- <div *ngIf="wishlistloginerror" class="errormsg" >Please Login!</div> -->
+                            <!-- <div *ngIf="wishlistaddederror" class="errormsg" >Product already added to wishlist!</div> -->
+
+                            <div *ngFor="let product of products | paginate: config; let i = index; trackBy:trackById">
+                                <div class="col-xs-6 col-md-6 product-img-container" [id]="'product' + i"
+                                    [lazy-load-images]="{ rootMargin: '10px' }">                                    
+                                    <a [routerLink]="'/products/id/' + product?.slug"
+                                        (click)="measureProductClicks(product, i)">
+                                        <div class="product-image">
+                                            <div class="tag-new" *ngIf="checkTagValue(product)">
+                                                <h5>{{ tagValue }}</h5>
+                                            </div>
+                                            <img [attr.data-src]=" (product?.images)[0]?.file.url | MobileImageKitPipe : this.MobileListingPageImageWidth"
+                                                class="product-img-src img-responsive"
+                                                src="assets/images/details-img.jpg" alt="{{ product?.name }}" />
+                                        </div>
+                                        <div class="product-description">
+                                            <div class="offer" *ngIf="percentage(product.sale_price, product.price)">
+                                                <span
+                                                  *ngIf=" percentage(product.sale_price, product.price) > 0">{{ percentage(product.sale_price, product.price) }}%
+                                                  Off</span>
+                                              </div>
+                                            <div class="name-section">
+                                                <div class="product-name">{{ product?.name }}</div>
+                                            </div>
+                                            <div class="price-section" *ngIf="product?.price || product?.sale_price">
+                                                <span [ngClass]="
+                                                product?.price !== product?.sale_price
+                                                    ? 'sale_on'
+                                                    : 'sale_off'
+                                                ">₹ {{ product?.sale_price | number:0}}</span>
+                                                <span *ngIf="product?.price !== product?.sale_price"
+                                                    class="sale_off"><del>₹&nbsp;{{ product?.price | number:0}}</del></span>
+
+                                            </div>
+                                        </div>
+                                        <!-- <div class="text-center product-size" *ngIf = "(product.options | retrievalPipe:'size').length > 0">sizes - {{product.options | retrievalPipe:'size'}}</div> -->
+                                    </a>
+                                    <div class="out-of-stock" *ngIf="checkOutOfStock(product)">
+                                        <h5>OUT OF STOCK</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="bottom-btn-area" *ngIf="nbPages > 1">
+                        <div class="loader-spinner" *ngIf="!moreloaded && moreloading">
+                            <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+                        </div>
+                        <pagination-controls class="page-control" previousLabel="" nextLabel=""
+                            (pageChange)="loadMore($event)" maxSize="7">
+                        </pagination-controls>
+                    </div> -->
+
+                </div>
+            </div>
+        </div>
+        <!-- <div class="filterbottom" *ngIf="products?.length > 0">
+            <a (click)="sorting = !sorting"
+                [ngClass]="{ active: currentFilter == 'ws_pantone_products_alphabet_dec', active: currentFilter == 'ws_pantone_products_price_asc'}">SORT
+                BY</a>
+                <a (click)="filtershow = !filtershow" [ngClass]="selectedFilterTag?.length > 0 ? 'active' : ''"> <img src="../assets/images/filter.png"/> Filters <span *ngIf="selectedFilterTag?.length > 0"> ({{selectedFilterTag?.length}})</span></a>
+        </div> -->
+    </div>
+</div>
+<!-- <ngx-json-ld [json]="schema"></ngx-json-ld> -->
+<!-- <ngx-json-ld [json]="Breadcrumbschema"></ngx-json-ld> -->

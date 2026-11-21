@@ -1,0 +1,53 @@
+<div>
+  <div class="sale-overlay" *ngIf="overlayPopup" (click)="onClosePopup()"></div>
+  <!--  ===================================sale popup start here ====================================================  -->
+  <div class="sale-popup" *ngIf="productPopup">
+    <div class="popup-close"><img src="../assets/images/close.png" (click)="onClosePopup()" /></div>
+    <mat-card class="mat-card">
+      <div *ngIf="popupProduct == 'polo'" class="web-pop bg-img">
+        <div class="campaign-sale">
+          <img src="../assets/images/sale/sale-head.png" alt="mask" />
+        </div>
+        <div class="add-cart-wrapper">
+          <div class="image">
+            <img src="../assets/images/sale/sale-product.png" alt="mask" />
+            <div class="content">
+              <div class="text">
+                <p>{{displayText}}</p>
+              </div>
+              <div class="row">
+                <div class="col-sm-6 add-cart">
+                  <button class="btn-sale" (click)="addToCartCombo()"> add to cart </button>
+                </div>
+                <div class="col-sm-6 cancel">
+                  <button class="btn-sale" (click)="addToCart()"> cancel </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="popupProduct == 'mask'" class="web-pop">
+        <div class="campaign-sale">
+          <img src="../assets/images/sale/sale-head.png" alt="mask" />
+        </div>
+        <div class="add-cart-wrapper">
+          <div class="content">
+            <div class="text">
+              <p>{{displayText}}</p>
+            </div>
+            <div class="row">
+              <div class="add-cart">
+                <!-- <button class="btn-sale" (click)="addToCartCombo()"> Shop Polos</button> -->
+                <a class="btn-sale" routerLink="../../../categories/bb-special" title=""> Shop Polos</a>
+              </div>
+              <div class="cancel">
+                <button class="btn-sale" (click)="addToCart()">Continue</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

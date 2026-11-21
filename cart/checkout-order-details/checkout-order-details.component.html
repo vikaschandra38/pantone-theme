@@ -1,0 +1,55 @@
+<div class="right_block">
+<!-- <h2>Your Order</h2> -->
+<!-- <div class="order-list" *ngIf="cartinfoinfo?.items" [ngClass]="cartinfoinfo?.items.length > 2 ? 'scrolldiv':'not'">
+    <div class="product_info" *ngFor="let item of cartinfoinfo?.items">
+    <div class="product_image">
+        <img src="{{item?.product?.images[0]?.file?.url + '?width=150'}}" />
+    </div>
+    <div class="product_name">
+        <h2>{{item?.product?.name}}</h2>     
+        <div class="size_colour" *ngIf="item?.options?.length > 0">
+        <span>Size : {{item?.options[0]?.value}}</span>
+        </div>
+        <div class="size_colour">
+        <span>Colour : {{item?.product?.attributes?.colour}}</span>
+        </div>
+        <div class="qtyblock">
+        <p class="qty">Qty. {{item?.quantity}}</p>
+        <p class="price">INR {{item?.price_total}}</p>
+        </div>
+    </div>
+    </div>
+</div> -->
+<div class="price-details">
+    <h2 class="text-uppercase">Purchase Summary</h2>
+    <ul>
+        <li class="total" *ngIf="bagdetails">
+            <span>Bag Total  </span>
+            <span>INR {{cartinfo?.sub_total | number:0 }}</span>
+        </li>
+        <li class="total" *ngIf="bagdetails">
+            <span >Bag Discount </span>
+            <span>INR 7,777</span>
+        </li>
+        <li class="total applyedcoupon">
+            <span>Order Total 
+                <span class="red" (click)="viewclick()" *ngIf="viewdetails">View Details</span> 
+                <span class="red" (click)="hideclick()" *ngIf="hidedetails">Hide Details</span>
+            </span>
+            <span>INR {{cartinfo?.grand_total | json}}</span>          
+        </li>
+        <li>
+            <span>Delivery Charges</span>
+            <span *ngIf="cartinfo?.shipment_total === 0" class="red">FREE</span>
+            <span *ngIf="cartinfo?.shipment_total !== 0" class="red">INR {{cartinfo?.shipment_total }}</span>
+        </li>
+        <li class="total total-cartinfo">
+            <span><b class="text-uppercase">Total</b> <br />
+            <span class="including-gst">Inclusive of all taxes</span>
+            </span>
+            <span>INR {{cartinfo?.grand_total | json}}</span>
+        </li>
+    </ul>
+</div>
+
+</div>

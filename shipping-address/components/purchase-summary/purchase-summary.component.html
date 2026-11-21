@@ -1,0 +1,97 @@
+<div class="right_block">
+    <!-- <h2>Your Order</h2> -->
+    <!-- <div class="order-list" *ngIf="cartInfoinfo?.items" [ngClass]="cartInfoinfo?.items.length > 2 ? 'scrolldiv':'not'">
+        <div class="product_info" *ngFor="let item of cartInfoinfo?.items">
+        <div class="product_image">
+            <img src="{{item?.product?.images[0]?.file?.url + '?width=150'}}" />
+        </div>
+        <div class="product_name">
+            <h2>{{item?.product?.name}}</h2>     
+            <div class="size_colour" *ngIf="item?.options?.length > 0">
+            <span>Size : {{item?.options[0]?.value}}</span>
+            </div>
+            <div class="size_colour">
+            <span>Colour : {{item?.product?.attributes?.colour}}</span>
+            </div>
+            <div class="qtyblock">
+            <p class="qty">Qty. {{item?.quantity}}</p>
+            <p class="price">₹ {{item?.price_total}}</p>
+            </div>
+        </div>
+        </div>
+    </div> -->
+    <div class="price-details">
+        <h2 class="text-uppercase">Purchase Summary</h2>
+        <ul>
+            <li class="total" *ngIf="bagdetails">
+                <span>Bag Total </span>
+                <span>₹ {{actualBagTotal | number:0}}</span>
+            </li>
+            <li class="total" *ngIf="bagdetails">
+                <span>Bag Discount </span>
+                <span class="red">- ₹ {{totalBagDiscount | number:0}}</span>
+            </li>
+            <div *ngIf="bagdetails">
+                <li class="applyedcoupon" *ngIf="cartInfo && cartInfo?.discounts && cartInfo?.discounts[0]">
+                    <span>Coupon Discount</span>
+                    <ng-container>
+                        <span class="red">
+                            - ₹ {{cartInfo?.discounts[0]?.amount}}</span>
+                    </ng-container>
+                </li>
+            </div>
+            <li class="total applyedcoupon">
+                <span>Order Total
+                    <span class="red pointer" (click)="viewclick()" *ngIf="viewdetails">View Details</span>
+                    <span class="red pointer" (click)="hideclick()" *ngIf="hidedetails">Hide Details</span>
+                </span>
+                <span>₹
+                    {{actualBagTotal-totalBagDiscount-(cartInfo && cartInfo?.discounts && cartInfo?.discounts?.length ? cartInfo?.discounts[0]?.amount : 0) | number:0}}</span>
+            </li>
+
+            <li class="delivery-charge">
+                <span>Delivery Charges</span>
+                <span *ngIf="cartInfo?.shipment_total === 0" class="red">FREE</span>
+                <span *ngIf="cartInfo?.shipment_total !== 0" class="red">₹ {{cartInfo?.shipment_total }}</span>
+            </li>
+            <li class="total total-cartInfo">
+                <span><b class="text-uppercase">Total</b> <br />
+                    <span class="including-gst">Inclusive of all taxes</span>
+                </span>
+                <span><b>₹
+                        {{actualBagTotal-totalBagDiscount- (cartInfo && cartInfo?.discounts &&  cartInfo?.discounts?.length ? cartInfo?.discounts[0]?.amount : 0) +cartInfo?.shipment_price | number:0}}</b></span>
+            </li>
+        </ul>
+    </div>
+
+    <div *ngIf="cartInfo">
+        <div class="add-purchase" *ngIf="router.url== PAYMENT_ROUTE">
+            <h3 class="">Deliver To</h3>
+            <div class="list_inner">
+                <div class="address">
+                    <h3>{{cartInfo?.shipping?.name}}</h3>
+                    <p class="address-field">{{cartInfo?.shipping?.address2}} {{cartInfo?.shipping?.address1}}</p>
+                    <p>{{cartInfo?.shipping?.city}}-{{cartInfo?.shipping?.zip}}<br>{{cartInfo?.shipping?.state}}
+                    </p>
+                    <p class="mob">Mobile: {{cartInfo?.shipping?.phone}}</p>
+                    <a [routerLink]="ADDRESS_ROUTE">Change Address</a>
+                </div>
+                <!-- <div class="editbtn">
+                        <p class="location" >Home</p>
+                    </div> -->
+            </div>
+        </div>
+    </div>
+    <div class="btnblock" *ngIf="router.url==ADDRESS_ROUTE && !openAddressForm && userInfo!==null">
+        <div class="button-save">
+            <!-- <span *ngIf="serviceabilityStatus?.error">{{serviceabilityStatus?.pincodeButtonErrorMsg}}</span> -->
+            <button mat-raised-button (click)="continueShipping()" [disabled]="serviceabilityStatus?.error"
+                [ngClass]="( shippingLoading ) ? 'loaderbtn': ''">
+                Continue  
+            </button>
+            <p *ngIf="serviceabilityStatus?.error" class="address-countinue-error">
+                {{serviceabilityStatus?.pincodeButtonErrorMsg}}</p>
+        </div>
+    </div>
+
+</div>

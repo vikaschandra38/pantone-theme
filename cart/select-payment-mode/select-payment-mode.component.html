@@ -1,0 +1,41 @@
+<div class="paymentmethodblock">
+    <h2>How would you like to pay?</h2>
+    <div class="paymentmethod">
+        <ul class="paymentinner">
+            <mat-radio-group [formControl]="paymentMethod">
+                <mat-radio-button value="COD">
+                    <li class="codorder">
+                        <a class="paymentheading cod-method"><span class="cod-img"></span></a>
+                        <span>Cash on Delivery</span>
+                    </li>
+                </mat-radio-button>
+                <mat-radio-button value="ONLINE">
+                    <li class="onlinepayment">
+                        <a class="paymentheading"><img src="../../assets/images/payment-option.png" /></a>
+                        <span>Online Payment</span>
+                    </li>
+                </mat-radio-button>
+            </mat-radio-group>
+        </ul>
+        <div class="btncontinue">
+            <button type="submit" class="submit_btn" (click)="completeCheckout()"
+                [ngClass]="  ( checkoutloading ) ? 'loaderbtn': ''">{{paymentMethod.value==='COD'?'Pay on delivery':'Pay Now'}}</button>
+        </div>
+    </div>
+</div>
+
+<section class="makepayment-popup" *ngIf="checkoutloading">
+    <section class="headertop">
+        <a routerLink=""><img src="../../assets/images/logo.png" width="150" alt="Pantone" /></a>
+    </section>
+    <div class="block">
+        <h2>Hang in there!</h2>
+        <p>
+            {{paymentMethod.value==='COD'?'Please wait while we are confirming your order.':'Please wait while we redirect you to our secured payment gateway.'}}
+        </p>
+        <div class="gif-image">
+            <img src="../../assets/images/Blackberry_loading.gif" width="80" />
+        </div>
+        <div class="popup-bootom">Do not click the back button or refresh button or close the window</div>
+    </div>
+</section>

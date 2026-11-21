@@ -1,0 +1,134 @@
+<div class="cart-header"
+    *ngIf=" !((cartInfo?.items?.length === 0 || !cartInfo?.items || cartInfo ==null)) && cartInfoLoaded ">
+    <h1 class="mainheading"><a routerLink="/checkout/address"><img src="../../assets/images/left-sign-arrow.png"
+                width="15" /></a> Payment</h1>
+    <div class="container">
+        <div class="flex-block">
+            <div class="status-bar">
+                <ul>
+                    <li routerLink="/checkout/cart"><a>Bag</a></li>
+                    <li><a routerLink="/checkout/address">Address</a></li>
+                    <li><a class="active">Payment</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="loader-spinner" *ngIf="cartInfoLoading || pincodeDataLoading">
+    <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+</div>
+<!-- <div class="empty-cart" *ngIf="(cartInfo?.items?.length === 0 || !cartInfo?.items) && cartInfoLoaded">
+    <img src="../assets/images/cart-empty.png" width="120" />
+    <h2>Hey, it feels so light!</h2>
+    <p>There is nothing in your bag. Let’s add some items.</p>
+    <a routerLink="/" class="shopnow">Shop Now</a>
+</div> -->
+<order-failure *ngIf="(cartInfo?.items?.length === 0 || !cartInfo?.items || cartInfo ==null) && cartInfoLoaded ">
+</order-failure>
+<div class="shipping-address"
+    *ngIf="cartInfoLoaded && pincodeDataLoaded && !(cartInfo?.items?.length === 0 || !cartInfo?.items)">
+    <div class="paymentmethodblock">
+        <h2>How would you like to pay?</h2>
+        <div class="paymentmethod" *ngIf="serviceabilityStatus?.isCod">
+            <ul class="paymentinner">
+                <div *ngIf="pincodeDataLoading ">
+
+                    <div class="loader-spinner loader">
+                        <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+                    </div>
+                </div>
+                <mat-radio-group class="payment-flex" [formControl]="paymentMethod">
+                    <mat-radio-button value="COD" *ngIf="(serviceabilityStatus?.isCod==='1')">
+                        <li class="codorder">
+                            <a class="paymentheading cod-method"><span class="cod-img"></span></a>
+                            <span>Cash on Delivery</span>
+                        </li>
+                    </mat-radio-button>
+                    <mat-radio-button value="ONLINE">
+                        <li class="onlinepayment">
+                            <a class="paymentheading"><img src="../../assets/images/payment-option.png" /></a>
+                            <span>Online Payment</span>
+                        </li>
+                    </mat-radio-button>
+                    
+                    <div value="COD" *ngIf="(serviceabilityStatus?.isCod!=='1')">
+                        <li class="codnot">
+                            <a class="paymentblack cod-method"><span class="cod-not-available-img"></span></a>
+                            <span>Cash on Delivery</span>
+                            <p>(Not Available)</p>
+                        </li>
+                    </div>
+                </mat-radio-group>
+                <!-- <mat-radio-group [formControl]="paymentMethod">
+                <mat-radio-button value="COD">
+                    <li class="codorder">
+                        <a class="paymentheading cod-method"><span class="cod-img"></span></a>
+                        <span>Cash on Delivery</span>
+                    </li>
+                </mat-radio-button>
+                <mat-radio-button value="ONLINE">
+                        <li class="onlinepayment">
+                            <a class="paymentheading"><img src="../../assets/images/payment-option.png" /></a>
+                            <span>Online Payment</span>
+                        </li>
+                    </mat-radio-button>
+                </mat-radio-group> -->
+            </ul>
+            <!-- <div class="btncontinue">
+                <button type="submit" class="submit_btn" (click)="completeCheckout()"
+                    [ngClass]="  ( checkoutLoading ) ? 'loaderbtn': ''">{{paymentMethod.value==='COD'?'Pay on delivery':'Pay Now'}}</button>
+            </div> -->
+        </div>
+    </div>
+    <div class="purchase-summary">
+        <app-purchase-summary [cartInfo]="cartInfo" (grandTotalDetail)="getGrandTotal($event)"></app-purchase-summary>
+    </div>
+
+    <div class="deliverto">
+        <h2 class="text-uppercase">Deliver To</h2>
+        <div class="list_inner">
+            <div class="address">
+                <h3>{{cartInfo?.shipping?.name}}</h3>
+                <p class="address-field">{{cartInfo?.shipping?.address2}}
+                    {{cartInfo?.shipping?.address1}}</p>
+                <p>{{cartInfo?.shipping?.city}}-{{cartInfo?.shipping?.zip}}<br>{{cartInfo?.shipping?.state}}
+                </p><br>
+                <p class="mob">Mobile: {{cartInfo?.shipping?.phone}}</p>
+                <a routerLink="/checkout/address">Change Address</a>
+            </div>
+            <!-- <div class="editbtn">
+                <p class="location">Home</p>
+            </div> -->
+        </div>
+    </div>
+
+
+    <div class="placeorder">
+        <a *ngIf="paymentMethod.invalid" class="place-order-btn-not-hover">PAY</a>
+        <a *ngIf="paymentMethod.valid" class="place-order-btn" [ngClass]="(checkoutLoading ) ? 'loaderbtn': ''"
+            (click)="completeCheckout()">{{paymentMethod.value==='COD'?'PAY ON DELIVERY':'PAY NOW'}}</a>
+        <a class="summery">INR {{cartInfo?.grand_total | number:0}}
+            <!-- <b>View Details</b> -->
+        </a>
+        <!-- <a class="summery">INR {{grandTotal| number:0}}<b>View Details</b></a> -->
+        <!-- <span  class="error-msg" *ngIf="paymentMethod.invalid">Please select payment method</span> -->
+       
+    </div>
+</div>
+<section class="makepayment-popup" *ngIf="paymentload">
+    <section class="headertop">
+        <a routerLink=""><img src="../../assets/images/logo.png" width="150" alt="Pantone" /></a>
+    </section>
+    <div class="block">
+        <h2>Hang in there!</h2>
+        <p>
+            {{paymentMethod.value==='COD'?'Please wait while we are confirming your order.':'Please wait while we redirect you to our secured payment gateway.'}}
+        </p>
+        <div class="gif-image">
+            <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+            <!-- <img src="../../assets/images/Blackberry_loading.gif" width="80" /> -->
+        </div>
+        <div class="popup-bootom">Do not click the back button or refresh button or close the window</div>
+    </div>
+</section>

@@ -1,0 +1,15 @@
+<!-- {{ sizeguidedata | json }} -->
+<section class="page">
+  <!-- <div class="container"> -->
+      <div class="loader" *ngIf = "!sizeguidedata"></div>
+    <div class="sizeguid" *ngIf="sizeguidedata">
+        <!-- <img [src]="sizeguidedata?.sizeChartDesktopImages[0]?.fields?.file?.url" alt="Size Guide" /> -->
+        <div  *ngIf="router.url.indexOf('/size_guide?category=masks') === -1 ">
+          <img [src]="sizeguidedata?.sizeChartDesktopImages[0]?.fields?.file?.url" width="1350" height="4269">
+        </div>
+        <div *ngIf="router.url.indexOf('/size_guide?category=all') === -1 ">
+          <img [src]="sizeguidedata?.sizeChartDesktopImages[1]?.fields?.file?.url" width="1350" height="940">
+        </div>
+    </div>
+  <!-- </div> -->
+</section>

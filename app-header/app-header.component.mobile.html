@@ -1,0 +1,330 @@
+<!-- {{ footerContent | json }} -->
+<!-- {{headerContent | json }} -->
+<ng-container *ngIf="isLoaded">
+  <header>
+   <!--  <div class="topstrip">We are accepting orders with a delay in delivery.
+       We will try our best to deliver your order as soon as possible.</div> -->
+
+    <p class="topstrip">10% Off orders of ₹ 250 or more! Use code SUMMER10 at Checkout</p>
+    <div
+      class="search-overlay"
+      (click)="closeshowsearchbarclick()"
+      *ngIf="showsearchlish"
+    ></div>
+    <div
+      class="search-overlay"
+      (click)="signinclick()"
+      *ngIf="signdropdown"
+    ></div>
+    <div class="searchbar" [ngClass]="showsearchlish ? 'visible' : hidden">
+      <input
+        type="search"
+        class="search-box"
+        #search
+        (keyup)="getSearch($event.target.value, $event)"
+        (click)="openSearchPopup($event.target.value, $event)"
+        [(ngModel)]="searchText"
+        placeholder="What can we help you find?"
+      />
+      <div class="closesearch search-icon">
+        <span class="ic-search"></span>
+        <!-- <img src="../assets/images/ic-search.png" alt="Search Icon" /> -->
+      </div>
+      <div class="crossearch" (click)="closeSearchPopup()">
+        <img src="assets/images/cross.png" />
+      </div>
+    </div>
+    <div class="container">
+      <div class="top_bar">
+        <div class="head_left">
+          <a class="nav_btn" (click)="togglenav()">
+            <span class="toggle-icon"></span>
+            <!-- <img src="assets/images/ic-toggle.png"/> -->
+          </a>
+          <div class="logo">
+            <a routerLink="/" [lazy-load-images]="{ rootMargin: '10px' }">
+              <img
+                src="../assets/images/logo.png"             
+                width="120"
+                alt="Pantone"
+              />
+            </a>
+          </div>
+          
+          <!-- <div class="input-search" [ngClass]="showsearchlish ? 'visible':hidden">
+              <input type="search" class="search-box" (keyup)="getSearch($event.target.value, $event)" (click) = "openSearchPopup($event.target.value, $event)" [(ngModel)] = "searchText">
+              <img src="assets/images/cross.png" (click) = "closeshowsearchbarclick()" alt="Search Icon" title="" width="18px" (click)="toggledropdown()"/>
+            </div> -->
+        </div>
+        <!-- <div class="head_center">
+          
+        </div> -->
+        <div class="head_right">
+          <ul class="nav_right myaccount">
+            <!-- <li><a routerLink="store-locator"><sup></sup><img src="assets/duke-assets/images/ic_location.png" title="Location" /></a></li> -->
+            <!-- <li *ngIf="!loginuser"><a (click) = "loginPopupOpen()"><sup>{{wishlength || 0}}</sup><img src="assets/duke-assets/images/wishlist-empty.png" title="Wishlist" /></a></li> -->
+            <!-- <li *ngIf="loginuser"><a [routerLink]="['my-account']" [queryParams]="{ tab:'wishlist'}"><sup>{{wishlength || 0}}</sup><img src="assets/duke-assets/images/wishlist-empty.png" title="Wishlist" /></a></li> -->
+            <li>
+            <a class="search_btn" (click)="showsearchbarclick()">
+              <img src="assets/images/search.png" title="Cart"/>
+            </a>
+            </li>
+            <li *ngIf="loginuser" class="dropmenu">
+              <a class="" (click)="signinclick()">
+                <img src="/assets/images/account.png" />
+                <!-- <span class="account-user"></span> -->
+              </a>
+              <ul class="accountlist" [ngClass]="signdropdown ? 'visible' : ''">
+                <h2>
+                  Hi, {{ loginname?.name ? loginname.name : "Customer" }}
+                </h2>
+                <li>
+                  <a
+                    [routerLink]="['my-account']"
+                    (click)="signinclick()"
+                    [queryParams]="{ tab: 'overview' }"
+                    >My Account</a
+                  >
+                </li>
+                <li>
+                  <a
+                    [routerLink]="['my-account']"
+                    (click)="signinclick()"
+                    [queryParams]="{ tab: 'orders' }"
+                    >My Order</a
+                  >
+                </li>
+                <!-- <li><a [routerLink]="['my-account']" [queryParams]="{ tab:'wishlist'}">My Wishlist</a></li> -->
+                <li>
+                  <a
+                    [routerLink]="['my-account']"
+                    (click)="signinclick()"
+                    [queryParams]="{ tab: 'profile' }"
+                    >Edit Profile</a
+                  >
+                </li>
+                <li><a (click)="logout()">Logout </a></li>
+              </ul>
+            </li>
+            <li *ngIf="!loginuser">
+              <a class="" href="javascript:void(0)" (click)="loginPopupOpen()">
+                <img src="/assets/images/account.png" />
+              </a>
+            </li>
+            <li>
+              <a (click)="cartClicked()"
+                ><sup *ngFor="let item of items">countItems(item)</sup
+                ><sup *ngIf="cartItemCount > 0">{{ cartItemCount || 0 }}</sup
+                >
+                <img src="assets/images/ic-cart.png" title="Cart"/>
+                <!-- <span class="cart-icon"></span> -->
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="searchbar" *ngIf="showsearch">
+    <!-- <span (click) ="showSearchclick()"><img src="../../../../assets/images/left-sign-arrow.png" /></span> <input type="search" class="search-box" #search (keyup)="getSearch($event.target.value, $event)" (click) = "openSearchPopup($event.target.value, $event)" [(ngModel)] = "searchText" placeholder="Search"> -->
+  </div>
+
+  <!-- Navigation mobile sidebar  -->
+  <div
+    class="overlay "
+    id="headerOverlay"
+    [ngClass]="shownavbar ? 'visible' : ''"
+    (click)="closetoggle()"
+  ></div>
+  <div
+    id="navigation"
+    [ngClass]="shownavbar ? 'visible' : ''"
+    (click)="closesearchbox()"
+  >
+    <nav id="nav">
+      <!-- <a href="" class="nav_logo"><img src="assets/duke-assets/images/nav_logo.png" alt="logo" /></a> -->
+      <!-- <div class="loginbtn register" *ngIf="!loginuser">
+        <a class="account-detail-icon text-uppercase first" href="javascript:void(0)" (click) = "loginPopupOpen()"><span> Login </span></a>
+        <a class="text-uppercase last" href="javascript:void(0)" (click) = "signupPopupOpen()"><span class="last"> / Register</span></a>
+    </div> -->
+
+      <!--<div class="loginbtn" *ngIf="loginuser">
+        <li class="helloCustomer"  *ngIf="loginuser"><a class="text-uppercase" routerLink="my-account"  (click)="hideSidebar()">Hello, {{  loginname?.name ? loginname.name : 'Customer'}} <span class="down-arrow"></span></a></li>
+         <li class="logOut" *ngIf="loginuser"><a class="text-uppercase"  (click)="logout()">Logout <span class="down-arrow"></span></a></li>  
+    </div> -->
+
+
+            <div class="logo-nav_dropdown">
+                <a routerLink="/" (click)="closetoggle()" [lazy-load-images]="{ rootMargin: '10px' }">
+                    <img  src="../assets/images/logo.png"
+                         width="120" alt="Pantone">
+                </a>
+                <a class="close" (click)="closetoggle()">
+                    <!-- <img src="assets/images/close.png"> -->
+                    <span class="close-icon"></span>
+                </a>
+            </div>
+
+            <ul class="nav_dropdown" *ngIf="headerContent && headerContent.components && headerContent.components[1] && headerContent.components[1].fields && headerContent.components[1].fields.components ">
+              <li *ngFor="let menu of headerContent?.components[1]?.fields?.components">
+                <a  [routerLink]="menu?.fields?.itemUrl" (click) = "closetoggle()" (mouseover)="mouseon()">{{menu?.fields?.itemName}}</a>
+              </li>
+            </ul>
+              
+    </nav>
+  </div>
+
+  <!--  ==================================== Search block start here ===================================================  -->
+  <div class="overlay" (click)="closeSearchPopup()" *ngIf="isSearchPopup"></div>
+  <section
+    class="dropdown_product"
+    *ngIf="isSearchPopup"
+    [ngClass]="{ test: true, sticky: isSticky }"
+  >
+    <div class="container1">
+      <div
+        class="nosearchesmatch"
+        *ngIf="isSearchLoaded && SearchProduct.length == 0"
+      >
+        Sorry, no results found! Please check the spelling or try searching for
+        something else.
+      </div>
+      <div class="loader" *ngIf="isSearchLoading && !isSearchLoaded"></div>
+      <div
+        class="inner_block"
+        *ngIf="!isSearchLoading && isSearchLoaded"
+        [ngClass]="SearchProduct.length > 5 ? 'searchresult' : ''"
+      >
+        
+        <div class="left_block">
+          <ul>
+            <li *ngFor="let tag of tagNames | slice: 0:10">
+              <a href="javascript:void(0)" (click)="getProductSearch(tag)">{{
+                tag
+              }}</a>
+            </li>
+          </ul>
+        </div>
+        <div class="right_block">
+          <!-- <h2 *ngIf = "SearchProduct.length > 0">Top Suggestion</h2> -->
+          <div
+            class="product_list"
+            *ngIf="SearchProduct.length == 0"
+            style="text-align: center;"
+          >
+            <div
+              class="loader-spinner loader"
+              style="margin: 180px 368px;"
+              *ngIf="isSearchLoading && !isSearchLoaded"
+            ></div>
+          </div>
+          <div class="product_list" *ngIf="SearchProduct.length > 0">
+            <ul>
+              <li
+                *ngFor="let product of SearchProduct | slice: 0:6"
+                (click)="closesearchbox()"
+              >
+                <div
+                  class="search_list"
+                  routerLink="products/id/{{ product?.slug }}"
+                  (click)="closeshowsearchbarclick()"
+                >
+                  <div class="image_left">
+                    <img
+                      [src]="(product?.images)[0]?.file.url + '?width=250'"
+                      class="product-img-src img-responsive" alt="{{ product.name }}"
+                    />
+                  </div>
+                  <div class="pro_details">
+                    <h2>{{ product.name }}</h2>
+                    <!-- <span>{{ categoryName(product.category) }}</span> -->
+                    <!-- <div class="product-category">{{  product?.category[0]?.name }}</div> -->
+                    <!-- <p>INR <del>{{ product.price }}</del> {{ product.sale_price }}</p> -->
+                    <span
+                      ><span *ngIf="product && product.sale"
+                        ><del
+                          >INR {{ makeprice(product?.price) }}</del
+                        ></span
+                      ><span *ngIf="product && !product.sale"
+                        >INR {{ makeprice(product?.price) }}</span
+                      ></span
+                    >
+                    <span *ngIf="product && product.sale"
+                      ><span
+                        [ngClass]="
+                          product && product.sale ? 'sale_on' : 'sale_off'
+                        "
+                        >INR {{ makeprice(product?.sale_price) }}</span
+                      ></span
+                    >
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div
+        class="viewall"
+        *ngIf="isSearchLoading && !isSearchLoaded && SearchProduct.length > 0"
+      >
+        <a href="javascript:void(0)" (click)="getProductSearch(searchText)"
+          >View All</a
+        >
+      </div>
+    </div>
+  </section>
+</ng-container>
+<app-login-popup
+  *ngIf="forgetpassword || loginSignUpPopup"
+  [overlaypupup]="overlaypupup"
+  [loginpopup]="loginpopup"
+  [loginSignUpPopup]="loginSignUpPopup"
+  [loginfailure]="loginfailure"
+  [signupfailure]="signupfailure"
+  [loginloading]="loginloading"
+  [signupinit]="signupinit"
+  [signupsuccess]="signupsuccess"
+  [getforgotpasswordloaded]="getforgotpasswordloaded"
+  [loginloaded]="loginloaded"
+  [signuppopup]="signuppopup"
+  [forgetpassword]="forgetpassword"
+  [userforgotloading]="userforgotloading"
+  [userforgotloaded]="userforgotloaded"
+  [userforgotfailed]="userforgotfailed"
+  (closePopup)="closePopup()"
+  (logindata)="onLoginformCapturedValues($event)"
+  (signupdata)="onSignupformCapturedValues($event)"
+  (resetvalues)="onResetValues($event)"
+  (loginfailureEvent)="onLoginFailure()"
+  (forgotClicked)="forgetclick()"
+  (onSignupInvalid)="onInvalidSignup()"
+  (userinfo)="onUserInfoChange()"
+  (onSignUpPopupOpen)="signupPopupOpen()"
+  (loginPopupOpen)="loginPopupOpen()"
+  (closeForget)="closeforget()"
+></app-login-popup>
+
+<div class="logout-loader" *ngIf="logoutLoading && !logoutLoaded">    
+  <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+</div>
+
+<!-- Session Timeout -->
+<div class="timeout-overlay" [ngStyle]="{ visibility: timeoutpopup == false ? 'hidden' : 'visible' }">
+  <div class="timeout-popup">
+    <div class="cross-popup" (click)="logout()">
+      <span>X</span>
+    </div>
+    <p>You have been logged out due to inactivity</p>
+  </div>
+</div>
+
+
+<!-- <div class="blackfirday" *ngIf="blackfirday">
+  <div class="block">
+    <div class="cross-popup" (click)="closefirday()">
+      <span>X</span>
+    </div>
+    <img src="https://ik.imagekit.io/2gwij97w0o/yeiktq95go1b/4GCjxy3spBs9ocvXJJX6If/2b70018d72ccc5e1747300b89c053c04/black-firday.gif" />
+  </div>
+</div> -->

@@ -1,0 +1,144 @@
+<app-shipping-address-listing *ngIf="alladdress?.length>0 && savedaddress" [userEmail]="emailuser"
+  [alladdress]="alladdress" [shippingloaded]="shippingloaded" [emptyaddrss]="emptyaddrss"
+  [savedaddress]="savedaddress" [shippingloading]="shippingloading" [cartinfo]="cartinfo"
+  (removedAddressData)="removeAddress($event)" (editAddress)="editAddress($event)"
+  (shippingDetails)="saveShippingDetails($event)" (saveAddress)="saveShippingAddress($event)"
+  [pincodeData]="pincodeData" [pincodeDataLoaded]="pincodeDataLoaded"
+  [pincodeDataLoading]="pincodeDataLoading | async" (isPincodeValid)="isPincodeServiceable($event)"
+  [showPincodeValidity]="showPincodeError" [pincodeErrorMessage]="pincodeErrorMessage">
+</app-shipping-address-listing>
+<!-- ==================================================== Saved address end ================================================================ -->
+
+<!-- ==================================================== Empty address ================================================================ -->
+<!-- <app-shipping-address-form *ngIf="alladdress?.length===0 && emptyaddrss" [userEmail]="emailuser"
+  (saveAddress)="saveShippingAddress($event)" [useraddresssaveloading]="useraddresssaveloading"
+  (shippingDetails)="saveShippingDetails($event)">
+</app-shipping-address-form>
+
+<app-select-payment-mode *ngIf="showpayment" [cartinfo]="cartinfo" [userInformation]="userInformation"
+[checkoutloaded]="checkoutloaded" [userEmail]="emailuser" [checkoutloading]="checkoutloading"
+(makePayment)="makePayment($event)">
+</app-select-payment-mode> -->
+
+<!-- ==================================================== Payment  Method End  ======================================================================================= -->
+<app-checkout-order-details [cartinfo]="cartinfo"></app-checkout-order-details>
+
+
+
+
+<!-- <div class="cart-header">
+    <div class="container">
+        <div class="flex-block">
+            <div class="status-bar">
+                <ul>
+                    <li><a >Cart</a></li>
+                    <li><a>Address</a></li>
+                    <li><a class="active">Payment</a></li>
+                </ul>
+            </div>            
+        </div>
+    </div>
+</div> -->
+
+
+<!-- 
+<section class="headertop">
+  <a routerLink=""><img src="../../assets/images/logo.png" width="150" /></a>
+</section> -->
+<section class="checkout_page" *ngIf="">
+
+  <div class="container">
+    <div class="left_block">
+      <div class="shipping-form">
+
+        <!-- <h2>Contact Information</h2>
+        <div class="inputblock inputblock-disable">
+          <label>Email</label>
+          <input placeholder="Email" type="email" value="{{emailuser}}" disabled>
+        </div>
+        <div class="" *ngIf="useraddressnullloading || useraddressremoveloading || useraddressloading">
+          <div class="loader-spinner loader">
+            <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+          </div>
+        </div> -->
+        <!-- ==================================================== Shipping  address  ======================================================================================= -->
+
+        <div class="shippingaddress">
+          <h2 (click)="showHideAddress()" [ngClass]="  ( showaddres ) ? 'arrowtick': ''">Select Delivery Address</h2>
+          <div class="shippingaddresss" id="shippingaddresss"
+            [ngClass]="  ( useraddressnullloading || useraddressloading || showaddres ) ? 'showaddresdetails': ''">
+
+            <app-shipping-address-listing *ngIf="alladdress?.length>0 && savedaddress" [userEmail]="emailuser"
+              [alladdress]="alladdress" [shippingloaded]="shippingloaded" [emptyaddrss]="emptyaddrss"
+              [savedaddress]="savedaddress" [shippingloading]="shippingloading" [cartinfo]="cartinfo"
+              (removedAddressData)="removeAddress($event)" (editAddress)="editAddress($event)"
+              (shippingDetails)="saveShippingDetails($event)" (saveAddress)="saveShippingAddress($event)"
+              [pincodeData]="pincodeData" [pincodeDataLoaded]="pincodeDataLoaded"
+              [pincodeDataLoading]="pincodeDataLoading | async" (isPincodeValid)="isPincodeServiceable($event)"
+              [showPincodeValidity]="showPincodeError" [pincodeErrorMessage]="pincodeErrorMessage">
+            </app-shipping-address-listing>
+            <!-- ==================================================== Saved address end ================================================================ -->
+
+            <!-- ==================================================== Empty address ================================================================ -->
+            <app-shipping-address-form *ngIf="alladdress?.length===0 && emptyaddrss" [userEmail]="emailuser"
+              (saveAddress)="saveShippingAddress($event)" [useraddresssaveloading]="useraddresssaveloading"
+              (shippingDetails)="saveShippingDetails($event)">
+            </app-shipping-address-form>
+
+           
+          </div>
+
+          <span *ngIf="shippingupdatefailure">Could not update Shipping Information.</span>
+          <!-- <span *ngIf="shippingloaded">Updated Shipping Details.</span>
+                        <span *ngIf="shippingloading">Wait, while our machines update your Shipping Information.</span> -->
+          <span *ngIf="shippingerrormessage" class="shippingerrormessage">All asterisk(*) Fields are required!</span>
+        </div>
+      </div>
+      <!-- ==================================================== Shipping  address end  ======================================================================================= -->
+
+      <!-- ==================================================== Payment  Method  ======================================================================================= -->
+      <app-select-payment-mode *ngIf="showpayment" [cartinfo]="cartinfo" [userInformation]="userInformation"
+        [checkoutloaded]="checkoutloaded" [userEmail]="emailuser" [checkoutloading]="checkoutloading"
+        (makePayment)="makePayment($event)">
+      </app-select-payment-mode>
+
+      <!-- ==================================================== Payment  Method End  ======================================================================================= -->
+    </div>
+    <div class="right_block">
+      <app-checkout-order-details [cartinfo]="cartinfo"></app-checkout-order-details>
+     
+    </div>
+  </div>
+</section>
+
+
+<!--
+<div class="copyright">
+    <div class="container">
+    <p>@2019 www.Pantone.com  |  All Rights Reserved <a routerLink="/terms-and-conditions">TERMS OF USE</a> | <a routerLink = "/privacy-policy" >PRIVACY POLICY </app-shipping-address-listing>Powered by    <a href="https://eshopbox.com/" target="_blank" class="eshopftlogo"><img src="assets/Pantone-assets/images/shop-ft-icon.png" /> eshopbox</a></p>
+    </div>
+</div> -->
+
+
+
+
+
+<!--  ============ Make payment popup ============== -->
+<section class="makepayment-popup" *ngIf="checkoutloading">
+  <section class="headertop">
+    <a routerLink=""><img src="../../assets/images/logo.png" width="150" alt="Pantone" /></a>
+  </section>
+  <div class="block">
+    <h2>Hang in there!</h2>
+    <p>
+      {{paymentMethod.value==='COD'?'Please wait while we are confirming your order.':'Please wait while we redirect you to our secured payment gateway.'}}
+    </p>
+    <div class="gif-image">
+      <img src="../../assets/images/Blackberry_loading.gif" width="80" />
+    </div>
+    <div class="popup-bootom">Do not click the back button or refresh button or close the window</div>
+  </div>
+</section>
+
+<app-out-of-stock [showPopup]="messagePopup" [btnText]="'REVISE ORDER'" (onClose)="openCloseMessagePopup($event)"
+  (confirmClicked)="openCloseMessagePopup($event)"></app-out-of-stock>

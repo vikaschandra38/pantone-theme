@@ -1,0 +1,110 @@
+.coupon-overlay {
+    position: fixed;
+    top: 0;
+    background: #000;
+    left: 0;
+    right: 0;
+    width: 100%;
+    bottom: 0;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s linear;    
+}
+.coupon-main.visible {
+    opacity: 1;
+    visibility: visible
+}
+ .coupon-overlay.visible{
+    opacity: 0.5;
+    visibility: visible;
+}
+.coupon-main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s linear;
+}
+
+.topbar {
+    position: relative;
+}
+.coupon-main .coupon-inner{
+    position: fixed;
+    background: #fff;
+    max-width: 520px;
+    top: 0px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 0;
+}
+.topbar h2{
+    font-family: 'Lato', sans-serif;
+font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+    padding: 20px 0;
+    margin: 0;
+    border-bottom: 1px solid #d7d7d7;
+}
+.topbar a.cross {
+    position: absolute;
+    right: 20px;
+    top: 17px;
+}
+.coupon-list {
+    margin: 10px 15px;
+}
+.coupon-list h3 {
+    font-family: 'Lato', sans-serif;
+font-weight: 500;
+    font-size: 15px;
+    color: #333;
+    text-transform: none;
+}
+.applybtn-block a{
+    display: block;
+    height: 42px;
+    font-size: 13px;
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
+font-weight: 700;
+    border: 1px solid transparent;
+    width: 50%;
+    text-align: center;
+}
+.applybtn-block{
+    display: flex;
+    align-items: center;
+    margin: 15px;
+    justify-content: center;
+}
+.applybtn-block .cancel{
+    margin: 0 10px  0 0; 
+    color: #d94b2a;
+    border-color: #d94b2a;
+    line-height: 40px;
+    background: #e7e7e7;
+}
+.applybtn-block .cancel:hover{
+    color: #fff;
+    border-color: #d94b2a;
+    background: #d94b2a;
+}
+.applybtn-block .apply{
+    margin: 0 0px  0 10px; 
+    color: #fff;
+    border-color: #d94b2a;
+    line-height: 40px;  
+    background: #d94b2a;
+}
+.applybtn-block .apply:hover{
+    color: #d94b2a;
+    border-color: #d94b2a;
+    background: #e7e7e7;
+}

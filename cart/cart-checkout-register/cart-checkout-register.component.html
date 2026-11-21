@@ -1,0 +1,71 @@
+<section class="register-cart" *ngIf="emailStats === 0 && !loggedin">
+    <h2>Hi there!</h2>
+    <p class="subheading">It looks like you are new here, we need a bit more info.</p>
+    
+    <form class="register-form" [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+        <span>Email Address*</span>
+        <div class="inputblock">
+            <input type="text" formControlName="signupemail" [value]="verifyemail" [ngClass] = "signupemailinvalid ? 'error': ''">
+            <span class ="invalid" *ngIf="signupemailinvalid" >Please enter a valid email address</span>
+        </div>
+        <div class="nameblock"> 
+            <div class="first_name">
+                <span>First Name*</span>
+                <input type="text" formControlName="first_name" [ngClass] = "signupFirstinvalid ? 'error': ''">
+            </div>   
+            <div class="last_name">
+                <span>Last Name</span>
+                <input type="text" formControlName="last_name" >
+            </div>
+            <span class ="invalid" *ngIf="signupFirstinvalid" >First Name is Required</span>
+        </div>
+        <div class="inputblock" >
+            <span>Enter a password*</span>
+            <input #input type="password" formControlName="signuppassword"  [ngClass] = "signuppasswordinvalid ? 'error': ''" required>
+            <a class="btn show" type="button" *ngIf="show" (click)="showclick(input)"></a>
+            <a class="btn hid" type="button" *ngIf="hid" (click)="hideclick(input)"></a>
+            <span class ="invalid" *ngIf="signuppasswordinvalid">Password must be at least 7 characters</span>
+        </div>
+        <span class="password-info">Password must be at least 7 characters</span>
+        <span class="requiredSpan"><i>* Field Required</i></span>
+        <span class="additionalText">By clicking "continue", you agree to our <br /><i><a routerLink = "/terms-and-conditions">Terms of Service</a> <a routerLink ="/privacy-policy" >+ Privacy Policy</a></i>,<br />
+            including receipt of emails and promotions.</span>
+            <!-- {{ signupinitiating }} {{ signupsuccess }} -->
+        <input class="continue-btn" type="submit" value="Continue" *ngIf=" rForm.controls.signuppassword.valid && rForm.controls.first_name.valid && rForm.controls.signupemail.valid" (blur)="clearmessages()" [ngClass] = "signupinitiating ? 'loaderbtn': ''">
+        <input class="continue-btn" type="submit" value="Continue" *ngIf=" rForm.controls.signuppassword.invalid || rForm.controls.first_name.invalid || rForm.controls.signupemail.invalid" (blur)="clearmessages()" [ngClass] = "signupinitiating ? 'loaderbtn': ''">
+        <span *ngIf="signupfailure" class="loginfailure">Account already exists.</span>
+        <!-- <a class="continue-btn" (click)="registerUserEmit()">Continue</a> -->
+        <a class="alreadyBtn" (click)="openloginagain()">Already Registered? Try another email</a>
+        <!-- <a class="alreadyBtn" (click)="openloginagain()">Shop as Guest</a> -->
+        
+    </form>
+</section>
+<section class="register-cart" *ngIf="(emailStats > 0 || openlogin === true) && !loggedin">
+    <h2>Login</h2>
+    <form class="register-form" [formGroup]="rlForm" (ngSubmit)="login(rlForm.value)">
+        <div>
+            <div class="logininput">
+                <span>Email Address*</span>
+                <input type="email" formControlName="loginemail" [value]="verifyemail"  [ngClass] = "loginfailed || emailinvalid ? 'error': ''">
+                <span *ngIf="emailinvalid" class="invalid">Please enter a valid email address.</span>
+            </div>
+            <div class="logininput">    
+                <span>Password*</span>
+                <input type="password" formControlName="loginpassword" required  [ngClass] = "loginpasswordinvalid || loginfailed ? 'error': ''"> 
+                <span class ="invalid" *ngIf="loginpasswordinvalid">Please enter a valid password</span>
+                <span class ="invalid" *ngIf="loginfailed || ( !loginfailed && loginloaded )">Incorrect user id or password ! Please try again.</span>
+            </div>
+            <input class="continue-btn" [ngClass] = " loginloading ? 'loaderbtn': ''" type="submit" value="Login" *ngIf="rlForm.controls.loginpassword.valid" (blur)="clearmessages()">
+            <input class="continue-btn" [ngClass] = " loginloading ? 'loaderbtn': ''" type="submit" value="Login" *ngIf=" rlForm.controls.loginpassword.invalid" (blur)="clearmessages()">
+            
+            
+            <a class="forgetpassword" (click)="forgetpasswordcart()">Forgotten your Password?</a>
+            <a class="forgetpassword" (click)="opencreateaccountagain()">Create Account</a>
+            <!-- <span *ngIf="rlForm.value.loginpassword && rlForm.value.loginpassword.length < 6 && rlForm.value.loginpassword.length !== 0" class="invalid">Minimum Password length should be 6 Characters</span> -->
+            <!-- <span *ngIf="loginloaded">Loaded.</span> -->
+            <!-- <span class ="invalid" *ngIf="emailinvalid">Please enter a valid email address</span> -->
+            <!-- <span class ="invalid" *ngIf="loginpasswordinvalid">Please enter a valid password</span> -->
+            
+        </div>
+    </form>
+</section>

@@ -1,0 +1,436 @@
+<div class="cart-overlay" (click)="closeCart()"></div>
+<div class="minicart">
+    <div class="page-loader" *ngIf=" getremovecouponloading">
+        <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align">2</mat-spinner>
+    </div>
+    <div  *ngIf="cart && cart.items && cart.items.length > 0" class="minicart-inner">
+        <app-cart-item-preview [items]="cart?.items" [variantList]="variantList"
+            [availablesizes]="availablesizes" (cartItemId)="removeItem($event)"
+            (removeItemGTM)="removeItemGtm($event)"
+            [productById]="productById" (getProductById)="sizeclick($event)"
+            (itemupdate)="updateItemQuantity($event)" (updateSizeVariant)="updateSize($event)"
+            [sizepopup]="sizepopup" [modalsizeoverlay]="modaloverlay"
+            (updateQuantity)="updateItemQuantity($event)" (claoseminicart)="claoseminicart()">
+        </app-cart-item-preview> 
+        <div class="product-remove" *ngIf="getremoveitemloading">
+            <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+        </div>
+    </div>
+    <div *ngIf="(cart && cart.items && cart.items.length === 0) || !cart?.items" class="emptycart">
+        <span class="no-cart"></span>
+        <h2>Your cart is empty</h2>
+    </div>
+</div>
+
+<div *ngIf="sidecart">
+<div *ngIf="cart && cart.items != 'null'" class="cart-overlay" (click)="closeCart()"></div>
+<div *ngIf="cart && cart.items != 'null'" class="shopping-cart row">
+  <div class="wrapper">
+    <div class="header">
+      <span>Your Shopping Bag </span>
+      <span><a (click)="closeCart()" class="closeBtn">Close</a></span>
+      <a class="expand-cart" routerLink="/checkout/cart" (click)="closeCart()">
+        <!-- <img src="../assets/images/expand-icon.png"/> -->
+        <span class="expand-icon"></span>
+      </a>
+      <!-- <div class="cart-header-text" *ngIf="cartdata && cartdata.menuItems && cartdata.menuItems[9] && cartdata.menuItems[9].fields && cartdata.menuItems[9].fields.menuSubcategory && cartdata.menuItems[9].fields.menuSubcategory[0] && cartdata.menuItems[9].fields.menuSubcategory && cartdata.menuItems[9].fields.menuSubcategory[0] && cartdata.menuItems[9].fields.menuSubcategory[0] && cartdata.menuItems[9].fields.menuSubcategory[0].fields && cartdata.menuItems[9].fields.menuSubcategory[0].fields.subcategoryTitle" >{{ cartdata.menuItems[9].fields.menuSubcategory[0].fields.subcategoryTitle }}</div> -->
+    </div>
+    <!-- {{cartdata | json }} -->
+    <div class="cart-container">
+      <ng-container *ngIf="showPreviewBool">
+        <div class="cart_sidebar_top">
+          <div class="product-preview-container">
+            <!-- {{ cartdata?.title }} -->
+
+            <app-cart-item-preview
+              [items]="cart?.items"
+              [variantList]="variantList"
+              [availablesizes]="availablesizes"
+              (cartItemId)="removeItem($event)"
+              (removeItemGTM)="removeItemGtm($event)"
+              [productById]="productById"
+              (getProductById)="sizeclick($event)"
+              (itemupdate)="updateItemQuantity($event)"
+              (updateSizeVariant)="updateSize($event)"
+              [sizepopup]="sizepopup"
+              [modalsizeoverlay]="modaloverlay"
+              (updateQuantity)="updateItemQuantity($event)"
+              (claoseminicart)="claoseminicart()"
+            >
+            </app-cart-item-preview>
+            <!-- <div class="loader" *ngIf="getcartqtyloading && !getcartqtyloaded">
+              <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+            </div>
+            <div class="loader" *ngIf="getremoveitemloading && !getremoveitemloaded">
+              <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+            </div> -->
+            <div
+              *ngIf="
+                (cart && cart?.items && cart?.items?.length === 0) ||
+                !cart?.items
+              "
+              class="emptycart"
+            >
+            <span class="emptycart-icon"></span>
+              <!-- <img src="../assets/images/cart-empty.png" width="90" /> -->
+              <h4>Hey, it feels so light!</h4>
+              <p>There is nothing in your bag. Let’s add some items.</p>
+              <h2>Your Shopping Bag is Empty</h2>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="loader" *ngIf="getcouponloading && !getcouponloaded">
+          <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+        </div>
+        <div class="loader" *ngIf="getremovecouponloading && !getremovecouponloaded">
+          <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+        </div>
+        <div class="loader" *ngIf="updateVariantLoading || productByIdLoading">
+          <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+        </div> -->
+        <div
+          class="page-loader"
+          *ngIf="
+            (getcouponloading && !getcouponloaded) ||
+            getremovecouponloading ||
+            (getremovecouponloading && !getremovecouponloaded) ||
+            updateVariantLoading ||
+            productByIdLoading ||
+            (getcartqtyloading && !getcartqtyloaded) ||
+            (getremoveitemloading && !getremoveitemloaded)
+          "
+        >
+          <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"
+            >2</mat-spinner
+          >
+        </div>
+        <!-- <div class="total-cost-container" *ngIf="cart?.items?.length > 0">
+          <div class="sub-total">
+            <span> Subtotal</span>
+            <span>₹ {{cart?.sub_total | number:0}}</span>
+          </div>
+          <div class="promo-code">
+            <span class="promo-code-textbox1" (click)="openPromoPopup()" value="couponValue"
+              *ngIf="!cart?.coupon_code">Apply a promo code</span>
+            <span class="promo-code-textbox" *ngIf="cart?.coupon_code" (click)="RemoveAppliedCoupon()">Remove Applied
+              Coupon</span>
+            <span (click)="openPromoPopup()" *ngIf="!cart?.coupon_code" class="btn-apply">Select Coupon</span>
+          </div>
+          <div class="promocode-popup" *ngIf="showpromopopup">
+              <h2>Apply Coupon</h2>
+              <div class="entercoupon">
+                <h4>ENTER COUPON CODE</h4>
+                <input type="text" placeholder="Type Coupon Code here" (keyup)="onEnterKey($event)" value="{{(couponValue ? couponValue : (cart.coupon_code))}}" #cc/>
+                <div [ngClass]="(checkCouponValid())? 'valid' : 'invalid'">Sorry, this coupon code is invalid or has expired.</div>
+              </div>
+
+            <div class="vaildcoupon">
+              <h3>Choose a vaild coupon</h3>
+              <ul *ngFor="let coupon of coupons?.results" (click)="changeCouponCode($event, coupon.name)">
+                <div *ngIf="coupon.description != null && coupon.active != false">
+                  <li [ngClass]="((couponValue ? couponValue : (cart.coupon_code)) == coupon.name) ? 'active': ''">
+                    <div class="topcoupon">
+                      <div class="couponcode">
+                        <b></b><span>{{coupon?.name}}</span>
+                      </div>
+                      <div class="rate">
+                        <span>{{coupon?.description}}</span>
+                      </div>
+                    </div>
+                  </li>
+                  </div>
+                </ul>
+              </div>
+              <div class="applyblock">
+                <span (click)="closepromopopup()" class="cancel"  (click) = "clearCouponFields()">Cancel</span>
+                <span *ngIf="!checkValid()" class="apply" (click)=showerror()>Apply Coupon</span>
+                <span *ngIf="checkValid()" (click)="Applycopoun(cc.value)" class="apply">Apply Coupon</span>
+              </div>
+
+          </div>
+          <div class="promo-code" *ngIf="cart?.coupon_code">
+            <span *ngIf="cart?.coupon_code" class="promo-code-textbox1">Promo: {{cart?.coupon_code}}</span>
+            <span *ngIf="cart && cart?.discounts && cart?.discounts[0]">-
+              {{cart?.discounts[0]?.amount | number:0}}</span>
+          </div>
+          <div class="total">
+            <span>Total</span>
+            <span>₹ {{cart?.grand_total  | number:0}}</span>
+          </div>
+          <div class="checkout-buttons">
+            <a>
+              <div class="checkout-btn" *ngIf="loginstatus" routerLink="/checkout/address" (click)="closeCart()"> Place
+                Order </div>
+              <div class="checkout-btn" *ngIf="!loginstatus" (click)="showCheckout()">Place Order </div>
+            </a>
+            <a (click)="closeCart()">
+              <div class="return-btn"> Return to shopping </div>
+            </a>
+          </div>
+        </div> -->
+
+        <div
+          class="right-block"
+          id="viewDetails"
+          *ngIf="cart?.items?.length > 0"
+        >
+          <div class="price-sticky">
+            <div class="promocode">
+              <h2>Coupon</h2>
+              <div
+                class="coupon-btn"
+                (click)="couponclick()"
+                *ngIf="!cart?.coupon_code"
+              >
+                Apply Coupon
+              </div>
+              <div class="coupon-btn applyed" *ngIf="cart?.coupon_code">
+                Apply Coupon<br />
+                <span class="red"
+                  >You saved additional ₹
+                  {{
+                    cart && cart?.discounts?.length
+                      ? (cart?.discounts)[0]?.amount
+                      : 0
+                  }}</span
+                >
+                <span (click)="RemoveAppliedCoupon()" class="removecoupon "
+                  ><img src="../assets/images/close.png" width="12"
+                /></span>
+              </div>
+            </div>
+            <div class="price-details" *ngIf="availableItems?.length > 0">
+              <h2 class="text-uppercase">
+                Purchase Summary ({{ cartItemCount || 0 }} item{{
+                  cartItemCount > 1 ? "s" : ""
+                }})
+              </h2>
+              <ul>
+                <div
+                  class="loader-spinner loader"
+                  *ngIf="getcouponloading || getremovecouponloading"
+                >
+                  <mat-spinner
+                    [diameter]="30"
+                    [strokeWidth]="3"
+                    class="centre-align"
+                  ></mat-spinner>
+                </div>
+                <li class="total">
+                  <span>Bag Total </span>
+                  <span>₹ {{ actualBagTotal | number: 0 }}</span>
+                </li>
+                <li class="total">
+                  <span>Bag Discount </span>
+                  <span class="red"
+                    >- ₹ {{ totalBagDiscount | number: 0 }}</span
+                  >
+                </li>
+
+                <!-- <li *ngIf="cart?.coupon_code">
+                  <span (click)="RemoveAppliedCoupon()" class="removecoupon red">Remove Applied
+                    Coupon</span>
+                  <span class="red" (click)="couponclick(true)">Select Coupon</span>
+                </li> -->
+                <li class="applyedcoupon">
+                  <span class="">Coupon Discount</span>
+                  <ng-container *ngIf="cart && cart?.discounts">
+                    <span class="red" *ngIf="cart && (cart?.discounts)[0]"
+                      >- ₹ {{ (cart?.discounts)[0]?.amount }}</span
+                    >
+                  </ng-container>
+                  <span
+                    class="red"
+                    (click)="couponclick(true)"
+                    *ngIf="!cart?.coupon_code"
+                    >Apply Coupon</span
+                  >
+                </li>
+                <li class="total">
+                  <span>Order Total</span>
+                  <span
+                    >₹
+                    {{
+                      actualBagTotal -
+                        totalBagDiscount -
+                        (cart && cart?.discounts && cart?.discounts?.length
+                          ? (cart?.discounts)[0]?.amount
+                          : 0) | number: 0
+                    }}</span
+                  >
+                </li>
+                <li>
+                  <span>Delivery Charges</span>
+                  <span *ngIf="cart?.shipment_total === 0" class="red"
+                    >FREE</span
+                  >
+                  <span *ngIf="cart?.shipment_total !== 0" class="red"
+                    >₹ {{ cart?.shipment_total }}</span
+                  >
+                </li>
+                <li class="total total-amount">
+                  <span><b>TOTAL</b></span>
+                  <span
+                    ><b
+                      >₹
+                      {{
+                        actualBagTotal -
+                          totalBagDiscount -
+                          (cart && cart?.discounts && cart?.discounts?.length
+                            ? (cart?.discounts)[0]?.amount
+                            : 0) +
+                          cart?.shipment_price | number: 0
+                      }}</b
+                    ></span
+                  >
+                </li>
+                <li class="including-gst">
+                  <span>Inclusive of all taxes</span>
+                  <span></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="checkout-buttons">
+            <a>
+              <div
+                class="checkout-btn"
+                routerLink="checkout/cart"
+                (click)="closeCart()"
+              >
+              PLACE ORDER
+              </div>
+              <!-- <div
+                class="checkout-btn"
+                *ngIf="!loginstatus"
+                (click)="showCheckout()"
+              >
+              PLACE ORDER
+              </div> -->
+            </a>
+            <a (click)="closeCart()">
+              <div class="return-btn">Return to shopping</div>
+            </a>
+          </div>
+        </div>
+
+        <div
+          class="coupon-overlay"
+          [ngClass]="couponopup ? 'visible' : ''"
+          (click)="closepopup()"
+        ></div>
+        <div class="coupon-main" [ngClass]="couponopup ? 'visible' : ''">
+          <div class="coupon-inner">
+            <div class="topbar">
+              <a class="back" (click)="closepopup()">
+                <!-- <img src="../assets/images/left-sign-arrow.png" width="18"/> -->
+                <span class="left-sign-arrow"></span>
+              </a>
+              <h2>Apply Coupon</h2>
+            </div>
+            <div class="enter-coupon">
+              <!-- <h3>Enter Coupon Code</h3> -->
+              <div class="inputapply">
+                <input
+                  type="text"
+                  [formControl]="appliedCouponInput"
+                  placeholder="Enter coupon code"
+                  (keyup)="onEnterKey($event)"
+                  value="{{ appliedCoupon.value || cart?.coupon_code }}"
+                  #cc
+                />
+                <span class="couponerror" *ngIf="submitted && appliedCouponInput.hasError('required')">Please Select a
+                  Coupon!</span>
+              <span class="couponerror" *ngIf="!showMinAmmountError && showPromoError">Sorry, this coupon code is invalid or has
+                  expired!</span>
+              <span class="couponerror" *ngIf="showMinAmmountError">Coupon not applicable</span><br />
+                <a class="apply" (click)="ApplyPromoCode(cc.value)">APPLY</a>
+              </div>
+              <div class="coupon-loader" *ngIf=" getcouponloading && !getcouponloaded">
+                <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+              </div>
+            </div>
+            <div *ngIf="couponList?.length">
+              <div class="coupon-list">
+                <h3 class="text-uppercase">Best coupon for you</h3>
+                <mat-radio-group
+                  aria-label="Select an option"
+                  [formControl]="appliedCoupon"
+                >
+                  <mat-radio-button
+                    [value]="coupon.name"
+                    *ngFor="let coupon of couponList; trackBy:trackById"
+                  >
+                    <div class="coupon-group flex-block">
+                      <div class="innerlist">
+                        <b></b>
+                        <span class="code">{{ coupon?.name }}</span>
+                        <span></span>
+                      </div>
+                      <a class="apply" (click)="ApplyPromoCode(coupon?.name)"
+                        >APPLY</a
+                      >
+                    </div>
+                    <!-- <div class="coupon-div">
+                              <a class="coupon-aply">APPLY</a>
+                          </div> -->
+                    <p>{{ coupon?.description }}</p>
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+              <!-- <div class="applybtn-block">
+                <a class="cancel" (click)="clearCouponFields()">CANCEL</a>
+                <a class="apply" (click)="applyPromoCode(cc.value)">APPLY COUPON</a>
+              </div> -->
+            </div>
+            <div class="coupon-not-available" *ngIf="!couponList?.length">
+              No other coupons available
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div
+        *ngIf="checkemailregisteredloading && !checkemailregisteredloaded"
+        class="loader"
+      >
+        <mat-spinner
+          [diameter]="30"
+          [strokeWidth]="3"
+          class="centre-align"
+        ></mat-spinner>
+      </div>
+      <ng-container *ngIf="showCheckoutBool">
+
+        <!-- <app-cart-checkout (registerUserEvent)="showRegisterUser()"
+            (checkemailregistered)="checkemailregistered($event)" (socialsignupdata)="socialsignupdata($event)"
+            [socialLoading]="socialLoading" [socialLoaded]="socialLoaded"
+            [socialloginfailed]="socialloginfailed" (cartCloseEvent)="cartCloseSocialEventCart()">
+        </app-cart-checkout> -->
+        <app-login-popup 
+            *ngIf="loginSignUpPopup"
+            [overlaypupup]="overlaypupup"
+            [loginpopup]="loginpopup"
+            [loginSignUpPopup]="loginSignUpPopup"
+            [miniCart]="true">
+        </app-login-popup>
+    </ng-container>
+    <ng-container *ngIf="showRegisterBool">
+        <!-- <app-cart-checkout-register [signupinitiating]="signupinitiating" [signupsuccess]="signupsuccess"
+            [signupsuccess2]="signupsuccess2" [signupfailure]="signupfailure" [loginloading]="loginloading"
+            [loginloaded]="loginloaded" [loginloaded2]="loginloaded2" [loginfailed]="loginfailed"
+            [verifyemail]="verifyemail" [emailStats]="emailStats" (registerloginClose)="registerloginClose()"
+            (registerUserData)="newUserData($event)" (changepopupcontent)="changepopupcontent($event)"
+            (loginData)="loginData($event)" (showloginpop)="showloginpop($event)"
+            (opencartinitial)="opencartinitial($event)" (forgetpasswordcartpopup)="forgetpasspopup($event)">
+        </app-cart-checkout-register> -->
+        <app-login-popup
+            [overlaypupup]="overlaypupup"
+            [loginpopup]="loginpopup"
+            [loginSignUpPopup]="loginSignUpPopup"
+            [miniCart]="true">
+        </app-login-popup>
+    </ng-container>
+    </div>
+  </div>
+</div>
+</div>

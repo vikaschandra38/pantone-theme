@@ -1,0 +1,70 @@
+.primary_box {
+  padding: 15px;
+  box-shadow: 0px 0px 5px #00000020;
+  margin: 25px 15px;
+}
+
+.heading {
+  margin: 15px 0 25px;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-family: 'Lato', sans-serif;
+font-weight: 700;
+  border-bottom: 1px solid #ccc;
+  padding: 0 0 15px 10px;
+}
+.newsletter_inner h3 {
+  font-size: 14px;
+  font-family: 'Lato', sans-serif;
+font-weight: 400;
+  color: #333;
+  text-align: center;
+  margin: 0 0 26px;
+  line-height: 20px;
+}
+.newsletter_inner ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.newsletter_inner ul li {
+  margin: 10px;
+  position: relative;
+}
+.newsletter_inner ul li.active:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-size: 100%;
+}
+.newlettersubmit {
+  text-align: center;
+}
+.newlettersubmit a {
+  max-width: 195px;
+  width: 100%;
+  height: 43px;
+  font-size: 18px;
+  font-family: 'Lato', sans-serif;
+font-weight: 500;
+  text-align: center;
+  line-height: 40px;
+  text-transform: initial;
+  color: #fff;
+  background-color: #0195ff;
+  border: 0;
+  border: 2px solid #0195ff;
+  box-sizing: border-box;
+  margin: 15px 10px;
+  display: inline-block;
+  padding: 0;
+}
+.newlettersubmit a:first-child {
+  border: 2px solid #999999;
+  background: none;
+  color: #666666;
+}

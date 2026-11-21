@@ -1,0 +1,122 @@
+<div id="account">
+  <div class="container1">
+    <!-- <app-account-topbar
+      [userprofileInfo]="userprofileInfo | async"
+    ></app-account-topbar> -->
+
+    <div class="account_main">
+      <!-- account left -->
+      <!-- <app-account-sidebar></app-account-sidebar> -->
+      <!-- <div class="account_left" *ngIf = "accountlinks">
+                <ul class="checkout_order">
+                    <h3>Shopping</h3>                        
+                    <li><a class="js-gtm-click-user-recentlyViewed" id="reward-point">Recently Viewed</a></li>
+                    <li><a class="js-gtm-click-user-wishlist" href="/my-account#wishlist" (click) = "wishlistclick()">Wishlist</a></li>
+                </ul>
+                <ul class="checkout_order">
+                    <h3>Your Preference</h3>
+                    <li><a class="js-gtm-click-user-profile" href="/my-account#profile" (click)="profile()">Profile</a></li>
+                    <li><a class="js-gtm-click-user-address" href="/my-account#address" (click)="addaddress()">Address</a></li>
+                    <li><a  href="/my-account#newsletter" (click) = "newsletterclick()">Newsletter Preferences</a></li> 
+                </ul>
+                <ul class="checkout_account">
+                    <h3>Customer Service</h3>
+                    <li><a class="js-gtm-click-user-order&Returns" href="/my-account#orders" (click)="OrderReturn()">Order & Return</a></li>
+                    <li><a class="js-gtm-click-user-contactUs" routerLink='/contact-us'>Contact Us</a></li>
+                    <li><a class="js-gtm-click-user-policy" routerLink="/return-policy">Policy</a></li>
+                </ul>
+                <a class="logout" *ngIf = "accountlinks">Logout</a>
+                <a class="text-uppercase" class="logout" (click)="logout()" [ngClass] = "  ( logoutloader ) ? 'loaderbtn': ''">Logout </a>
+                </div> -->
+      <!-- account left end -->
+
+      <div class="account_right">
+        <!-- <a (click)="back()" class="back">Back</a> -->
+        <div class="account_inner" id="account_inner">
+          <app-address
+            *ngIf="addnewaddress"
+            (addressData)="addressSubmit($event)"
+            (editAddressData)="editAddressSubmit($event)"
+            (removedAddressData)="removedAddressSubmit($event)"
+            [allAddresses]="allAddresses | async"
+            [alladdressloading]="alladdressloading | async"
+            [alladdressloaded]="alladdressloaded | async"
+            [useraddresssaveloading]="useraddresssaveloading | async"
+            [useraddresssaveloaded]="useraddresssaveloaded | async"
+            [useraddresssavefailure]="useraddresssavefailure | async"
+            [usereditaddresssaveloading]="usereditaddresssaveloading | async"
+            [usereditaddresssaveloaded]="usereditaddresssaveloaded | async"
+            [usereditaddresssavefailure]="usereditaddresssavefailure | async"
+            [useraddressremoveloading]="useraddressremoveloading | async"
+            [useraddressremoveloaded]="useraddressremoveloaded | async"
+            [useraddressremovefailure]="useraddressremovefailure | async"
+            [useraddressnullloading]="useraddressnullloading | async"
+            [useraddressnullloaded]="useraddressnullloaded | async"
+            [useraddressnullfailure]="useraddressnullfailure | async"
+          ></app-address>
+          <app-profile
+            *ngIf="appProfile"
+            [userprofileInfo]="userprofileInfo | async"
+            (profileData)="profileSubmit($event)"
+            [userprofilesubmitfailure]="userprofilesubmitfailure | async"
+            [userprofilesubmitloading]="userprofilesubmitloading | async"
+            [userprofilesubmitloaded]="userprofilesubmitloaded | async"
+            (updateMobileOtpVerification)="profileMobileUpdate($event)"
+            (generateOTP)="generateOTPForMobile($event)"
+          ></app-profile>
+          <orders-returns
+            *ngIf="OrdersReturns"
+            [userorders]="userorders | async"
+            [userorderloading]="userorderloading | async"
+            [userorderloaded]="getuserorderloaded | async"
+          ></orders-returns>
+          <app-overview *ngIf="overview"></app-overview>
+          <!-- <app-save-card
+            *ngIf="SaveCards"
+            (cardData)="cardSubmit($event)"
+            (removedCardData)="removedCardData($event)"
+            (editCardDataFinal)="editCardSubmit($event)"
+            [allCards]="allCards | async"
+            [usercardsaveloading]="usercardsaveloading | async"
+            [usercardsaveloaded]="usercardsaveloaded | async"
+            [usercardsavefailure]="usercardsavefailure | async"
+            [usercardeditloading]="usercardeditloading | async"
+            [usercardeditloaded]="usercardeditloaded | async"
+            [usercardeditfailure]="usercardeditfailure | async"
+            [getusercardremoveloading]="getusercardremoveloading | async"
+            [getusercardremoveloaded]="getusercardremoveloaded | async"
+            [getusercardremovefailure]="getusercardremovefailure | async"
+            [getusercardnullloaded]="getusercardnullloaded | async"
+            [usercardnullloading]="usercardnullloading | async"
+            [getusercardnullfailure]="getusercardnullfailure | async"
+          ></app-save-card> -->
+          <app-reward-points *ngIf="rewardpoint"></app-reward-points>
+          <app-wishlist
+            *ngIf="wishlist"
+            (removedWishlistData)="removedWishlistData($event)"
+            [selectedProduct]="selectedProduct | async"
+            [userwishlist]="userwishlist | async"
+            [userwishlistloading]="userwishlistloading | async"
+            [userwishlistloaded]="userwishlistloaded | async"
+            (cartItems)="addToCart($event)"
+            [itemaddingcart]="itemaddingcart | async"
+            [wishlistremoveloading]="wishlistremoveloading | async"
+            [wishlistremoveloaded]="wishlistremoveloaded | async"
+            [wishlistremovefailure]="wishlistremovefailure | async"
+            [wishlistnullloaded]="wishlistnullloaded | async"
+            (moveToCart)="moveToCart($event)"
+            (selectedSizeWishlist)="selectedSizeWishlist($event)"
+          ></app-wishlist>
+          <app-newsletter-preferences
+            *ngIf="newsletter"
+          ></app-newsletter-preferences>
+        </div>
+        <!-- account_inner div -->
+      </div>
+      <!-- account_right div -->
+    </div>
+    <!-- account_main div -->
+  </div>
+  <!-- container -->
+</div>
+<!-- account main div -->

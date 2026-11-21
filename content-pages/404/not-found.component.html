@@ -1,0 +1,16 @@
+<!-- {{ notfounddata | json }} -->
+<section class="page">
+  <div class="loader" *ngIf = "!notfounddata"><mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner></div>
+  <div *ngIf = "notfounddata">
+    <div class="banner">
+      <p><img [src]="notfounddata?.pageElements[1]?.fields?.mobileImagesvideo[0]?.fields?.file?.url" width="200" /></p>
+      <h2 [innerHTML]="( notfounddata?.pageElements[0]?.fields?.displayMainText )">{{notfounddata?.pageElements[0]?.fields?.displayMainText}}</h2>
+      <p [innerHTML]="( notfounddata?.pageElements[0]?.fields?.description)">
+          {{notfounddata?.pageElements[0]?.fields?.description}}
+      </p>
+      <div class="btn-block">
+        <a class="shoppingbtn" routerLink="/" [innerHTML]="notfounddata?.pageElements[2]?.fields?.buttonTitle"> notfounddata?.pageElements[2]?.fields?.buttonTitle</a>        
+      </div>    
+    </div>
+  </div>
+</section>

@@ -1,0 +1,88 @@
+.list_inner {
+  border: 1px solid #ccc;
+  background: #e7e7e700;
+  padding: 15px;
+  border-radius: 4px;
+  color: #666666;
+  font-family: 'Montserrat', sans-serif;
+font-weight: 400;
+  font-size: 13px;
+  padding-left: 40px;
+  line-height: 22px;
+}
+.checkoutsavedaddress .mat-radio-checked .list_inner {
+  background: #e7e7e7;
+  border: 1px solid #d94b2a;
+}
+.list_inner h3 {
+  font-family: 'Montserrat', sans-serif;
+font-weight: 500;
+  color: #333;
+  font-size: 15px;
+  margin: 0 0 5px;
+}
+.editbtn a {
+  color: #d94b2a;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-family: 'Montserrat', sans-serif;
+font-weight: 500;
+}
+.editbtn {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #ccc;
+  padding: 10px 0 0;
+  margin: 15px 0 0;
+}
+.checkout_page .checkoutsavedaddress .mat-radio-checked {
+  opacity: 1;
+  width: 50%;
+  margin-right: 10px;
+}
+.list_inner p {
+  margin: 0;
+  white-space: pre-wrap;
+}
+.saveaddressheading a b {
+  font-weight: normal;
+  border: 1px solid #666;
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  text-align: center;
+  line-height: 18px;
+  border-radius: 50%;
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+font-weight: 400;
+  margin: 0 5px 0 0;
+}
+.saveaddressheading a {
+  font-family: 'Montserrat', sans-serif;
+font-weight: 600;
+  color: #333;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+.saveaddressheading h2 {
+  font-family: 'Montserrat', sans-serif;
+font-weight: 600;
+  color: #333;
+  font-size: 14px;
+  margin: 0;
+}
+.saveaddressheading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 15px;
+}
+.checkout_page .checkoutsavedaddress .mat-radio-checked {
+  opacity: 1;
+  width: 50%;
+}
+.address {
+  min-height: 110px;
+}

@@ -1,0 +1,12 @@
+.contentsidebar a{
+    display: block;
+    border-top: 1px dashed #ccc;
+    padding: 25px 0;
+    color: #666;
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+}
+.contentsidebar .active a {
+    color:#0095ff;
+}

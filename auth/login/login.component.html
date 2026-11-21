@@ -1,0 +1,99 @@
+
+<div class = "login-signup-overlay" *ngIf = "overlaypupup" (click) = "closePopup()" ></div>
+<div class = "login-signup-popup" *ngIf = "loginSignUpPopup">
+  <!-- <div class="popup-header"><img src="../../../../../assets//duke-assets/images/cross.png" (click) = "closePopup()" /></div> -->
+  <div class="login-form" >
+    <h2>Login</h2>
+    <div class="login_wrapper">
+    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="loginformCapturedValues(loginForm.value)">
+        <div>
+          <div class="logininput">
+            <input type="email" formControlName="loginemail" required placeholder="Enter Email Id" [ngClass] = "loginfailure || emailinvalid ? 'error': ''"><br>
+            <span *ngIf="emailinvalid" class="loginfailure">Please enter a valid email address.</span>
+          </div>
+          <div class="logininput">
+            <input type="password" formControlName="loginpassword" required placeholder="Password" [ngClass] = "passwordinvalid || loginfailure ? 'error': ''" >
+            <span *ngIf="passwordinvalid" class="loginfailure">Please enter a valid password.</span>
+            <span *ngIf="allfield" class="loginfailure">All form fields are mandatory.	</span>            
+           </div> 
+           
+            <input type="submit" value="Login" class="login_btn" [ngClass] = " loginloading ? 'loaderbtn': ''" (blur)="clearmessages()">            
+            <span *ngIf="loginfailure" class="loginfailure">Incorrect user id or password ! Please try again.</span>
+            <!-- == {{ loginloaded }} 1 {{ loginloading }} ==2== {{ loginfailure }} ==3== {{ signupinit }}  -->
+        </div>
+        <a class="forgetpassword" (click)="forgetclick()">Forgotten your Password?</a>
+    </form>
+    <div class="form_right">
+      <p>Dont’t want to create new account? Use any of your exiting account </p>
+      <!-- <a class="fb_btn" (click)="socialSignIn('facebook')"><img src="../../assets/images/signin-facebook.png" /></a>
+      <a class="google_btn" (click)="socialSignIn('google')"><img src="../../assets//duke-assets/images/signin-google.png" /></a> -->
+      <div class="already"><!--New User? <a (click)="signupPopupOpen()">Sign Up</a> <br />--><a routerLink="/privacy-policy">Privacy policy</a></div>
+    </div>
+  </div>
+  </div>
+  
+
+  <div class="login-form signup-form" *ngIf = "signuppopup">
+      <!-- <div *ngIf = "signupinit" class="loader"></div> -->
+      <h2>Signup</h2>
+      <div class="login_wrapper" >
+      <form class="login-form" [formGroup]="signupForm" (ngSubmit)="signupformCapturedValues(signupForm.value)" >
+        <div class="first_block">
+          <div class="logininput" [ngClass] = "   signupfirstnameinvalid ? 'errorsignup': ''">
+            <input type="text" formControlName="first_name" required placeholder="First Name"><br>
+            <span *ngIf="signupfirstnameinvalid" class="loginfailure">First name is required</span>
+          </div>
+          <div class="logininput" >
+            <input type="text" formControlName="last_name" placeholder="Last Name"><br>
+          </div>
+        </div>
+        <div class="logininput" [ngClass] = " signupemailinvalid ? 'errorsignup': ''">
+          <input type="email" formControlName="signupemail" required placeholder="Email Id"><br>
+          <span *ngIf="signupemailinvalid" class="loginfailure">Please enter a valid email address</span>
+        </div>
+        <div class="logininput" [ngClass] = "  signuppassinvalid ? 'errorsignup': ''">
+          <input type="password" formControlName="signuppassword" required placeholder="Password">
+          <span *ngIf="signuppassinvalid" class="loginfailure">Password must be at least 7 characters	</span>
+        </div>  
+        <input type="submit" value="SIGN UP" class="login_btn" [ngClass] = "  ( signupinit ) ? 'loaderbtn': ''" (click)="checkSignupFormdata()"  (blur)="clearmessages()">
+        <span *ngIf="signupfailure" class="loginfailure">Account already exists.</span>
+       
+        <!-- <span *ngIf="emptysignupfields" class="loginfailure">All form fields are mandatory.</span> -->
+      </form>
+     
+      <div class="form_right">
+        <p>Dont’t want to create new account? use any of your exiting account </p>
+        <!-- <a class="fb_btn" (click)="socialSignIn('facebook')"><img src="../../../../../assets//duke-assets/images/signin-facebook.png" /></a>
+      <a class="google_btn" (click)="socialSignIn('google')"><img src="../../../../../assets//duke-assets/images/signin-google.png" /></a> -->
+        <div class="already">Already have an account? <a (click)="loginPopupOpen()">Login</a></div>
+      </div>
+    </div>
+    </div>
+
+</div>
+
+
+<div class="forgetform" *ngIf = "forgetpassword">
+    <div class="popup-header"><img src="../../../../../assets//duke-assets/images/cross.png" alt="" (click) = "closeforget()" /></div>
+    <h2 *ngIf="!userforgotloaded">Forgot Password?</h2>
+    <div class="login_wrapper" >
+    
+    <form class="login-form" [formGroup]="forgetPasswordForm" (ngSubmit)="resetformvalue(forgetPasswordForm.value)" *ngIf="!userforgotloaded">
+      <div class="first_block">
+        <label>We will send you a link to reset your password<br /> Enter your email address</label>
+        <input type="text" formControlName="email" required placeholder="Enter Email Id" [ngClass] = "emptyforgotfields || userforgotfailed ? 'error': ''" >
+        <span *ngIf="emptyforgotfields || userforgotfailed" class="emailerror">Please enter a valid email address.</span>
+      </div>
+      <input type="submit" value="SEND RESET LINK" class="login_btn"  [ngClass] = "  ( userforgotloading ) ? 'loaderbtn': ''" (blur)="clearmessages()">
+      <a (click)="loginPopupOpen()" class="login">LogIn?</a>
+    </form>
+    <div class="sendmail"  *ngIf="userforgotloaded">
+      <a routerLink=""><img src="../../../../../assets//duke-assets/images/logo.png" alt="Pantone" class="img-responsive"width="110px"></a>
+      <h3>PASSWORD RESET</h3>
+      <p class="">You should receive a link in few moments. Please open<br />that link to reset your password. <b>{{ forgoteamil }}</b></p>
+      <a (click)="loginPopupOpen()" class="login">LogIn?</a>
+      <!-- {{ forgoteamil }} == {{ userforgotloaded }} == {{ userforgotloading }} == {{ userforgotfailed }} -->
+    </div>
+   
+  </div>
+  </div>

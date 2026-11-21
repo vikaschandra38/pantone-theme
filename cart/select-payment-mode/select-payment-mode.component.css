@@ -1,0 +1,136 @@
+
+h2 {
+  margin: 15px 0 5px;
+  cursor: pointer;
+  color: #333;
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+font-weight: 500;
+  font-weight: normal;
+  text-align: center;
+}
+.paymentmethod .paymentheading {
+  display: flex;
+  font-family: 'Lato', sans-serif;
+font-weight: 400;
+  font-size: 14px;
+  color: #333;
+  position: relative;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #d94b2a;
+  margin:20px 20px 10px 20px ;
+  background-color: #e7e7e7;
+  width: 165px;
+  height: 145px;
+  border-radius: 4px;
+}
+mat-radio-button.mat-radio-button.mat-accent.mat-radio-checked .paymentheading {
+  background-color: #d94b2a;
+}
+.paymentmethod .cod-method .cod-img{
+  width: 135px;
+  height: 70px;
+  display: block;
+  background-position: -166px 0;
+  background-image: url(../../assets/images/cod-icon.png);
+  background-repeat: no-repeat;
+
+}
+mat-radio-button.mat-radio-button.mat-accent.mat-radio-checked .cod-method .cod-img{
+  background-position:-330px 0;
+}
+.paymentmethod ul {
+  padding: 0 0 0px 0;
+}
+.paymentmethod ul form input {
+  margin-bottom: 20px;
+  padding: 9px 10px;
+  outline: none;
+  border: 1px solid #ccc;
+  /* border-radius: 4px; */
+}
+.paymentmethod ul form {
+  padding: 20px 15px 0;
+  border-bottom: 1px solid #ccc;
+  background: #f6f6f6;
+}
+.paymentmethod ul form input:focus {
+  border-color: #000;
+}
+
+.onlinepayment {
+  position: relative;
+}
+.onlinepayment span img {
+  margin: 0 10px 0 0;
+}
+
+.paymentmethod ul li ul {
+  display: none;
+}
+.paymentmethod ul li {
+  color: #333;
+  font-size: 14px;
+  font-family: 'Montserrat', sans-serif;
+font-weight: 500;
+}
+.onlinepayment ul p {
+  padding: 10px 15px 0;
+  color: #ff0000;
+}
+.paymentinner {
+  margin: 0;
+  text-align: center;
+}
+.paymentinner label {
+  margin: 0;
+}
+
+.btncontinue {
+  text-align: center;
+  position: relative;
+  margin: 55px 0 0;
+}
+
+.btncontinue mat-checkbox {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  color: #666;
+  z-index: 999;
+  font-family: 'Lato', sans-serif;
+font-weight: 400;
+}
+
+.btncontinue .submit_btn {
+  background: #d94b2a;
+    font-family: 'Montserrat', sans-serif;
+font-weight: 500;
+    max-width: 260px;
+    text-align: center;
+    font-size: 13px;
+    height: 42px;
+    line-height: 42px;
+    color: #fff;
+    display: inline-block;
+    width: 100%;
+    border: 1px solid transparent;
+    margin: 0px;
+    outline: none;
+    border-radius:2px;
+}
+.btncontinue .submit_btn:hover  {
+  background: #e7e7e7;
+  border: 1px solid #d94b2a;
+  color: #333;
+}
+.paymentmethod .paymentheading.text-red{
+  padding-left: 16px;
+  color: red;
+}
+
+.paymentmethod .paymentheading.text-red .fa{
+  font-size: 22px;
+  margin-right: 10px;
+}

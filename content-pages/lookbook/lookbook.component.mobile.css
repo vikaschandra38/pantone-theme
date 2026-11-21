@@ -1,0 +1,35 @@
+#lookbook .full-width-container {
+  padding: 20px 10px 30px 10px;
+  background-color: #2B1F10;
+}
+#lookbook .full-width-container .container .row .col-md-4 {
+  padding: 15px;
+}
+
+#lookbook .full-width-container .container .row .col-md-4 div {
+text-align: center;
+}
+#lookbook .full-width-container .container .row .col-md-4 img {
+  margin: auto;
+}
+#lookbook .full-width-container .container .row .logo{
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 15px;
+}
+#lookbook .full-width-container .container .row .logo img{
+  max-width: 235px;
+  width: 100%;
+}
+#lookbook .full-width-container .container .row .col-md-12 .content{
+  text-align: center;
+  color: white;
+  padding-top: 10px;
+}
+#lookbook .full-width-container .container .row .col-md-12 .content p{
+  max-width: 442px;
+  margin: 0 auto;
+  width: 100%;
+}
+

@@ -1,0 +1,37 @@
+{
+  "projects": {
+    "staging": "pantone-front-staging",
+    "prod": "pantone-front-prod",
+    "testing": "pantone-mobile-staging",
+    "default": "pantone-front-staging"
+  },
+  "targets": {
+    "pantone-front-prod": {
+      "hosting": {
+        "web": [
+          "pantone-front-prod"
+        ],
+        "mobile": [
+          "pantone-mobile-prod"
+        ]
+      }
+    },
+    "pantone-front-staging": {
+      "hosting": {
+        "mobile": [
+          "pantone-mobile-staging"
+        ],
+        "web": [
+          "pantone-front-staging"
+        ]
+      }
+    },
+    "pantone-mobile-staging": {
+      "hosting": {
+        "testing": [
+          "pantone-mobile-staging"
+        ]
+      }
+    }
+  }
+}

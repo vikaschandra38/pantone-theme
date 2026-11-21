@@ -1,0 +1,67 @@
+<span class="order_value">Rs {{userorders?.results[0]?.grand_total}}</span>  
+
+<section class="headertop">
+    <a routerLink=""><img src="../../assets/images/logo.png" width="150" alt="Pantone" /></a>
+</section>
+<div class="container">
+
+<div class="orderblock">
+    <div class="loader ordernoloader"  *ngIf="!userorders"><mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner></div>
+    <div *ngIf="userorders && userorders.results[0] && userorders.results[0].number">
+    <h2>Thank You for shopping with us!</h2> 
+    <div class="orderno" ><span>Order Number:</span>{{userorders?.results[0]?.number}}</div>    
+    <p class="ordremsg">Your order is currently being processed. You will receive an order confirmation email shortly with other details.</p>
+    <div class="shopingbtn">
+        <a class="trackorder" href = "../my-account?tab=orders">Track Your Order</a>
+        <a class="continuebtn" routerLink = "/">Continue Shopping</a>
+    </div>
+
+    <div class="newsletter">
+        <!-- <ul>
+            <li>
+              <a routerLink="/categories/footwear"><img src="../../assets/images/sale/FORMALS.jpg" alt="" /></a>
+            </li>
+            <li>
+              <a routerLink="/categories/clothing"><img src="../../assets/images/sale/SHIRTS.jpg" alt="" /></a>
+            </li>
+             <li>
+              <a routerLink="/categories/accessories"><img src="../../assets/images/sale/tie.jpg" alt="" /></a>
+            </li>
+        </ul> -->
+        <!-- <div class="joinbtn">
+            <a class="selectall" (click)="Selectall()">Select All</a>
+            <a class="joinclark">Join Duke India</a>
+        </div> -->
+    </div>
+
+
+    
+
+    <!-- <div class="recentviewblock" *ngIf = "slider.length > 0"> -->
+        <!-- <div class="recentviewblock youmaylike" *ngIf = "slider.length > 0">
+        <h2 class="text-center recent-heading">Other Product you may like</h2>
+        <common-slider [data] = "recentlyViewed" last = "4"></common-slider>
+        <ul class="recentproduct">
+          <li *ngFor = "let product of slider"  >
+            <a routerLink="../../products/id/{{product?.slug}}">
+              <div class="img"><img [src]="product?.images[0]?.file.url"  /></div>
+              <div class="pro_bottom">
+                <div class="titleblock">
+                  <h3>{{ product.name }}</h3>
+                </div>
+                <div class="priceblock">
+                  {{ product.currency }} {{ product.sale_price }}
+                </div>
+                <div class="product-color">{{product?.attributes?.colour}}</div>                              
+              </div>
+            </a>
+          </li>
+          <div class="arrow">          
+              <a class="prev" [ngClass] = "first == 0? 'disabled':''" (click) = "prevSlider()" ><img src="assets/duke-assets/images/arrow-left.png" /></a>
+              <a class="next" [ngClass] = "((last == (recentlyViewed.length)) || recentlyViewed.length < 4 )? 'disabled':''" (click) = "nextSlider()" ><img src="assets//duke-assets/images/arrow-right.png" /></a>
+            </div>
+        </ul>
+      </div> -->
+    </div>
+</div>
+</div>

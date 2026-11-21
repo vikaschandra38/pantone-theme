@@ -1,0 +1,279 @@
+.login-signup-overlay {
+    background: #000;
+    height: 100%;
+    width: 100%;
+    /* position: fixed; */
+    z-index: 999;
+    top: 0;
+    opacity: 0.6;
+}
+.login-signup-popup {
+    max-width: 700px;
+    width: 100%;
+    background: #fff;
+    z-index: 1000;
+    margin: 80px auto;
+    left: 0;
+    right: 0;
+    box-shadow: 0px 0px 5px #ddd;
+}
+.login-form h2{
+    font-family: 'Lato', sans-serif;
+font-weight: 700;
+    font-size: 16px;
+    color: #333;
+    padding: 20px 0px;
+    margin: 0 0 20px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #cccccc;
+    text-align: center;
+}
+.popup-header {
+    text-align: right;
+    padding: 5px;
+    width: 40px;
+    float: right;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    z-index: 9;
+}
+.login_wrapper{
+    display: flex;
+    align-items: center;
+    padding: 25px 20px 45px;
+}
+.login_wrapper form {
+    width: 60%;
+    padding-right: 30px;
+    position: relative;
+}
+.form_right{
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+    font-size: 14px;
+    color: #666;
+    width: 50%;
+    text-align: center
+}
+.login-form input{
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 10px 15px; 
+    transition: border-color ease-in-out .3s,box-shadow ease-in-out .15s;
+    outline: 0;
+    line-height: normal;
+}
+.login-form input:focus{
+    border-color: #000000;
+}
+.login-form {
+    transition: all 0.5s ease;
+}
+.login-form .login_btn{
+    background: #0092ff;
+    font-family: 'Lato', sans-serif;
+font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #fff;
+    display: block;
+    border: 0;
+    margin: 0px 0 10px;
+}    
+ .login-form .login_btn.loaderbtn{    
+    background-color: #0092ff;
+    color: #fff;
+    pointer-events: none;
+    opacity: 0.6;
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, .3) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .3) 50%, rgba(255, 255, 255, .3) 75%, transparent 75%, transparent);
+    -webkit-transition: width .5s ease-in-out;
+    transition: width .5s ease-in-out;
+    background-size: 50px 50px;
+    -webkit-animation: animate-stripes 3s infinite linear;
+    animation: animate-stripes 3s infinite linear;
+    cursor: default;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+@keyframes animate-stripes {
+    0% {
+        background-position: 0 0
+    }
+    100% {
+        background-position: 50px 0
+    }
+}
+@-webkit-keyframes animate-stripes {
+    0% {
+        background-position: 0 0
+    }
+    100% {
+        background-position: 50px 0
+    }
+}
+@-moz-keyframes animate-stripes {
+    0% {
+        background-position: 0 0
+    }
+    100% {
+        background-position: 50px 0
+    }
+} 
+.login-form .login_btn:focus{
+    border-color: transparent;
+}
+.fb_btn img , .google_btn img {
+    width: auto;
+    margin:0 0 15px 0;
+}
+.form_righ .already{
+    margin: 15px;
+}
+.form_right a{
+    color: #c52030;
+    border-bottom: 1px solid
+}
+.form_right a:hover{
+    border: none;
+}
+.form_right p{
+    margin: 0 0 25px;
+    color: #888;
+}
+.forgetpassword , .login_wrapper a{
+    font-size: 14px;
+    color: #0092ff;
+}
+.forgetform {
+    margin: 80px auto;
+    max-width: 450px;
+    background: #fff;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    position: static;
+    text-align: center;
+    box-shadow: 0px 0px 5px #ddd; 
+}
+.sendmail h3 {
+    font-family: 'Lato', sans-serif;
+font-weight: 700;
+    font-size: 17px;
+    color: #333;
+    padding: 25px 25px 10px;
+    margin: 0;
+    text-transform: uppercase;
+}
+.forgetform .login_wrapper .sendmail a.login {
+    background: #d94b2a;
+    font-family: 'Lato', sans-serif;
+font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #fff;
+    display: block;
+    border: 0;
+    padding: 8px 00;
+    width: 100%;
+}
+.forgetform .login_wrapper{
+    display: block;
+    padding:0px 25px 30px; 
+}
+.forgetform .login_wrapper form.login-form {
+    width: 100%;
+    padding: 0;
+    margin: auto;
+}
+.login-form.forgetform form.login-form label {
+    font-weight: normal;
+    font-size: 15px;
+    color: #333;
+    font-family: 'Lato', sans-serif;
+font-weight: 700;
+}
+.forgetform h2{
+    font-family:'latobold';
+    font-size: 16px;
+    color: #333;
+    padding: 20px 25px;
+    margin: 0 0 20px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #cccccc;
+}
+.first_block label{
+    margin: 0 0 15px;
+    font-size: 14px;
+    color: #666;
+}
+.sendmail p{
+    margin: 15px 0 20px;
+    font-size: 14px;
+    color:#999;
+}
+.sendmail {
+    padding: 35px 0 10px;
+}
+.sendmail p b{
+    color: #000;
+    font-weight: normal;
+    display: block;
+}
+.login-form input.error{
+    color: #333;
+    border-color: #ff0000;
+    margin-bottom: 5px;
+}
+.login-form .logininput .loginfailure{
+    color: #ff0000;
+    display: block;
+    position: absolute;
+    bottom: 0;
+}
+.loginfailure{
+    color: #ff0000;
+}
+.logininput{
+    position: relative;
+    padding-bottom: 18px;
+    margin-bottom: 10px;
+}
+.first_block {
+    display: flex;
+}
+.first_block .logininput:first-child {
+    margin-right: 15px;
+}
+
+.login-form .errorsignup input , .forgetform .login-form .error{
+    border-color: #ff0000;
+}
+.forgetform .first_block{
+    display: block;
+    margin: 0 0 10px;
+    position: relative;
+    padding-bottom: 20px;
+}
+.emailerror{
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    color: #ff0000;
+}
+.login-form.signup-form .logininput .loginfailure{
+    bottom: -2px;
+}
+
+@media screen and  (max-width:1024px){
+nav .navbar li {
+    margin: 30px 15px;
+}
+.main-header .flex-right {
+    width: 12%;
+}    
+
+
+}

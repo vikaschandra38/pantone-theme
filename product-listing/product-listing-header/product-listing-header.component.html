@@ -1,0 +1,34 @@
+<div class="listiingtop">
+<div class = "container" *ngIf="categoryexists">
+<div class="row text-center">
+    <div class="col-sm-12">
+        <div class="wrapper" *ngIf = "search">
+            <div class="heading" *ngIf="(filters.search.length > 0 || search.length > 0)  && prodlen !==0">
+              RESULTS FOR "{{ filters.search }}"
+            </div>
+            <div class="heading no-found" *ngIf="prodlen === 0 && search !=='' && loadedFilter">
+                Sorry! Nothing matched your search term.<br />
+                Please try another search.
+              </div>
+            <div class="description" >
+              </div>
+        </div>
+      <div class="wrapper" *ngIf = "">
+        <div class="heading" *ngIf="categoryEntity?.name ">
+          {{categoryEntity?.name}}
+        </div>
+        <div class="description" innerHTML="{{categoryEntity?.description}}">
+          {{categoryEntity?.description}}
+        </div>
+        <div class="header-tags-btns">
+          <ul >
+            <li *ngFor = "let cat of (categoryChildren?.results )  | slice:0:5 "><a routerLink="{{cat?.slug}}">{{cat?.name}}</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>  
+  
+</div>

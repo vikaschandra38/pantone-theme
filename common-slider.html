@@ -1,0 +1,23 @@
+<ul class="recentproduct">
+    <li *ngFor = "let product of slider" [lazy-load-images]="{ rootMargin: '10px' }">
+      <a routerLink="../products/id/{{product?.slug}}">
+        <div class="img"><img [attr.data-src]="product?.images[0]?.file.url" src="../../../assets/duke-assets/images/giphy2.gif" /></div>
+        <div class="pro_bottom">
+          <div class="titleblock">
+            <h3>{{ product.name }}</h3>
+            <!--<p class="category" *ngIf="product?.category[1]?.name || product?.category[0]?.name">{{ product?.category[1]?.name || product?.category[0]?.name }} </p> -->
+            <span class="febric">{{ product?.attributes.color }}</span>
+            <!-- <p class="category">{{ product?.category[1]?.name || product?.category[0]?.name }} </p>
+            <span class="febric">{{ product?.attributes.color }}</span> -->
+          </div>
+          <div class="priceblock">
+            {{ product.currency }} {{ product.sale_price }}
+          </div>
+        </div>
+      </a>
+    </li>
+    <div class="arrow">
+        <a class="prev" [ngClass] = "first == 0? 'disabled':''" (click) = "prevSlider()" ><img src="../../../../../assets/duke-assets/images/arrow-left.png" /></a>
+        <a class="next" [ngClass] = "((last == (data.length)) || data.length < 4 )? 'disabled':''" (click) = "nextSlider()" ><img src="../../../../../assets/duke-assets/images/arrow-right.png" /></a>
+      </div>
+  </ul>

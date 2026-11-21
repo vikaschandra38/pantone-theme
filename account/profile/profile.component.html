@@ -1,0 +1,248 @@
+<div class="primary_box" id="profile_view">
+    <div>
+        <div class="account_top">
+            <h2>My Profile</h2>
+            <p class=""> {{email}}</p>
+          </div>
+        <!-- <h3 class="acccount_heading">My Profile <span> {{email}}</span></h3> -->
+        <ul class="my-profile">
+            <li>
+                <mat-form-field class="wd90">
+                    <input autofocus [readonly]="true" matInput placeholder="Mobile Number"
+                        value="{{mobile ? mobile : '-'}}" />
+                    <button class="editmobile" (click)="editMobileOrPass('mobile')">
+                        <span> <img width="18px" height="16px" src="../../assets/images/Edit.png" /></span>
+                    </button>
+                </mat-form-field>
+            </li>
+            <!-- <li>
+                <mat-form-field class="wd90">
+                    <input autofocus [readonly]="true" matInput placeholder="Password" value="XXXXXXXX" />
+                </mat-form-field>
+            </li> -->
+        </ul>
+    </div>
+    <form [formGroup]="editProfileForm" class="ProfileForm my-profile">
+        <h3 class="acccount_heading">General Information</h3>
+        <div *ngIf="profileview && !editaccount">
+            <ul>
+                <li>
+                    <mat-form-field class="wd90">
+                        <input autofocus [readonly]="true" matInput placeholder="First Name"
+                            value="{{fname | titlecase}}" />
+                    </mat-form-field>
+                </li>
+                <li>
+                    <mat-form-field class="wd90">
+                        <input autofocus [readonly]="true" matInput placeholder="Last Name"
+                            value="{{lname ? (lname | titlecase) : '-'}}" />
+                    </mat-form-field>
+                </li>
+                <li>
+                    <mat-form-field class="wd90">
+                        <input autofocus [readonly]="true" matInput placeholder="Date of Birth"
+                            value="{{year ? year : '- - -'}}" />
+                    </mat-form-field>
+                </li>
+                <li>
+                    <mat-form-field class="wd90">
+                        <input autofocus [readonly]="true" matInput placeholder="Gender"
+                            value="{{gender ? (gender | titlecase) : '-'}}" />
+                    </mat-form-field>
+                </li>
+                <li class="btn-block">
+                    <a (click)="edit_account_details()" class="edit_primary_btn">edit Profile
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="primary_box" id="edit_account_details" *ngIf="editaccount && !profileview">
+            <div>
+                <mat-form-field class="wd90">
+                    <mat-label>First Name* </mat-label>
+                    <input matInput placeholder="" formControlName="first_name">
+                    <mat-error
+                        *ngIf="editProfileForm.get('first_name').touched && editProfileForm.get('first_name').invalid">
+                        Please enter valid details
+                    </mat-error>
+                    <span style="color:red"
+                        *ngIf="test == true">
+                        First name cannot be empty
+                </span>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="wd90">
+                    <mat-label>Last Name </mat-label>
+                    <input matInput placeholder="" formControlName="last_name">
+                    <mat-error
+                        *ngIf="editProfileForm.get('last_name').touched && editProfileForm.get('last_name').invalid">
+                        Please enter valid details
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="datepicker">
+                <mat-form-field class="wd90">
+                    <mat-label>Date Of Birth</mat-label>
+                    <input matInput [matDatepicker]="picker"
+                    formControlName="dob" (focus)="picker.open()" [min]="dateSetting.minDate"
+                    [max]="dateSetting.maxDate"
+                    readonly>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <span (click)="picker.open()" class="datepick">button</span>
+            </div>
+
+            <div>
+                <mat-form-field class="wd90">
+                    <mat-label>Gender</mat-label>
+                    <mat-select formControlName="gender">
+                        <mat-option *ngFor="let gender of genderOption" [value]="gender.value">
+                            {{gender.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+            <div *ngIf="showuserprofileerror" style="color:red">Edit Profile Failure</div>
+            <div *ngIf="userprofilesubmitfailure" class="loginfailure">Unable to Update!</div>
+            <div class="editbtn">
+
+                <input type="submit" class="edit_primary_btn " value="Save" [disabled]="test == true"
+                    [ngClass]=" userprofilesubmitloading ? 'loaderbtn': ''" (click)="checkProfileForm()">
+                <a (click)="cancel_account_details()" class="cancel_btn ">Cancel</a>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<div *ngIf="editMobile" id="editMobile">
+    <div class="editMobile-inner">
+        <div class="logo">&nbsp;</div>
+        
+        <div>
+            <div class="popup-header" (click)="onClosePopup()">
+                <!-- <img width="18px" height="18px" src="../assets/images/close.png" (click)="onClosePopup()" /> -->
+            </div>
+            <form [formGroup]="newMobileNumberForm">
+                <div *ngIf="!isOTPScreen">
+                    <div>
+                        <h2>Change Mobile Number</h2>
+                        <!-- <p>{{ header.para }}</p> -->
+                    </div>
+                    <div>
+                        <mat-form-field class="wd90">
+                            <input #emailMobileField autofocus type="text" matInput
+                                placeholder="New Mobile number" formControlName="newMobile" maxlength="10" />
+                            <mat-error *ngIf="newMobileNumberForm.get('newMobile').touched 
+                            && newMobileNumberForm.get('newMobile').invalid ">
+                                <!-- <span *ngIf="newMobileNumberForm.get('newMobile')?.errors?.required">Mobile Number is
+                                    required</span> -->
+                                <span *ngIf="newMobileNumberForm.get('newMobile')?.errors?.pattern">Please enter the
+                                    valid Mobile Number</span>
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-error *ngIf="accNotExistMgs">
+                            Mobile number already exists
+                        </mat-error>
+                    </div>
+                    <div>
+                        <button class="btn btn75 {{buttonLoading ? 'loaderbtn' : ''}}" (click)="generateOTPForUpdateMobile()"
+                            [ngClass]="{'btn-active': newMobileNumberForm.get('newMobile').valid}">Update</button>
+                    </div>
+                </div>
+                <div *ngIf="isOTPScreen" class="otpscreen">
+                    <div>
+                        <h2>{{ header.head }}</h2>
+                        <p>{{ header.para }}</p>
+                    </div>
+                    <a class="back" (click)="navigateTomobileScreen()">back</a>
+                    <div class="otpScreen">
+                        <div class="ng-otp">
+                            <input
+            type="hidden"
+            name="number-only"
+            id="number-only"
+            (change)="onConfigChange()"
+          />
+                            <ng-otp-input
+                                #otpField
+                                #ngOtpInput
+                                (onInputChange)="onOtpChange($event)"
+                                *ngIf="showOtpComponent"
+                                [config]="config" 
+                                [config]="config.allowNumbersOnly"
+                            ></ng-otp-input>
+                          </div>
+                          <input style="display:none !important;"
+                          #OTPFieldhide />
+                          <span class="invalid" *ngIf="newMobileNumberForm.get('OTP').invalid ">
+                            Invalid OTP</span>
+                        <!-- <mat-form-field class="wd90">
+                          <input
+                            #otpField
+                            type="text"
+                            maxlength="4"
+                            autocomplete="false"
+                            matInput
+                            placeholder="Enter OTP"
+                            formControlName="OTP"
+                          />
+                          <input style="display:none !important;"
+                          #OTPFieldhide />
+                          <mat-error *ngIf="newMobileNumberForm.get('OTP').invalid">
+                            Invalid OTP
+                          </mat-error>
+                        </mat-form-field> --> 
+                        <span id="showResend">
+                            <span *ngIf="OTPLoader">
+                              <span class="loaderOtp">
+                                <mat-spinner
+                                  [diameter]="20"
+                                  [strokeWidth]="3"
+                                  class="centre-align"
+                                ></mat-spinner>
+                              </span>
+                            </span>
+                            <span *ngIf="buttonLoading">
+                                <span class="loaderOtp">
+                                  <mat-spinner
+                                    [diameter]="20"
+                                    [strokeWidth]="3"
+                                    class="centre-align"
+                                  ></mat-spinner>
+                                </span>
+                              </span> 
+                              <div class="countblock">
+                                <p class="didntget" *ngIf="countDownValue">Resend OTP in <span class="count">{{ countDownValue }}</span></p>
+                                <ng-container *ngIf="showResendOtp">
+                                    <p class="didntget">
+                                    Didn't get the OTP?
+                                    <span
+                                        class="resend-otp"
+                                        (click)="generateOTPForUpdateMobile(true)"
+                                        >Resend</span
+                                    >
+                                    </p>
+                                </ng-container>
+                                </div>
+                            <!-- <p class="didntget"> Didn't get the OTP? <span  (click)="generateOTPForUpdateMobile(true)">Resend Code</span></p> -->
+                          </span>
+                          <!-- <span id="showTime" class="resend-otp" style="top: 12px !important;">
+                            <p>
+                              Resend OTP in <span id="timer"></span>
+                              <span id="timeStart">30</span>s
+                            </p>
+                          </span> -->
+                      </div>
+                      <!-- <div>
+                        <button class="btn btn75 {{buttonLoading ? 'loaderbtn' : ''}}" (click)="verifyOtp(newMobileNumberForm.get('OTP').value)"
+                            [ngClass]="{'btn-active': (newMobileNumberForm.get('OTP').value && !newMobileNumberForm.get('OTP').errors?.minlength)}">VERIFY</button>
+                    </div> -->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

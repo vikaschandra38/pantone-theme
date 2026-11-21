@@ -1,0 +1,54 @@
+<div class="row filters-header">
+  <h4 class="col-6">Filter</h4>
+  <a class="col-6" (click)="clearFilter()">CLEAR ALL</a>
+</div>
+<!-- {{ getFilters | json }}  -->
+<ul class="filters-wrapper">
+  <!-- <li *ngFor="let filter of getFilters; let i = index"  [ngClass] = "(active == 0) ? 'active': ''">
+      <b class="filter_title" (click)="showmobileFilters(i)"  *ngIf="filter.value.length > 0 && (filter.key === 'attributes.colour_code')" >Color</b>
+    <ul *ngIf="filter.value.length > 0 && (filter.key === 'attributes.colour_code')" [hidden]="!filtersHide[i]">
+      <li *ngFor="let subFilter of filter.value" class="filter-{{ makeClass(filter.key) }}">
+          <div (click)="onChange(filter.key, subFilter.value, (subFilter.selected) ? false : true, filter.value)">
+              <mat-checkbox *ngIf="subFilter.selected" checked = "true" (change)="onChange(filter.key, subFilter.value, $event.checked, filter.value)" ><div class="filtertext color-swatch active"><span class="style" [ngStyle]="{'background-color': subFilter.value }"></span> {{subFilter.value }}<span> ({{ subFilter.count }})</span></div></mat-checkbox>
+              <mat-checkbox *ngIf="!subFilter.selected" (change)="onChange(filter.key, subFilter.value, $event.checked, filter.value)" > <div class="filtertext color-swatch"> <span class="style" [ngStyle]="{'background-color': subFilter.value }"></span>{{subFilter.value }}<span> ({{ subFilter.count }})</span></div></mat-checkbox>        
+          </div>
+      </li>
+    </ul>
+  </li>  -->
+  <!-- <li [ngClass] = "(active == i) ? 'active': ''">
+    <b class="filter_title" (click)="showFilters(i)" >Price Range</b>
+    <div class="pricerange">
+    </div>
+  </li> -->
+
+  <li *ngFor="let filter of getFilters; let i = index" [ngClass]="active == i ? 'active' : ''">
+      <b class="filter_title filter-{{ makeClass(filter.key) }}" (click)="showmobileFilters(i)" *ngIf="
+          filter.value.length > 0 &&
+          titleKeyArray.indexOf(filter.key) >= 0 &&
+          filter.key.length > 1
+        ">{{ changeTitle(filter.key) }}
+      </b>
+      <ul *ngIf=" filter.value.length > 0 && titleKeyArray.indexOf(filter.key) >= 0 && filter.key.length > 1" [hidden]="!filtersHide[i]">
+          <li *ngFor="let subFilter of filter.value" class="filter-{{ makeClass(filter.key) }}">
+              <mat-checkbox *ngIf="subFilter.selected" checked="true" (change)="onChange(filter.key, subFilter.value, $event.checked, filter.value, false)">
+                  <div class="filtertext">
+                      <span *ngIf="filter.key === 'attributes.colour_code'" class="color-swatch" [ngStyle]="{ 'background-color': subFilter.value }"></span>
+                      <span class="value">{{ subFilter.value }}</span>
+                  </div>
+              </mat-checkbox>
+              <mat-checkbox *ngIf="!subFilter.selected" (change)="onChange(filter.key, subFilter.value, $event.checked, filter.value, false)">
+                  <div class="filtertext">
+                      <span *ngIf="filter.key === 'attributes.colour_code'" class="color-swatch" [ngStyle]="{ 'background-color': subFilter.value }"></span>
+                      <span class="value">{{ subFilter.value }}</span>
+                  </div>
+              </mat-checkbox>
+              <!-- <mat-checkbox *ngIf="subFilter.selected" checked = "true" (change)="onChange(filter.key, subFilter.value, $event.checked, filter.value)" ><div class="filtertext"> {{subFilter.value }}<span> ({{ subFilter.count }})</span></div></mat-checkbox> -->
+              <!-- <mat-checkbox *ngIf="!subFilter.selected" (change)="onChange(filter.key, subFilter.value, $event.checked, filter.value)" > <div class="filtertext"> {{subFilter.value }}<span> ({{ subFilter.count }})</span></div></mat-checkbox>         -->
+          </li>
+      </ul>
+  </li>
+</ul>
+<div class="applyfilter">
+  <a (click)="closefilter()" class="cancelfilter">CANCEL</a>
+  <a (click)="onChange(null, null, true, null, true)">DONE</a>
+</div>

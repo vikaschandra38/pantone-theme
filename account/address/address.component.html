@@ -1,0 +1,427 @@
+<!-- {{allAddresses | json}} -->
+<!-- <app-checkout-address></app-checkout-address> -->
+<!-- {{ alladdressloading }} ==== {{ alladdressloaded }} ========= {{ useraddressremoveloading }} -->
+
+<div *ngIf="alladdressloading || useraddressremoveloading">
+  <div class="loader-spinner loader">
+      <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+  </div>
+</div>
+
+<div *ngIf="alladdressloaded">
+  <div class="checkoutsavedaddress primary_box" *ngIf="AddressSaved">
+    <div class="account_top">
+      <h2>Address Book</h2>
+      <!-- <div class="addnew">
+        <a (click)="add_new_address()"><b><span>+</span></b> Add New Address</a>
+      </div> -->
+    </div>
+    <!-- <div class="saveaddresstop">
+      <h3 class="acccount_heading">SAVED ADDRESS</h3>
+      <a (click)="add_new_address()"><b>+</b> Add New Address</a>
+    </div> -->
+    <ul  class="addresslist">
+        <li *ngFor="let addresses of allAddresses;let i=index">
+            <div class="list_inner">
+                <div class="address">
+                    <h3>{{addresses.name}} {{addresses.last_name}} <span
+                            *ngIf="userInfo?.default_address_id == addresses?.add_id" class="default"> Default</span></h3>
+                    <p class="address-field">{{addresses.address}},</p><p>{{addresses.city}}, {{addresses.pincode}} {{addresses.state}},
+                    </p>
+                    <p class="add-mobile">Mobile: <b>{{addresses.mobile}}</b></p>
+                    <ul *ngIf="pincodeData?.pincodeErrorMsg && ( shippingAddressId && shippingAddressId?.value?.add_id == addresses?.add_id)">
+                        <li>{{pincodeData?.pincodeErrorMsg}}</li>
+                    </ul>
+                    <!-- <p>{{addresses.cod}}</p> -->
+                </div>
+                <div class="editbtn">                    
+                    <a class="remove" (click)="editaddress(addresses.add_id)">Edit/Change</a>
+                    <a class="edit" (click)="remove(addresses.add_id)">Remove</a>
+                </div>
+            </div>
+          </li>
+
+          <li>
+            <div class="blank_info mat-radio-button" (click)="add_new_address()">
+                <div class="list_inner_blank">
+                    <div data-action="add" class="addressBlocks-base-addBlock" >
+                        <div class="addressBlocks-base-addIcon">
+                            <div class="addressBlocks-base-line1"></div>
+                            <!-- <div class="addressBlocks-base-line2"></div> -->
+                            <p>Add Address</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+          </li>
+    </ul>
+
+  </div>
+
+
+
+  <div class="primary_box" id="add_new_address" *ngIf="emptyaddress">
+    <h3 class="acccount_heading">Address Book</h3>
+    <form class="shipping-form" [formGroup]="addressForm">
+
+      <div class="row">
+          <div class="col-sm-6">
+              <div class="inputblock">
+                  <mat-form-field>
+                      <mat-label>First Name* </mat-label>
+                      <input matInput placeholder="" formControlName="name" autocomplete="new_name" maxlength="30">
+                      <mat-error *ngFor="let validation of validationMessages.name">
+                          <mat-error *ngIf="addressForm.get('name').hasError(validation.type)">
+                              {{ validation.message }}</mat-error>
+                      </mat-error>
+
+                  </mat-form-field>
+              </div>
+          </div>
+          <div class="col-sm-6">
+              <div class="inputblock">
+                  <mat-form-field>
+                      <mat-label>Last Name </mat-label>
+                      <input matInput placeholder="" formControlName="last_name" autocomplete="new_last_name"
+                          maxlength="30">
+                      <mat-error *ngFor="let validation of validationMessages.last_name">
+                          <mat-error class="error-message"
+                              *ngIf="addressForm.get('last_name').hasError(validation.type)">
+                              {{ validation.message }}</mat-error>
+                      </mat-error>
+                  </mat-form-field>
+              </div>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-sm-6">
+              <div class="inputblock">
+                  <mat-form-field>
+                      <mat-label>Zip Code* </mat-label>
+                      <input matInput placeholder="" formControlName="pincode" maxlength="6"
+                          autocomplete="new_pincode" (input)="checkPincodeServiceable('addressForm')">
+                      <mat-error *ngFor="let validation of validationMessages.pincode">
+                          <mat-error class="error-message"
+                              *ngIf="addressForm.get('pincode').hasError(validation.type)">
+                              {{ validation.message }}</mat-error>
+                      </mat-error>
+                  </mat-form-field>
+              </div>
+          </div>
+          <div class="col-sm-6">
+              <div class="inputblock">
+                  <mat-form-field>
+                      <mat-label>Mobile No* </mat-label>
+                      <input matInput placeholder="" formControlName="mobile" maxlength="10" autocomplete="new_mobile"
+                          (keypress)="keyPress($event)">
+                      <mat-error *ngFor="let validation of validationMessages.mobile">
+                          <mat-error class="error-message"
+                              *ngIf="addressForm.get('mobile').hasError(validation.type)">
+                              {{ validation.message }}</mat-error>
+                      </mat-error>
+                  </mat-form-field>
+              </div>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-sm-12">
+              <div class="inputblock">
+                  <mat-form-field>
+                      <mat-label>Address* </mat-label>
+                      <textarea matInput placeholder="" maxlength="70" formControlName="address"
+                          autocomplete="new_address"></textarea>
+                      <mat-error *ngFor="let validation of validationMessages.address">
+                          <mat-error class="error-message"
+                              *ngIf="addressForm.get('address').hasError(validation.type)">
+                              {{ validation.message }}</mat-error>
+                      </mat-error>
+                  </mat-form-field>
+              </div>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-sm-6">
+              <div class="inputblock">
+                  <mat-form-field>
+                      <mat-label>City* </mat-label>
+                      <input matInput placeholder="" formControlName="city" readonly>
+                      <!-- <mat-error *ngFor="let validation of validationMessages.city">
+                          <mat-error class="error-message" *ngIf="addressForm.get('city').hasError(validation.type)">
+                              {{ validation.message }}</mat-error>
+                      </mat-error> -->
+                  </mat-form-field>
+              </div>
+          </div>
+          <div class="col-sm-6">
+              <div class="inputblock">
+                  <mat-form-field>
+                      <mat-label>State* </mat-label>
+                      <input matInput placeholder="" readonly formControlName="state">
+                      <!-- <mat-error *ngFor="let validation of validationMessages.state">
+                          <mat-error class="error-message" *ngIf="addressForm.get('state').hasError(validation.type)">
+                              {{ validation.message }}</mat-error>
+                      </mat-error> -->
+                  </mat-form-field>
+              </div>
+          </div>
+      </div>
+
+      <div class="type_ofaddress">
+          <!-- <p>Type Of Address </p>
+          <ul class="type_address">
+              <mat-radio-group>
+                  <mat-radio-button value="1" selected>Home</mat-radio-button>
+                  <mat-radio-button value="2">Office</mat-radio-button>
+              </mat-radio-group>
+
+          </ul> -->
+          <!-- <label class="weekendsoff">
+              <mat-checkbox (change)="defaultSelection($event)" formControlName="default" > Make this my
+                  default address
+              </mat-checkbox>
+          </label> -->
+
+          <!-- <div class="btnblock"  *ngIf="addressList?.length>0">
+            <div class="button-save">
+                <button type="button" class="cancelbtn" mat-raised-button (click)="closingAddressForm()">
+                    CANCEL
+                </button>
+            </div>
+            <div class="button-save">
+                <span *ngIf="addressForm.invalid" class="tooltip">All the fields are mandatory.</span>
+                <button type="button" (click)="saveAddressDetails()"
+                    [ngClass]="( userAddressSaveLoading || usereditaddresssaveloading ) ? 'loaderbtn': ''" [disabled]="addressForm.invalid"
+                    aria-label="Button that displays a tooltip when focused or hovered over">
+                    SAVE
+                </button>
+            </div>
+        </div>
+        <div class="btnblock emptyeddress" *ngIf="addressList?.length == 0">
+            <div class="button-save">
+                <span *ngIf="addressForm.invalid" class="tooltip">All the fields are mandatory.</span>
+                <button type="button" (click)="saveAddressDetails()"
+                    [ngClass]="( userAddressSaveLoading || usereditaddresssaveloading) ? 'loaderbtn': ''" [disabled]="addressForm.invalid"
+                    aria-label="Button that displays a tooltip when focused or hovered over">
+                    SAVE
+                </button>
+            </div>
+        </div> -->
+
+          <div class="btnblock emptyeddress">
+            <div class="button-save">
+                <!-- <span *ngIf="addressForm.invalid" class="tooltip">All the fields are mandatory.</span> -->
+                <!-- <button type="button" (click)="saveeditaddress()"
+                    [ngClass]="( userAddressSaveLoading || usereditaddresssaveloading) ? 'loaderbtn': ''" [disabled]="addressForm.invalid"
+                    aria-label="Button that displays a tooltip when focused or hovered over">
+                    SAVE
+                </button> -->
+                
+                <div class="savedbtn button" *ngIf="savedbtn">
+                  <!-- <span *ngIf="addressForm.invalid" class="tooltip">All the fields are mandatory.</span> -->
+                  <input type="submit" class="edit_primary_btn btn_green" value="Save" [ngClass]="useraddresssaveloading ? 'loaderbtn': ''" (click)="saveaddress()" (blur)="clearmessages()" [disabled]="addressForm.invalid" />
+                </div>
+               
+                <div class="saveedit button" *ngIf="saveedit">
+                  <!-- <span *ngIf="addressForm.invalid" class="tooltip">All the fields are mandatory.</span> -->
+                  <input type="submit" class="edit_primary_btn btn_green" value="Save" [ngClass]=" usereditaddresssaveloading ? 'loaderbtn': ''" (click)="saveeditaddress()"  (blur)="clearmessages()" [disabled]="addressForm.invalid" />
+                </div>
+                <input type="button" class="btn_green cancel_btn" *ngIf="alladdress.length > 0" (click)="cancel()" value="Cancel" />
+            </div>
+        </div>
+
+          <!-- <div *ngIf="useraddresssaveerror" class="errormsg">Save Address Failed</div>
+          <div *ngIf="usereditaddresssaveerror" class="errormsg">Edit Address Failed</div>
+          <input type="button" class="btn_green cancel_btn" (click)="cancel()" value="Cancel" />
+          <input type="submit" class="edit_primary_btn btn_green" value="Save"[ngClass]=" useraddresssaveloading ? 'loaderbtn': ''" (click)="saveaddress()" *ngIf="save_new_address" (blur)="clearmessages()" />
+          <input type="submit" class="edit_primary_btn btn_green" value="Save" [ngClass]=" usereditaddresssaveloading ? 'loaderbtn': ''" (click)="saveeditaddress()" *ngIf="show_edit_button"
+            (blur)="clearmessages()" /> -->
+
+
+      </div>
+
+  </form>
+  
+  </div><!-- add new address block div -->
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- {{ allAddresses | json }}
+<div class="primary_box" id="empty_address" *ngIf="emptyaddress">
+  <div class="edit_address_inner">
+    <img src="../../assets/images/ic_empty_address.png" />
+    <h3 class="acccount_heading">Save Your Address Now</h3>
+    <p>Add your home and office address and enjoy faster checkout</p>
+    <a (click)="add_new_address()" class=" btn_green cancel_btn">Add New Address</a>
+  </div>
+</div> empty address block div -->
+
+<div class="primary_box" id="savedaddress" *ngIf="">
+  <div class="account_top">
+    <h2>Saved Addresses</h2>
+    <p class="">Save addresses for a hassle-free checkout</p>
+  </div>
+  <div class="saveaddresstop">
+    <!-- <h3 class="acccount_heading">SAVED ADDRESS</h3> -->
+    <a (click)="add_new_address()">+ Add New Address</a>
+  </div>
+  <ul class="allAddresses">
+    <!--<li *ngFor="let addresses of alladdress?.reverse()|slice:0:5;">-->
+    <!-- <li *ngFor="let addresses of visibleAddresses['data']"> -->
+    <li *ngFor="let addresses of alladdress">
+      <h4>DEFAULT ADDRESS</h4>
+      <div class="list_inner">
+        <div class="address">
+          <h3>{{addresses?.name}}</h3>
+          <p>{{addresses?.address}}</p>
+          <p>{{addresses?.city}} {{addresses?.state}} {{addresses?.pincode}}</p>
+          <p>Mobile : {{addresses?.mobile}}</p>
+        </div>
+        <p class="location" *ngIf="addresses?.address_type=='1'">Home</p>
+        <p class="location" *ngIf="addresses?.address_type=='2'">Office</p>
+        <div class="editbtn">
+          <a class="edit" (click)="editaddress(addresses?.add_id)">Edit</a>
+          <a class="remove" (click)="remove(addresses?.add_id)">Remove</a>
+        </div>
+      </div>
+    </li>
+    <!-- <div class="show-more" (click)="toggleAdresses()" *ngIf="visibleAddresses['count'] == 2">
+                <img src="../assets/images/arrow-coupon.png" class="show_more">
+            </div>
+            <div class="show-less" (click)="toggleAdresses()" *ngIf="visibleAddresses['count'] > 2">
+                <img src="../assets/images/arrow-coupon.png" class="show_less">
+            </div> -->
+  </ul>
+</div><!-- Saved address block div -->
+
+<div class="primary_box" id="add_new_address" *ngIf="">
+  <h3 class="acccount_heading">ADD NEW ADDRESS</h3>
+  <form class="add_new_adddress_form" [formGroup]="addressForm">
+    <input type="hidden" formControlName="add_id">
+    <div class="edit_account_input">
+      <label>First Name*</label>
+      <input placeholder="" formControlName="name" autocomplete="new-name"
+        [ngClass]="(addressForm.value && addressForm.value.name && addressForm.controls.name.length > 0)  ? 'has-error': ''">
+      <span *ngIf="namefielderror" class="span-error">Please enter name.</span>
+      <!-- <mat-form-field class="matinput">
+                    <input matInput placeholder="Name* " formControlName="name">
+                </mat-form-field> -->
+    </div>
+
+    <div class="edit_account_input">
+      <label>Last Name</label>
+      <input placeholder="" formControlName="last_name" autocomplete="new_last_name">
+    </div>
+
+    <div class="edit_account_input">
+      <label>Pin Code*</label>
+      <input placeholder=" " type="text" maxlength="6" formControlName="pincode" (keyup)="checkPincodeServiceable()"
+        autocomplete="new_pincode" [ngClass]="pincodefielderror ? 'has-error': ''">
+      <mat-error *ngFor="let validation of validationMessages.pincode">
+        <span *ngIf="pincodefielderror &&   addressForm.get('pincode').hasError(validation.type)"
+          class="span-error">{{validation.message}}</span>
+      </mat-error>
+      <!-- <mat-form-field class="matinput">
+                    <input matInput placeholder="Pincode* " type="text" maxlength="6" formControlName="pincode">
+                </mat-form-field> -->
+    </div>
+
+    <div class="edit_account_input ">
+      <label>State*</label>
+      <input placeholder=" " formControlName="state" [ngClass]="statefielderror ? 'has-error': ''"
+        autocomplete="new_state">
+      <span *ngIf="statefielderror" class="span-error">Please enter state.</span>
+      <!-- <mat-form-field class="matinput">
+                    <input matInput placeholder="State* " formControlName="state">
+                </mat-form-field> -->
+    </div>
+
+    <div class="edit_account_input account_address_input">
+      <label>Address*</label>
+      <input placeholder="" formControlName="address" [ngClass]="addressfielderror ? 'has-error': ''"
+        autocomplete="new_address" tabindex="0">
+      <span *ngIf="addressfielderror" class="span-error">Please enter address.</span>
+      <!-- <mat-form-field class="matinput">
+                    <input matInput placeholder="Address (House No, Building, Street, Area)* " formControlName="address">
+                </mat-form-field> -->
+    </div>
+
+    <!-- <div class="edit_account_input edit_town_input">
+                    <label>Town*</label>
+                    <input placeholder=" " formControlName="town" [ngClass] = "townfielderror ? 'has-error': ''">
+                    <span *ngIf="townfielderror" class="span-error">Please enter town.</span>
+                    <mat-form-field class="matinput">
+                       <input matInput placeholder="Town * " formControlName="town">
+                   </mat-form-field>
+               </div> -->
+
+    <div class="edit_account_input edit_town_input">
+      <label>City*</label>
+      <input placeholder=" " formControlName="city" [ngClass]="cityfielderror ? 'has-error': ''"
+        autocomplete="new_city">
+      <span *ngIf="cityfielderror" class="span-error">Please enter city.</span>
+      <!-- <mat-form-field class="matinput">
+                       <input matInput placeholder="City/District* " formControlName="city">
+                   </mat-form-field> -->
+    </div>
+    <div class="edit_account_input edit_distt_input">
+      <label>Mobile No.*</label>
+      <input placeholder=" " type="number" formControlName="mobile" [ngClass]="mobilefielderror ? 'has-error': ''"
+        onKeyDown="if(this.value.length==10 && event.keyCode!=8) return false;" autocomplete="new_mobile">
+      <span *ngIf="mobilefielderror" class="span-error">Please enter a valid 10 digit phone number.</span>
+      <!-- <mat-form-field class="matinput">
+                        <input matInput placeholder="Mobile* " type="number" formControlName="mobile">
+                    </mat-form-field> -->
+    </div>
+
+    <div class="clear"></div>
+
+
+
+    <div class="type_ofaddress">
+
+      <!-- <p>Type Of Address </p>
+      <ul class="type_address">
+        <mat-radio-group formControlName="address_type">
+          <mat-radio-button value="1" (click)="home()">Home</mat-radio-button>
+          <mat-radio-button value="2" (click)="office()">Office</mat-radio-button>
+        </mat-radio-group>
+
+      </ul>
+      <div class="off_block" *ngIf="weekends">
+        <p>Is your office open on weekends?</p>
+        <mat-checkbox formControlName="sat_open">Open on Saturday</mat-checkbox>
+        <mat-checkbox formControlName="sun_open">Open on Sunday</mat-checkbox>
+      </div> -->
+
+      <!--<label class="weekendsoff">
+                    <mat-checkbox>Is your office open on weekends?</mat-checkbox>
+                </label>-->
+
+    </div>
+    <!-- <div *ngIf="emptyaddressfields" class="errormsg" >Fields with asterisk(*) are required!</div> -->
+    <div *ngIf="useraddresssaveerror" class="errormsg">Save Address Failed</div>
+    <div *ngIf="usereditaddresssaveerror" class="errormsg">Edit Address Failed</div>
+    <input type="button" class="btn_green cancel_btn" (click)="cancel()" value="Cancel" />
+    <input type="submit" class="edit_primary_btn btn_green" value="Save"
+      [ngClass]=" useraddresssaveloading ? 'loaderbtn': ''" (click)="saveaddress()" *ngIf="save_new_address"
+      (blur)="clearmessages()" />
+    <input type="submit" class="edit_primary_btn btn_green" value="Save"
+      [ngClass]=" usereditaddresssaveloading ? 'loaderbtn': ''" (click)="saveeditaddress()" *ngIf="show_edit_button"
+      (blur)="clearmessages()" />
+  </form>
+</div><!-- add new address block div -->

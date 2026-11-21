@@ -1,0 +1,243 @@
+<!-- {{ homedata | json }} -->
+<!-- {{homeloaded}}   {{homeloading }}  -->
+<div class="" *ngIf="!homedata">
+  <div class="animationbackground h-60 lighblue"></div>
+  <div class="animationtop w-90 h-5 lightyellow marginauto"></div>
+  <div class="animationtop w-90 h-5 lightgreen marginauto"></div>
+  <div class="animationtop w-90 h-5 lightpink marginauto"></div>
+  <div class="animationbackground w-100 h-5 lightgrey"></div>
+</div>
+
+<div class="" *ngIf="!homedata">
+  <div class="animationbackground w-100 h-30 lightpink"></div>
+  <div class="animationbackground w-100 h-30 lighblue"></div>
+  <div class="animationbackground w-100 h-30 lightgreen"></div>
+</div>
+
+<div class="" *ngIf="!homedata">
+  <div class="animationbackground w-100 h-50 lighblue"></div>
+  <div class="animationbackground w-100 h-40 lightpink"></div>
+  <div class="animationbackground w-100 h-40 lightgrey"></div>
+</div>
+
+<div class="homepage-wrapper">
+  <div class="mainbanner">
+    <!-- <a *ngIf="(videobannerlink)?.indexOf('http://videos.ctfassets.net')" [routerLink]="homedata?.pageElements[6]?.fields?.mediaRedirectLinkUrl">
+        <video width="320" height="240" loop autoplay playsinline oncanplay="this.play()" onloadedmetadata="this.muted = true">
+          <source [src]="videobannerlink" type="video/mp4">
+          <source [src]="videobannerlink" type="video/ogg">
+        </video>
+      </a> -->
+
+      <!-- <slideshow [height]="height"
+        [minHeight]="minHeight"
+        [autoPlay]="true"
+        [showArrows]="true"
+        [imageUrls]="mobileimageUrls">
+    </slideshow> -->
+
+    <!-- <slideshow [height]="height"
+        [minHeight]="minHeight"
+        [imageUrls]="mobileimageUrls">
+    </slideshow> -->
+
+    <owl-carousel #owlElement
+      [options]="{items: 1, dots: false, nav: true, loop:true, autoplay: true, autoplayTimeout:7000, autoplayHoverPause:false}"
+      [items]="homedata?.pageElements[0]?.fields?.pageReferences" [carouselClasses]="['owl-theme', 'sliding' ]">
+      <div class="item" *ngFor="let item of homedata?.pageElements[0]?.fields?.pageReferences; let i = index">
+        <a [routerLink]="item?.fields?.mediaRedirectLinkUrl" [queryParams]="onNavigateFromMegaMenu(item?.fields?.filteredUrl)" [lazy-load-images]="{ rootMargin: '10px' }">
+          <img [src]="item.fields?.mobileImagesvideo[0].fields?.file?.url  + '?w=400' | Homepage1ImageKitPipe" alt="" />
+        </a>
+      </div>
+    </owl-carousel>
+
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-xs-12 block feature-block" [lazy-load-images]="{ rootMargin: '10px' }">
+      <a
+        [routerLink]="
+          ((homedata?.pageElements)[1]?.fields?.pageReferences)[0]?.fields
+            ?.mediaRedirectLinkUrl
+        "
+        [queryParams]="onNavigate1(homedata?.pageElements[1]?.fields?.pageReferences[0]?.fields?.filteredUrl)"
+      >
+        <img
+          src="../assets/images/details-img.jpg" [attr.data-src]="
+            (((homedata?.pageElements)[1]?.fields?.pageReferences)[0]?.fields
+              ?.desktopImagesvideo)[0]?.fields?.file?.url  + '?w=400' | Homepage1ImageKitPipe
+          "
+          alt=""
+        />
+        <div class="overlay">
+            <h2>{{homedata?.pageElements[1]?.fields?.pageReferences[0]?.fields?.pageReferences[0]?.fields?.displayMainText}}</h2>
+            <span>{{homedata?.pageElements[1]?.fields?.pageReferences[0]?.fields?.pageReferences[0]?.fields?.description}}</span>
+        </div>
+      </a>
+    </div>
+    <div class="col-sm-12 col-xs-12 feature-block" [lazy-load-images]="{ rootMargin: '10px' }">
+      <a
+        [routerLink]="
+          ((homedata?.pageElements)[1]?.fields?.pageReferences)[1]?.fields
+            ?.mediaRedirectLinkUrl
+        "
+        [queryParams]="onNavigate1(homedata?.pageElements[1]?.fields?.pageReferences[1]?.fields?.filteredUrl)"
+      >
+        <img
+          src="../assets/images/details-img.jpg" [attr.data-src]="
+            (((homedata?.pageElements)[1]?.fields?.pageReferences)[1]?.fields
+              ?.desktopImagesvideo)[0]?.fields?.file?.url  + '?w=400' | Homepage1ImageKitPipe
+          "
+          alt=""
+        />
+        <div class="overlay">
+          <h2>{{homedata?.pageElements[1]?.fields?.pageReferences[1]?.fields?.pageReferences[0]?.fields?.displayMainText}}</h2>
+          <span>{{homedata?.pageElements[1]?.fields?.pageReferences[1]?.fields?.pageReferences[0]?.fields?.description}}</span>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 block category-block" [lazy-load-images]="{ rootMargin: '10px' }">
+      <a
+        [routerLink]="
+          ((homedata?.pageElements)[2]?.fields?.pageReferences)[0]?.fields
+            ?.mediaRedirectLinkUrl
+        "
+        [queryParams]="onNavigate2(((homedata?.pageElements)[2]?.fields?.pageReferences)[0]?.fields?.filteredUrl)" 
+      >
+        <img
+          src="../assets/images/details-img.jpg" [attr.data-src]="
+            (((homedata?.pageElements)[2]?.fields?.pageReferences)[0]?.fields
+              ?.mobileImagesvideo)[0]?.fields?.file?.url + '?w=400' | Homepage1ImageKitPipe
+          "
+          alt=""
+        />
+        <div class="overlay">
+          <h2>{{homedata?.pageElements[2]?.fields?.pageReferences[0]?.fields?.pageReferences[0]?.fields?.displayMainText}}</h2>
+          <span>{{homedata?.pageElements[2]?.fields?.pageReferences[0]?.fields?.pageReferences[0]?.fields?.description}}</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-xs-12 feature-block" [lazy-load-images]="{ rootMargin: '10px' }">
+      <a
+        [routerLink]="
+          ((homedata?.pageElements)[3]?.fields?.pageReferences)[0]?.fields
+            ?.mediaRedirectLinkUrl
+        "
+        [queryParams]="onNavigate3(((homedata?.pageElements)[3]?.fields?.pageReferences)[0]?.fields?.mediaRedirectLinkUrl?.filteredUrl)" 
+      >
+        <img
+          src="../assets/images/details-img.jpg" [attr.data-src]="
+            (((homedata?.pageElements)[3]?.fields?.pageReferences)[0]?.fields
+              ?.desktopImagesvideo)[0]?.fields?.file?.url + '?w=400' | Homepage1ImageKitPipe
+          "
+          alt=""
+        />
+        <div class="overlay">
+          <h2>{{homedata?.pageElements[3]?.fields?.pageReferences[0]?.fields?.pageReferences[0]?.fields?.displayMainText}}</h2>
+          <span>{{homedata?.pageElements[3]?.fields?.pageReferences[0]?.fields?.pageReferences[0]?.fields?.description}}</span>
+        </div>
+      </a>
+    </div>
+    <div class="col-sm-12 col-xs-12 feature-block" [lazy-load-images]="{ rootMargin: '10px' }"> 
+      <a
+        [routerLink]="
+          ((homedata?.pageElements)[3]?.fields?.pageReferences)[1]?.fields
+            ?.mediaRedirectLinkUrl
+        "
+        [queryParams]="onNavigate4(((homedata?.pageElements)[3]?.fields?.pageReferences)[1]?.fields?.filteredUrl)" 
+      >
+        <img
+          src="../assets/images/details-img.jpg" [attr.data-src]="
+            (((homedata?.pageElements)[3]?.fields?.pageReferences)[1]?.fields
+              ?.desktopImagesvideo)[0]?.fields?.file?.url + '?w=400' | Homepage1ImageKitPipe
+          "
+          alt=""
+        />
+        <div class="overlay">
+          <h2>{{homedata?.pageElements[3]?.fields?.pageReferences[1]?.fields?.pageReferences[0]?.fields?.displayMainText}}</h2>
+          <span>{{homedata?.pageElements[3]?.fields?.pageReferences[1]?.fields?.pageReferences[0]?.fields?.description}}</span>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 block category-jean" [lazy-load-images]="{ rootMargin: '10px' }">
+      <a
+        [routerLink]="
+          ((homedata?.pageElements)[4]?.fields?.pageReferences)[0]?.fields
+            ?.mediaRedirectLinkUrl
+        "
+        [queryParams]="onNavigate5(((homedata?.pageElements)[4]?.fields?.pageReferences)[0]?.fields?.filteredUrl)"
+      >
+        <img
+          src="../assets/images/details-img.jpg" [attr.data-src]="
+            (((homedata?.pageElements)[4]?.fields?.pageReferences)[0]?.fields
+              ?.mobileImagesvideo)[0]?.fields?.file?.url + '?w=400' | Homepage1ImageKitPipe
+          "
+          alt=""
+        />
+        <div class="overlay">
+          <h2>{{homedata?.pageElements[4]?.fields?.pageReferences[0]?.fields?.pageReferences[0]?.fields?.displayMainText}}</h2>
+          <span>{{homedata?.pageElements[4]?.fields?.pageReferences[0]?.fields?.pageReferences[0]?.fields?.description}}</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 col-xs-12 feature-block" [lazy-load-images]="{ rootMargin: '10px' }">
+      <a
+        [routerLink]="
+          ((homedata?.pageElements)[7]?.fields?.pageReferences)[0]?.fields
+            ?.mediaRedirectLinkUrl
+        "
+        [queryParams]="onNavigate6(((homedata?.pageElements)[7]?.fields?.pageReferences)[0]?.fields?.filteredUrl)" 
+      >
+        <img
+          src="../assets/images/details-img.jpg" [attr.data-src]="
+            (((homedata?.pageElements)[7]?.fields?.pageReferences)[0]?.fields
+              ?.desktopImagesvideo)[0]?.fields?.file?.url + '?w=400' | Homepage1ImageKitPipe
+          "
+          alt=""
+        />
+        <div class="overlay">
+          <h2>{{homedata?.pageElements[7]?.fields?.pageReferences[0]?.fields?.pageReferences[0]?.fields?.displayMainText}}</h2>
+          <span>{{homedata?.pageElements[7]?.fields?.pageReferences[0]?.fields?.pageReferences[0]?.fields?.description}}</span>
+        </div>
+      </a>
+    </div>
+    <div class="col-sm-12 col-xs-12 feature-block" [lazy-load-images]="{ rootMargin: '10px' }">
+      <a
+        [routerLink]="
+          ((homedata?.pageElements)[7]?.fields?.pageReferences)[1]?.fields
+            ?.mediaRedirectLinkUrl
+        "
+        [queryParams]="onNavigate7(((homedata?.pageElements)[7]?.fields?.pageReferences)[1]?.fields?.filteredUrl)" 
+      >
+        <img
+          src="../assets/images/details-img.jpg" [attr.data-src]="
+            (((homedata?.pageElements)[7]?.fields?.pageReferences)[1]?.fields
+              ?.desktopImagesvideo)[0]?.fields?.file?.url + '?w=400' | Homepage1ImageKitPipe
+          "
+          alt=""
+        />
+        <div class="overlay">
+          <h2>{{homedata?.pageElements[7]?.fields?.pageReferences[1]?.fields?.pageReferences[0]?.fields?.displayMainText}}</h2>
+          <span>{{homedata?.pageElements[7]?.fields?.pageReferences[1]?.fields?.pageReferences[0]?.fields?.description}}</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- 
+
+  <div class="recentviewblock" *ngIf = "homedata && slider.length > 0">
+    <h2 class="text-center recent-heading">Recently viewed</h2>
+    <common-slider [data] = "recentlyViewed" last = "1"></common-slider>
+  </div> -->

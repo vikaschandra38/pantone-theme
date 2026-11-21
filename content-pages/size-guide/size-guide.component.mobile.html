@@ -1,0 +1,25 @@
+<!-- {{ sizeguidedata | json }} -->
+<section class="page">
+    <!-- <div class="container"> -->
+        <div class="loader" *ngIf = "!sizeguidedata"></div>
+      <div class="sizeguid" *ngIf="sizeguidedata">
+        <!-- <pinch-zoom [zoom-button]="true">
+            <img  [src]="sizeguidedata?.sizeChartDesktopImages[0]?.fields?.file?.url" /> 
+        </pinch-zoom> -->
+
+        <div  *ngIf="router.url.indexOf('/size_guide?category=masks') === -1 ">
+          <pinch-zoom [zoom-button]="true">
+              <img  [src]="sizeguidedata?.sizeChartDesktopImages[0]?.fields?.file?.url" /> 
+          </pinch-zoom>
+        </div>
+        <div *ngIf="router.url.indexOf('/size_guide?category=all') === -1 ">
+          <pinch-zoom [zoom-button]="true">
+            <img  [src]="sizeguidedata?.sizeChartDesktopImages[1]?.fields?.file?.url" /> 
+          </pinch-zoom>
+          <!-- <img [src]="sizeguidedata?.sizeChartDesktopImages[1]?.fields?.file?.url" width="1350" height="940"> -->
+        </div>
+          <!-- <img [src]="sizeguidedata?.sizeChartDesktopImages[0]?.fields?.file?.url" alt="Size Guide" /> -->
+          <!-- <img [src]="sizeguidedata?.sizeChartDesktopImages[0]?.fields?.file?.url" width="1350" height="4269"> -->
+      </div>
+    <!-- </div> -->
+  </section>

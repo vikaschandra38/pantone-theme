@@ -1,0 +1,160 @@
+#account {
+  margin: 15px auto 0px;
+  max-width: 980px;
+}
+.account_main {
+  display: block;
+  align-items: flex-start;
+}
+.account_main .account_left {
+  /* width: 25%; */
+  /* margin-bottom: 30px;
+    border-right: 1px solid #ccc;
+    padding-right: 30px;
+    min-height: 350px; */
+  margin-bottom: 50px;
+}
+
+.account_main .account_right {
+  position: relative;
+  /* width: 75%; */
+  /* border-left: 1px solid #ccc; */
+  /* padding: 25px;
+    box-shadow: 0px 0px 5px #00000020; */
+}
+.account_left ul li a.active {
+  color: #0195ff;
+}
+.account_left h3 {
+  font-size: 14px;
+  font-family: "TradeGothicLTBold";
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+  margin: 0 0 10px 0;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 15px;
+}
+.account_left ul li a {
+  color: #999;
+  font-size: 14px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  margin-bottom: 10px;
+  display: block;
+  transition: none;
+  border-bottom: 1px solid #eee;
+  padding: 0 0 10px 15px;
+}
+.account_left ul li.active a,
+.account_left ul li a:focus,
+.account_left ul li a:hover {
+  color: #0195ff;
+}
+.account_left ul li:last-child a {
+  border: none;
+}
+
+ul.checkout_order {
+  box-shadow: 0px 0px 5px #00000020;
+  padding: 25px 20px;
+  margin: 15px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid #ddd;
+  padding: 0 0px;
+}
+ul.checkout_account {
+  box-shadow: 0px 0px 5px #00000020;
+  padding: 25px 20px;
+  margin: 15px;
+  border-bottom: 1px solid #ddd;
+  padding: 0 0px;
+}
+.back {
+  position: absolute;
+  color: #0092ff;
+  border-bottom: 1px solid #0092ff;
+  font-size: 14px;
+  right: 15px;
+  top: -5px;
+}
+.logout {
+  font-size: 14px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  text-align: center;
+  padding: 8px;
+  margin: 0;
+  position: fixed;
+  font-family: TradeGothicLTBold;
+  text-align: center;
+  text-transform: initial;
+  color: #fff;
+  background-color: #00782e;
+  border: 0;
+  border-bottom: 2px solid #004e1e;
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 0;
+}
+.heading {
+  margin: 20px 15px;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+}
+.logout.loaderbtn {
+  background-color: #004e1e;
+  color: #fff;
+  pointer-events: none;
+  opacity: 0.6;
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.3) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.3) 75%,
+    transparent 75%,
+    transparent
+  );
+  -webkit-transition: width 0.5s ease-in-out;
+  transition: width 0.5s ease-in-out;
+  background-size: 50px 50px;
+  -webkit-animation: animate-stripes 3s infinite linear;
+  animation: animate-stripes 3s infinite linear;
+  cursor: default;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+@keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 0;
+  }
+}
+@-webkit-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 0;
+  }
+}
+@-moz-keyframes animate-stripes {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 0;
+  }
+}

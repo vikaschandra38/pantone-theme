@@ -1,0 +1,231 @@
+<!-- {{ headerContent | json }} -->
+<ng-container *ngIf="isLoaded">
+  <section class="topstirp " [ngClass]="{'test' : true, 'sticky' : isSticky}">
+    <p *ngIf="headerContent && headerContent.components && headerContent.components[0] && headerContent.components[0].fields && headerContent.components[0].fields.displayMainText">{{headerContent?.components[0]?.fields?.displayMainText}}</p>
+  </section>
+
+  <header class="navblock" [ngClass]="{'test' : true, 'sticky' : isSticky}">
+    <!-- <div class="topstrip">We are accepting orders with a delay in delivery. We will try our best to deliver your order as soon as possible.
+    </div> -->
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <a routerLink="/"><img
+              src="../assets/images/logo.png"
+              width="120" alt="Pantone" /></a>
+        </div>
+        <ul class="navbar" *ngIf="headerContent && headerContent.components && headerContent.components[1] && headerContent.components[1].fields && headerContent.components[1].fields.components ">
+          <li *ngFor="let menu of headerContent?.components[1]?.fields?.components">
+            <a  [routerLink]="menu?.fields?.itemUrl" (click) = "closemenu()" (mouseover)="mouseon()">{{menu?.fields?.itemName}}</a>
+          </li>
+        </ul>
+        <!-- <ul class="navbar"
+          *ngIf="headerContent && headerContent.headerItems && headerContent.headerItems[1] && headerContent.headerItems[1].fields && headerContent.headerItems[1].fields.headerItems[1]?.fields?.menuSubCategories">
+          <li *ngFor="let menu of headerContent?.headerItems[1]?.fields?.headerItems[1]?.fields?.menuSubCategories"
+            (mouseover)="mouseon()" (mouseout)="mouseout()">
+            <a *ngIf="menu?.fields?.displayText == 'Blog'" target="_blank" (click) = "closemenu()" (mouseover)="mouseon()" href="{{menu?.fields?.redirectLink}}">{{ menu?.fields?.displayText }}</a>
+          </li>
+        </ul> -->
+        <div class="headerright">
+          <div class="search-input">
+            <span class="black"  (click)="showsearchbarclick()">&nbsp;</span>
+            <span class="white"  (click)="showsearchbarclick()">&nbsp;</span>
+            <div class="input-search" [ngClass]="showsearchlish ? 'visible':hidden">
+              <input type="search" #search class="search-box" (keyup)="getSearch($event.target.value, $event)"
+                (click)="openSearchPopup($event.target.value, $event)" [(ngModel)]="searchText"
+                placeholder="Search">
+                <span (click)="toggledropdown()" class="input-search-icon">&nbsp;</span>                
+            </div>
+          </div>
+          <ul class="myaccount">
+            <li class="dropmenu" *ngIf="!loginuser">
+              <a class="user-avtar" (click)="loginPopupOpen()">
+              </a>
+              <!-- <ul *ngIf="!loginuser">
+                <a routerLink="/faqs">Help</a>
+                <a routerLink="/return-policy">Return</a>
+                <a routerLink="/contact-us">Contact Us</a>
+                <div class="lobinbtn">
+                  <a class="account-detail-icon" href="javascript:void(0)" (click)="loginPopupOpen()"><span>Login / Sign Up
+                    </span></a>
+                  <a class="text-uppercase last" href="javascript:void(0)" (click) = "signupPopupOpen()"><span class="last">Register</span></a>
+                </div>
+              </ul> -->
+
+            </li>
+            <li class="dropmenu" *ngIf="loginuser">
+              <a class="user-avtar" [routerLink]="['my-account']" [queryParams]="{ tab:'overview'}">
+              </a>
+            </li>
+            <!-- <li *ngIf="loginuser" class="dropmenu">
+              <a class="">Account 
+                <span class="black">&nbsp;</span>
+                <span class="white">&nbsp;</span>
+              </a>
+              <ul class="accountlist">
+                <h2>Hi, {{ loginname?.name ? loginname.name : 'Customer'}} </h2>
+                <li><a [routerLink]="['my-account']" [queryParams]="{ tab:'overview'}">My Account</a></li>
+                <li><a [routerLink]="['my-account']" [queryParams]="{ tab:'orders'}">My Order</a></li>
+                <li><a [routerLink]="['my-account']" [queryParams]="{ tab:'profile'}">Edit Profile</a></li>
+                <li><a (click)="logout()">Logout </a></li>
+              </ul>
+            </li> -->
+            <!-- <li *ngIf="loginuser">
+                        <a [routerLink]="['my-account']" [queryParams]="{ tab:'wishlist'}" >
+                            <b>{{wishlength || 0}}</b>
+                            <img src="../assets/images/ic-wishlist.png" alt="Wishlist" title="Wishlist"  width="16px">
+                          </a>
+                    </li>
+                    <li  *ngIf="!loginuser">
+                        <a class="wishlist" (click) = "loginPopupOpen()">
+                            <b>{{wishlength || 0}}</b>
+                            <img src="../assets/images/ic-wishlist.png" alt="Wishlist" title="Wishlist"  width="16px">
+                          </a>
+                    </li> -->
+
+            <li>
+              <a (click)="cartClicked()" class="shopping-bag">
+                <!-- <span *ngFor="let item of items">countItems(item)</span> -->
+                <b *ngIf="cartItemCount > 0">{{cartItemCount || 0}}</b>
+                <!-- <span class="black">&nbsp;</span>
+                <span class="white">&nbsp;</span> -->
+                <!-- <img src="../assets/images/ic-cart1.png" alt="Cart" [title]="menu_icons.altText[3]"
+                  class="img-responsive" width="16px"> -->
+              </a>
+            </li>
+          </ul>
+          <div class="search-overlay" (click)="closeshowsearchbarclick()" *ngIf="showsearchlish"></div>
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!--  ==================================== Search block start here ===================================================  -->
+  <div class="overlay" (click)="closeSearchPopup()" *ngIf="isSearchPopup"></div>
+  <section class="dropdown_product" *ngIf="isSearchPopup" [ngClass]="{'test' : true, 'sticky' : isSticky}">
+    <div class="container">
+      <div class="nosearchesmatch" *ngIf="(isSearchLoaded) && SearchProduct.length == 0">Sorry, no results found! Please check the spelling or try searching for something else.</div>
+      <div class="loader" *ngIf="isSearchLoading && !isSearchLoaded"></div>
+      <div class="inner_block" *ngIf="SearchProduct.length > 0"
+        [ngClass]="SearchProduct.length > 5 ? 'searchresult':''">
+        <!-- {{SearchProduct | json }} -->
+        <div class="left_block">
+          <ul>
+            <li *ngFor="let tag of tagNames | slice:0:10"><a href="javascript:void(0)"
+                (click)="getProductSearch(tag)">{{ tag }}</a></li>
+          </ul>
+        </div>
+        <div class="right_block">
+          
+          <div class="clear"></div>
+          <div class="product_list" *ngIf="SearchProduct.length == 0" style="text-align: center;">
+            <div class="loader-spinner loader" style="margin: 180px 368px;" *ngIf="isSearchLoading && !isSearchLoaded">
+            </div>
+
+          </div>
+          <div class="product_list" *ngIf="SearchProduct.length > 0">
+            <ul>
+              <li *ngFor="let product of SearchProduct | slice:0:3" (click)="closesearchbox()">
+                <div class="search_list" routerLink="products/id/{{product?.slug}}" (click)="closeshowsearchbarclick()">
+                  <div class="image_left">
+                    <img [src]="product?.images[0]?.file.url+ '?width=350'" alt="{{ product.name }}" class="product-img-src img-responsive" />
+                  </div>
+                  <div class="pro_details">
+                    <h2>{{ product.name }} </h2>
+                    <!-- <span>{{ categoryName(product.category) }}</span> -->
+                    <!-- <div class="product-category">{{  product?.category[0]?.name }}</div> -->
+                    <!-- <p>INR <del>{{ product.price }}</del> {{ product.sale_price }}</p> -->
+                    <!-- <span><span
+                        *ngIf="product && product.sale"><del>INR&nbsp;{{makeprice(product?.price)}}</del></span><span
+                        *ngIf="product && !product.sale">INR&nbsp;{{makeprice(product?.price)}}</span></span>
+                    <span *ngIf="product && product.sale"><span
+                        [ngClass]="(product && product.sale) ? 'sale_on' : 'sale_off'">INR
+                        {{makeprice(product?.sale_price)}}</span></span> -->
+
+                        <div class="price-section" *ngIf="product?.price || product?.sale_price">
+                          <span *ngIf="product && product.sale"><span [ngClass]="
+                              product && product.sale
+                                ? 'sale_on'
+                                : 'sale_off'
+                            ">₹ {{ makeprice(product?.sale_price) }}</span>
+                          </span>
+                          <span><span *ngIf="product && product.sale"><del>₹&nbsp;{{
+                                  makeprice(product?.price | number: 0)
+                                }}</del></span><span *ngIf="product && !product.sale">₹&nbsp;{{
+                                makeprice(product?.price | number: 0)
+                              }}</span></span>
+
+                          <div class="offer" *ngIf="percentage(product.sale_price, product.price)">
+                            <span
+                              *ngIf=" percentage(product.sale_price, product.price) > 0">{{ percentage(product.sale_price, product.price) }}%
+                              Off</span>
+                          </div>
+                        </div>
+
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <div class="view-all-products">
+              <!-- <h2 *ngIf="SearchProduct.length > 0">Top Suggestions</h2> -->
+              <div class="viewall" *ngIf="SearchProduct.length > 0"><a href="javascript:void(0)"
+                  (click)="getProductSearch(searchText)"> View all search results
+                  </a></div>
+                  <!-- ({{ SearchProduct ? SearchProduct.length : '0' }})</a></div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <div class="below-header">
+    <div class="container">
+      <div class="red-subHeader"
+        *ngIf="headerContent && headerContent.menuItems && headerContent.menuItems[10] && headerContent.menuItems[10].fields && headerContent?.menuItems[10]?.fields?.menuItems[0]?.fields?.menuSubcategory">
+        <div class="salelink"
+          *ngFor="let salelink of headerContent?.menuItems[10]?.fields?.menuItems[0]?.fields?.menuSubcategory">
+          <a [routerLink]="salelink?.fields?.redirectLink">{{ salelink?.fields?.menuItemText  }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--  ==================================== search block end here ===================================================  -->
+</ng-container>
+
+
+<!--  ====================================login & signup popup start here ===================================================  -->
+<app-login-popup *ngIf="forgetpassword || loginSignUpPopup" [overlaypupup]="overlaypupup" [loginpopup]="loginpopup"
+  [loginSignUpPopup]="loginSignUpPopup" [loginfailure]="loginfailure" [signupfailure]="signupfailure"
+  [loginloading]="loginloading"  [signupinit]="signupinit" [signupsuccess]="signupsuccess"
+  [getforgotpasswordloaded]="getforgotpasswordloaded" [loginloaded]="loginloaded" [signuppopup]="signuppopup"
+  [forgetpassword]="forgetpassword" [userforgotloading]="userforgotloading" [userforgotloaded]="userforgotloaded"
+  [userforgotfailed]="userforgotfailed" (closePopup)="closePopup()" (logindata)="onLoginformCapturedValues($event)"
+  (signupdata)="onSignupformCapturedValues($event)" (resetvalues)="onResetValues($event)"
+  (loginfailureEvent)="onLoginFailure()" (forgotClicked)="forgetclick()" (onSignupInvalid)="onInvalidSignup()"
+  (userinfo)="onUserInfoChange()" (onSignUpPopupOpen)="signupPopupOpen()"
+  (loginPopupOpen)="loginPopupOpen()" (closeForget)="closeforget()"></app-login-popup>
+
+
+ 
+  <div class="logout-loader" *ngIf="logoutLoading && !logoutLoaded">    
+    <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+  </div>
+
+  <!-- Session Timeout -->
+<div class="timeout-overlay" [ngStyle]="{ visibility: timeoutpopup == false ? 'hidden' : 'visible' }">
+  <div class="timeout-popup">
+    <div class="cross-popup" (click)="logout()">
+      <span>X</span>
+    </div>
+    <p>You have been logged out due to inactivity</p>
+  </div>
+</div>
+
+<!-- <div class="blackfirday" *ngIf="blackfirday">
+  <div class="block">
+    <div class="cross-popup" (click)="closefirday()">
+      <span>X</span>
+    </div>
+    <img src="https://ik.imagekit.io/2gwij97w0o/yeiktq95go1b/4GCjxy3spBs9ocvXJJX6If/2b70018d72ccc5e1747300b89c053c04/black-firday.gif" />
+  </div>
+</div> -->

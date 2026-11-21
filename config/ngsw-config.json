@@ -1,0 +1,56 @@
+{
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "resources": {
+        "files": [
+          "/favicon.ico",
+          "/index.html",
+          "/*.css",
+          "/**/*.jpg",
+          "/**/*.png",
+          "/*.js",
+          "/*.bundle.css",
+          "/*.bundle.js",
+          "/*.chunk.js"
+        ]
+      },
+      "urls": [
+        "https://fonts.googleapis.com/css?family=Roboto",
+        "https://fonts.gstatic.com/**"
+      ]
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/assets/**",
+          "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
+        ]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "gets",
+      "urls": [
+        "https://cs-webstore-backend-dot-commerce-space-backend-prod.appspot.com/_ah/api/esbx/v1/session",
+        "https://cs-webstore-backend-dot-commerce-space-backend-prod.appspot.com/_ah/api/esb/v1//coupons",
+        "https://cdn.contentful.com/spaces/yeiktq95go1b/environments/master/entries?sys.id=3gB6azt8nRENnom8b76HOj&include=5",
+        "https://cdn.contentful.com/spaces/yeiktq95go1b/environments/master/entries?sys.id=2y8pltPqa44naTQZeQEbFB&include=5",
+        "https://cdn.contentful.com/spaces/yeiktq95go1b/environments/master/entries?sys.id=7x6pOkhYncf0WGnj7CPlM4&include=5"
+
+      ],
+      "cacheConfig": {
+        "maxSize": 8,
+        "maxAge": "24h",
+        "timeOut": "10s",
+        "strategy": "freshness"
+      }
+    }
+  ]
+}

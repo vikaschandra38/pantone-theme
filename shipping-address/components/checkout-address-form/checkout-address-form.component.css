@@ -1,0 +1,206 @@
+span.tooltip {
+    opacity: 0;
+    width: auto;
+    background: #e7e7e7;
+    color: #333;
+    padding: 6px 20px;
+    right: 0;
+    font-size: 11px;
+    top: -40px;
+    font-family: 'lato', sans-serif;
+font-weight: 400;
+    left: 0;
+    text-align: center;
+}
+.button-save:hover span.tooltip {
+    opacity: 1;
+}
+span.tooltip:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 10px solid #e7e7e7;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    bottom: -10px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+/* .btnblock {
+    display: flex;
+    align-items: center;
+} */
+
+form.shipping-form {
+    position: relative;
+}
+  button.mat-button.mat-button-base {
+    position: absolute;
+    right: 0px;
+    top: -10px;
+    margin: 0;
+    padding: 0;
+    width: 0;
+    min-width: max-content;
+  }
+  .inputblock {
+    margin-bottom: 15px;
+}
+.shipping-form .mat-form-field.mat-form-field-hide-placeholder mat-label{
+    color: #333;
+    opacity: 1;
+    text-shadow: none;
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+font-weight: 500;
+}
+.shipping-form .mat-form-field.ng-dirty mat-label ,
+shipping-form .mat-form-field.mat-form-field-hide-placeholder mat-label{
+    color: #644ea2;
+    opacity: 1;
+    text-shadow: none;
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+font-weight: 700;
+}
+.mat-error {
+    color: #644ea2;
+    font-size: 13px;
+}
+
+.button-save {
+    position: relative;
+    width: 45%;
+    margin: 0 20px 0 0;
+}
+
+.btnblock .button-save button{
+    font-family: 'lato', sans-serif;
+font-weight: 500;
+    border: none;
+    /* padding: 10px; */
+    width: 100%;
+    background-color: #644ea2;
+    color: #fff;
+    text-transform: uppercase;
+    border: 1px solid #644ea2;
+    text-align: center;
+    font-size: 13px;
+    height: 42px;
+    line-height: 42px;
+    display: block;
+    width: 100%;
+    margin: 0px 0 30px auto;
+    outline: none;
+    box-shadow: none;
+    border-radius: 2px;
+}
+.btnblock .button-save button:hover {
+    background-color: #e7e7e7;
+    color: #333;
+    border: 1px solid #644ea2;
+}
+.btnblock .button-save button[disabled] {
+    background: #e7e7e7;
+    border: 1px solid #644ea2;
+    color: #333;
+    cursor: no-drop;
+    
+}
+.btnblock .button-save button[disabled]:hover{
+    background: #e7e7e7;
+    border: 1px solid #644ea2;
+    color: #333;
+}
+
+.btnblock .cancelbtn {
+    width: 50%;
+    margin: 0 0px 0 0;
+}
+.btnblock .button-save button.cancelbtn {
+    border: 1px solid #644ea2;
+    color: white;
+}
+.btnblock .button-save button.cancelbtn:hover{
+    background: #e7e7e7;
+    color: #333;
+}
+.btnblock {
+display: flex;
+align-items: center;
+padding-top: 30px;
+padding-bottom: 40px;
+}
+.btnblock.emptyeddress .button-save{
+    margin: 0 auto;
+}
+.shippingform-wrapper {
+width: 450px;
+margin: 0 0 0 auto;
+padding-top: 23px;
+}
+h2 {
+font-family: 'lato', sans-serif;
+font-weight: 500;
+font-size: 16px;
+color: #333;
+padding: 0;
+margin: 10px 0 20px;
+border: none;
+text-align: center;
+padding-bottom: 40px;
+}
+.btnblock .button-save .abc{
+/* cursor: pointer; */
+}
+.shippingform-wrapper h2{
+    font-family: 'lato', sans-serif;
+font-weight: 600;
+}
+
+.btnblock .button-save .loaderbtn{    
+background-color: #644ea2;
+color: #fff;
+pointer-events: none;
+opacity: 0.6;
+background-image: linear-gradient(135deg, rgba(255, 255, 255, .3) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .3) 50%, rgba(255, 255, 255, .3) 75%, transparent 75%, transparent);
+-webkit-transition: width .5s ease-in-out;
+transition: width .5s ease-in-out;
+background-size: 50px 50px;
+-webkit-animation: animate-stripes 3s infinite linear;
+animation: animate-stripes 3s infinite linear;
+cursor: default;
+-webkit-box-shadow: none;
+box-shadow: none;
+}
+.errormsg {
+color: red;
+margin: 0 0 8px;
+}
+
+@keyframes animate-stripes {
+0% {
+    background-position: 0 0
+}
+100% {
+    background-position: 50px 0
+}
+}
+@-webkit-keyframes animate-stripes {
+0% {
+    background-position: 0 0
+}
+100% {
+    background-position: 50px 0
+}
+}
+@-moz-keyframes animate-stripes {
+0% {
+    background-position: 0 0
+}
+100% {
+    background-position: 50px 0
+}
+} 

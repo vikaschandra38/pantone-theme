@@ -1,0 +1,44 @@
+.flexblock {
+    display: block;
+    align-items: flex-start;
+    margin: 50px 0;
+}
+.flexblock .sidebar {
+    /* width: 20%;
+    margin-right: 5%; */
+}
+.flexblock .rightbar {
+    /* width: 75%; */
+}
+.flexblock .rightbar h1 {
+    font-size: 2rem;
+    color: #666;
+    text-transform: uppercase;
+    font-weight: 300;
+    padding: 20px 0;
+    margin: 0;
+}
+.rightbar p {
+    color: #333;
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 10px;
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+}
+.rightbar h1 ,  h1 {
+    font-size: 18px;
+    color: #000;
+}
+.loader {
+    position: absolute;
+    top: 0%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+.rightbar h1 {
+    font-size: 15px;
+    color: #000;
+}

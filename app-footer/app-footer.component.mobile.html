@@ -1,0 +1,109 @@
+<!-- {{ footerContent | json }} -->
+<footer>
+    <ng-container *ngIf="isLoaded && !isLoading">
+        <div class="footer-links">
+            <div class="container">
+
+                <!-- <div class="newsfeed" *ngIf="news">
+          <div class="subscribe_block" [ngClass]="isError ? 'error' : ''" [ngClass]="isSuccess ? 'success' : ''">
+            <div class="inputblock">
+              <input type="text" [(ngModel)]="subscribeInput" (keyup)="keyupText(subscribeInput)"
+                placeholder="SIGN UP FOR NEWSFEED" />
+              <button class="subcribe-arrow-btn" (click)="doSubscribe(subscribeInput)">Subscribe</button>
+            </div>
+            <div class="error-text" *ngIf="isError && isBlank">Please Enter Email Address!</div>
+            <div class="error-text" *ngIf="isError && !isBlank && !isEmail">Please Enter Valid Email Address!</div>
+            <div class="success-text" *ngIf="!isError && isSuccess">Email Successfully Subscribed!</div>
+          </div>
+        </div> -->
+
+
+                <div class="footer-main">
+                    <!-- <div class="col-2">
+            <div class="lookbook">
+              <div class="img">
+                <span class="lookbook-icon"></span>
+              </div>
+              <div class="text-lookbook">
+                <h4>{{footerContent?.footerItems[0]?.fields?.footerItems[1]?.fields?.menuSubCategories[0]?.fields?.displayMainText}}</h4>
+                <p>{{footerContent?.footerItems[0]?.fields?.footerItems[1]?.fields?.menuSubCategories[0]?.fields?.description}}</p>
+              </div>      
+            </div>
+          </div> -->
+                    <div class="col-2">
+                        <ul>
+                            <li><a routerLink="/about-us">About Pantone</a></li>
+                            <!-- <li><a routerLink="/">Blog</a></li> -->
+                            <li><a routerLink="/contact-us">Need Help</a></li>
+                            <li><a routerLink="privacy-policy">Privacy Policy</a></li>
+                            <li><a routerLink="terms-and-conditions">Terms and conditions</a></li>
+                            <li><a routerLink="/">Return Policy</a></li>
+                            <li><a routerLink="/faqs">Common Questions</a></li>
+                            <li>
+                                <a routerLink="/"></a>Shipping Info</li>
+                            <!-- [routerLink]="sublink?.fields?.redirectLink" -->
+                            <!-- <h4>{{ ftlink?.fields?.displayText }}</h4> -->
+                            <!-- <li *ngFor="let sublink of footerContent?.footerItems[1]?.fields?.footerItems" >
+                <a *ngIf="sublink?.fields?.subcategoryTitle == 'Career'" href="{{sublink?.fields?.redirectLink}}" target="_blank">{{ sublink?.fields?.subcategoryTitle }}</a>
+                <a *ngIf="sublink?.fields?.subcategoryTitle != 'Career'" [routerLink]="sublink?.fields?.redirectLink">{{ sublink?.fields?.subcategoryTitle }}</a>
+              </li> -->
+                        </ul>
+                    </div>
+
+                    <!-- <div class="social-links">
+                        <ul>
+                            <li class="facebook">
+                                <a href="https://www.facebook.com/PantoneColor" target="_blank"></a>
+                            </li>
+                            <li class="twitter">
+                                <a href="https://twitter.com/pantone" target="_blank"></a>
+                            </li>
+                            <li class="instagram">
+                                <a href="https://www.pinterest.com/pantonecolor/" target="_blank"></a>
+                            </li>
+                            <li class="youtube ">
+              <a href="https://www.youtube.com/user/Pantone" target="_blank"></a>
+            </li>
+                            <li class="linkedin">
+                                <a href="https://www.linkedin.com/pantone/" target="_blank"></a>
+                            </li>
+                        </ul>
+                    </div> -->
+
+                    <!-- <p class="coprighttext">Copyright © 2020 <a class="blacklink" routerLink="/">eshopbox.com. </a>All rights Reserved.</p> -->
+                </div>
+
+
+            </div>
+        </div>
+    </ng-container>
+
+</footer>
+
+
+
+
+
+<footer class="Disclaimer ">
+    <ng-container *ngIf="isLoaded && !isLoading">
+        <div class="footer-links">
+            <div class="container">
+                <div class="footer-main">
+                    <div class="col-12">
+                        <ul>
+                            <li>
+                                <p>This is a Pantone-authorized Website, developed, owned, run and managed by Eshopbox. Product sold by Sudarshan Books (P) Ltd.</p>
+                            </li>
+
+                        </ul>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </ng-container>
+
+</footer>

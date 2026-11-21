@@ -1,0 +1,335 @@
+.filters-wrapper li > .filters {
+  border-bottom: 1px dashed gray;
+  padding: 6% 0;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.filters-wrapper li a:after {
+  content: "\f107";
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  color: #000;
+  font-size: 18px;
+  float: right;
+}
+
+.filters-settings {
+  display: block;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  margin-top: 13px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 13px;
+  font-size: 0.7em;
+}
+
+.filters-settings .color-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: red;
+  margin: 0 6px 5px 0px;
+  box-shadow: 0px 0px 6px #888888;
+}
+
+.filters-settings .color-icon-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.filters a {
+  font-size: 0.8em;
+  color: black;
+}
+
+.filters-settings .checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+}
+.filters-settings .checkbox-container {
+  flex-grow: 1;
+  width: 50%;
+}
+.filters-settings .checkbox-container > span {
+  position: relative;
+  top: -4px;
+}
+
+.mat-expansion-panel-header {
+  padding: 0 0;
+  border-bottom: 1px dashed gray;
+}
+.mat-expansion-panel-spacing {
+  margin: 0 0;
+}
+.mat-expansion-panel:not([class*="mat-elevation-z"]) {
+  box-shadow: none;
+}
+.filter_title {
+  color: #333;
+  padding: 13px 0 13px 15px;
+  display: block;
+  text-transform: none;
+  letter-spacing: .5px;
+  font-weight: 400;
+  width: 35%;
+  font-size: 14px;
+  font-family: 'Lato', sans-serif;
+font-weight: 500;
+  text-transform: capitalize;
+}
+.filter_title:after {
+  content: "";
+  float: right;
+  position: relative;
+  right: 8px;
+  width: 10px;
+  height: 10px;
+  background-repeat: no-repeat;
+  top: 5px;
+}
+ul.filters-wrapper:before {
+  content: "dsfg";
+  font-size: 0;
+  position: absolute;
+  width: 35%;
+  display: block;
+  height: 100vh;
+  z-index: -1;
+  background: #e7e7e7;
+  box-shadow: 0px 2px 5px #99999936;
+}
+.filters-wrapper .active .filter_title:after {
+  content: "";
+  float: right;
+  position: relative;
+  right: 8px;
+  /* background: url(../../../duke-theme/assets/images/arrow_down.png) right center; */
+  width: 10px;
+  height: 10px;
+  background-repeat: no-repeat;
+  top: 5px;
+}
+
+ul > li:hover {
+  cursor: pointer;
+}
+
+.filters-wrapper ul {
+  margin: 15px 0 0;
+  font-size: 15px;
+  display: block;
+  transition: all linear 0.5s;
+  width: 60%;
+  position: absolute;
+  right: 0;
+  top: -10px;
+  display: none;
+}
+
+.filters-wrapper {
+	position: fixed;
+    top: 45px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.filters-wrapper ul li.filter-attributes.size {
+  display: inline-block;
+  width: 50%;
+  padding: 5px 0;
+}
+.filters-wrapper li.active ul {
+  /* border-bottom: 1px solid #000; */
+  padding-bottom: 15px;
+  display: block;
+  height: calc(100vh - 100px);
+  overflow-y: scroll;
+  /* -webkit-animation: slide-down .3s ease-out;
+    -moz-animation: slide-down .3s ease-out; */
+}
+@-webkit-keyframes slide-down {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-10%);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+  }
+}
+@-moz-keyframes slide-down {
+  0% {
+    opacity: 0;
+    -moz-transform: translateY(-10%);
+  }
+  100% {
+    opacity: 1;
+    -moz-transform: translateY(0);
+  }
+}
+.filters-wrapper .active .filter_title {
+  border: none;
+  border-left: 4px solid #644EA2;
+  background: #fff;
+  font-family: 'Lato', sans-serif;
+font-weight: 700;
+}
+.filters-header {
+  display: flex;
+  position: fixed;
+  background: white;
+  width: 100%;
+  left: 14px;
+  align-items: center;
+  padding: 4px 15px;
+  border-bottom: 1px solid #ccc;
+}
+.filters-header h4 {
+  font-family: 'Lato', sans-serif;
+font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #333;
+  margin: 10px 0 10px;
+  width: 50%;
+  text-align: left;
+}
+.filters-header a {
+  color: #644EA2;
+  padding: 10px 0;
+  display: block;
+  width: 50%;
+  text-align: right;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+.filtertext {
+  font-size: 14px;
+  font-family: 'Lato', sans-serif;
+font-weight: 400;
+  color: #666;
+  letter-spacing: 0.5px;
+  font-weight: normal;
+  display: flex;
+  text-transform: capitalize;
+  align-items: center;
+}
+.filtertext span {
+  font-size: 14px;
+  font-family: 'Lato', sans-serif;
+font-weight: 500;
+  font-weight: normal;
+  text-transform: capitalize;
+}
+.filtertext span.color-swatch {
+  width: 14px;
+  height: 14px;
+  margin: 0 10px 0 5px;
+  display: none;
+}
+.animate {
+  width: 200px;
+  background: lightgray;
+  margin: 100px auto;
+  text-align: center;
+  padding: 20px;
+  font-size: 1.5em;
+}
+.color-swatch {
+  /* display: block;
+      border-radius: 15px;
+      width: 30px;
+      height: 30px;
+      float: left;
+      border: 1px solid black;
+      box-shadow: 0px 1px 2px #ccc; */
+  margin: 5px;
+  display: flex;
+  align-items: center;
+}
+.color-swatch span.style {
+  width: 14px;
+  height: 14px;
+  /* display: block; */
+  margin: 0 10px 0 0;
+}
+.color-swatch b {
+  font-weight: normal;
+}
+.color-swatch.active b {
+  font-weight: bold;
+  color: #000;
+}
+.color-swatch.Yellow {
+  background: #fffe99 !important;
+}
+.color-swatch.Brown {
+  background: #5c3731 !important;
+}
+.color-swatch.Red {
+  background: #ea333e !important;
+}
+.color-swatch.Blue {
+  background: #394e81 !important;
+}
+.color-swatch.Purple {
+  background: #663398 !important;
+}
+li.filter-attributes.color .active {
+  border: 3px solid #fff;
+  box-shadow: 0px 0px 10px #000;
+}
+
+.test ul {
+  display: none;
+}
+.color-swatch.active {
+  /* border: 2px solid #fff;
+    box-shadow: 0px 1px 2px #000; */
+}
+
+.applyfilter {
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+  background: #fff;
+  font-size: 14px;
+  border-top: 1px solid #ccc;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+.applyfilter a {
+  color: #644EA2;
+  padding: 15px 0;
+  display: block;
+  width: 50%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+.applyfilter a:first-child {
+  color: #666;
+}
+.applyfilter a .cancelfilter {
+  color: #666;
+}
+ul.filters-wrapper li {
+  display: flex;
+  align-items: flex-start;
+}
+ul.filters-wrapper b.filter_title.filter-slug , ul.filters-wrapper b.filter_title.filter-active , ul.filters-wrapper b.filter_title.filter-stock_status{
+  display: none;
+}
+.filters-wrapper {
+  padding: 0px 0 0;
+}

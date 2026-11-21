@@ -1,0 +1,250 @@
+<!-- {{contentfuldetails | json}} -->
+<!-- {{prodDetails | json }} -->
+<!-- {{ slider4 | json}} -->
+
+<!-- {{ sliderimage | json }}
+================
+{{ sliderfullimage | json }} -->
+
+
+<div id="proimage_popup" [ngClass]="  proimagepopup ? 'showpopup': ''">
+    <a class="crosspoup" (click)="hideprodpopup()"><img src="../assets/images/cross.png" alt="cross" /></a>
+    <!-- <a class="zoom-click"><img src="../assets/images/ic-zoom.png" /></a> -->
+    <div class="zoomproduct">
+        <div class="product-images" [lazy-load-images]="{ rootMargin: '10px' }">
+            <!-- <div class="images_border">
+            <img [attr.data-src]="image" class="product-img-src img-responsive" src="../assets/images/details-img.jpg" alt="">
+          </div>  -->
+            <div class="arrow-button">
+                <a (click)="prev()" class="prev"><img src="../assets/images/arrow-left.png" alt="arrow left" /></a>
+                <a (click)="next()" class="next"><img src="../assets/images/arrow-right.png" alt="arrow right" /></a>
+            </div>
+            <div class="slidercount">{{ currentIndex+1 | number }}/{{ sliderimage.length }}</div>
+
+            <div class="zoomloaing"><span>Loading...</span></div>
+            <pinch-zoom [zoom-button]="true">
+                <img [src]="image2 | DetailZoomImageKitPipe : this.detailZoomImageWidth" alt="{{prodDetails[0]?.name}}" />
+            </pinch-zoom>
+            <!-- <img [src]=" (prodDetails[0]?.images)[currentIndex]?.file?.url "/> -->
+        </div>
+    </div>
+</div>
+
+<div class="detailspage">
+    <div *ngIf="loading && !loaded" class="loader">
+        <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+    </div>
+    <!--
+<div class="breadcrumb" *ngIf = "!loading && loaded">
+  <div class="container">
+    <div class="breadcrumb-inner">
+      <div class="selected-tags">
+        <ul class="ulclass">
+        <a routerLink="">Home</a>
+        <li  *ngFor="let cat of prodDetails[0]?.category">
+            <a *ngIf="cat?.slug !== 'all-styles' && cat?.id !== breadcrumbid" routerLink="../../categories/{{cat?.slug}}">{{cat?.name}}</a>
+            <a *ngIf="cat?.id === breadcrumbid" routerLink="../../categories/{{cat?.slug}}">{{cat?.name}}</a>
+        </li>
+        <a routerLink="../{{prodDetails[0]?.slug}}">{{prodDetails[0]?.name}}</a>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div> ====== Product Details breadcrumb=======  -->
+
+    <div class="productdetails_breadcrumb" *ngIf="!loading && loaded"></div>
+    <div class="container" *ngIf="!loading && loaded">
+        <div class="breadcrumb">
+            <div class="breadcrumb-inner">
+                <div class="selected-tags">
+                    <ul>
+                        <!-- <li routerLink="/">Home</li> -->
+                        <!-- <li routerLink="/categories/{{prodDetails[0]?.attributes?.parent_category}}"> {{prodDetails[0]?.attributes?.parent_category}}</li> -->
+                        <li routerLink="/categories/{{prodDetails[0]?.attributes?.category}}"> {{prodDetails[0]?.attributes?.category}}</li>
+                        <li>{{ prodDetails[0]?.name }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="product-details">
+            <div class="row">
+                <div class="col-sm-6 details-section">
+                    <div class="product-name">
+                        <h1>{{prodDetails[0]?.name}} <br />
+                            <span>{{ prodDetails[0]?.sku}}</span>
+                        </h1>
+                        <div class="product-price">
+
+                            <span *ngIf="prodDetails[0] && prodDetails[0].sale">
+                                <span [ngClass]="(prodDetails[0] && prodDetails[0].sale) ? 'sale_on' : 'sale_off'">₹&nbsp;<span class="fullname" [innerText]="detailSalePrice | number:0"></span>
+                            </span>
+                            </span>
+                            <span>
+                                <span *ngIf="prodDetails[0] && prodDetails[0].sale">
+                                    <span><del>₹&nbsp;<span [innerText]="detailPrice | number:0"></span></del>
+                            </span>
+                            </span>
+                            <span *ngIf="prodDetails[0] && !prodDetails[0].sale">
+                                    ₹&nbsp;<span [innerText]="detailPrice | number:0"></span>
+                            </span>
+                            </span>
+                            <div class="offer" *ngIf="percentage(prodDetails[0]?.sale_price, prodDetails[0]?.price) > 0">
+                                ({{ percentage(prodDetails[0]?.sale_price, prodDetails[0]?.price)}}% OFF)
+                            </div>
+                        </div>
+                        <div class="including-gst">
+                            <span>Inclusive of all taxes</span>
+                        </div>
+
+                    </div>
+                    <div class="sizes_select" *ngFor="let option of prodDetails[0]?.options">
+                        <div *ngIf="getuserwishlistloading" class="loader wishlistloader">
+                            <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+                        </div>
+                        <div *ngIf="getwishlistremoveloading" class="loader wishlistloader">
+                            <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+                        </div>
+
+                        <div *ngIf="option?.name === 'Size' || option?.name === 'size' && option?.values" class="sizelist">
+                            <h2><span>Select {{option?.name | uppercase}}</span> </h2>
+                            <ul class="select-size-block" *ngIf="sort(option?.values)">
+                                <li *ngFor="let size of option?.values">
+                                    <span class="size-box disabled" *ngIf="checksize(size.name)">{{size?.name}}</span>
+                                    <span class="size-box" *ngIf="!checksize(size.name)" (click)="selectSize(option?.id, size?.id, size?.name)" [ngClass]="activesize == size.name ? 'activesize':''  ">{{size?.name}}</span>
+                                </li>
+                            </ul>
+                            <span class="size_error" *ngIf="isSize === 'notfound'">Please select Size</span>
+                        </div>
+                    </div>
+                    <div class="shopbtn_block">
+                        <div class="shopping-bag-btn" (click)="addToCart(prodDetails)" [ngClass]=" itemaddingcart ? 'loaderbtn': ''">
+                            <span>Add To Bag</span>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <!-- <h2>Description</h2> -->
+                        <p [innerHTML]="( prodDetails[0]?.description)" style="text-align: justify;">{{ prodDetails[0]?.description }}</p>
+                    </div>
+
+                    <div class="accordion">
+                        <mat-accordion>
+                            <mat-expansion-panel *ngIf="prodDetails[0]?.attributes?.features">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Features
+                                    </mat-panel-title>
+
+                                </mat-expansion-panel-header>
+                                <p class="content-details" [innerHTML]="( prodDetails[0]?.attributes?.features )">{{ prodDetails[0]?.attributes?.features }}</p>
+                            </mat-expansion-panel>
+
+                            <mat-expansion-panel *ngIf="prodDetails[0]?.attributes?.color_description">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Color
+                                    </mat-panel-title>
+
+                                </mat-expansion-panel-header>
+                                <p class="content-details" style="font-family: lato;" [innerHTML]="( prodDetails[0]?.attributes?.color_description )">{{ prodDetails[0]?.attributes?.color_description }}</p>
+                            </mat-expansion-panel>
+
+                            <mat-expansion-panel *ngIf="prodDetails[0]?.attributes?.applications">
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        Application
+                                    </mat-panel-title>
+
+                                </mat-expansion-panel-header>
+                                <p class="content-details" [innerHTML]="( prodDetails[0]?.attributes?.applications )">{{ prodDetails[0]?.attributes?.applications }}</p>
+                            </mat-expansion-panel>
+
+
+
+                            <mat-expansion-panel>
+                                <mat-expansion-panel-header>
+                                    <mat-panel-title>
+                                        More Information
+                                    </mat-panel-title>
+
+                                </mat-expansion-panel-header>
+                                <!-- <p class="content-details" [innerHTML]="( prodDetails[0]?.attributes?.applications )">{{ prodDetails[0]?.attributes?.applications }}</p> -->
+                                <p *ngIf="prodDetails[0]?.attributes?.sold_by"><b>Sold by: </b>{{prodDetails[0]?.attributes?.sold_by}}</p>
+                                <p *ngIf="prodDetails[0]?.attributes?.manufacturer"><b>Manufacturer Details: </b>{{ prodDetails[0]?.attributes?.manufacturer }}</p>
+                                <p *ngIf="prodDetails[0]?.attributes?.country_of_origin"><b>Country of Origin: </b>{{prodDetails[0]?.attributes?.country_of_origin}}</p>
+                            </mat-expansion-panel>
+
+
+
+                        </mat-accordion>
+
+                    </div>
+
+                    <!-- <div class="description">
+                        <div class="material">
+                            <h2 (click)="moreclick()" [ngClass]="moredetails ? 'arrowup':'arrowdown'">More Information</h2>
+                            <div class="moreshow" [ngClass]="moredetails ? 'visible':''">
+                                <p *ngIf="prodDetails[0]?.attributes?.sold_by"><b>Sold by: </b>{{prodDetails[0]?.attributes?.sold_by}}</p>
+                                <p *ngIf="prodDetails[0]?.attributes?.manufacturer"><b>Manufacturer Details</b><br />{{ prodDetails[0]?.attributes?.manufacturer }}</p>
+                                <p *ngIf="prodDetails[0]?.attributes?.country_of_origin"><b>Country of Origin: </b>{{prodDetails[0]?.attributes?.country_of_origin}}</p>
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+                <!-- details right side bar -->
+
+                <div class="col-sm-6">
+                    <div class="product_imagelist">
+
+                        <div class="product-images">
+                            <div class="images_border" [lazy-load-images]="{ rootMargin: '10px' }">
+                                <div class="arrow-button">
+                                    <a (click)="prev()" class="prev"></a>
+                                    <a (click)="next()" class="next"></a>
+                                </div>
+                                <img src="../assets/images/details-img.jpg" [attr.data-src]="(prodDetails[0]?.images)[currentIndex]?.file?.url | DetailChildImageKitPipe : this.detailMainImageWidth" class="main-img" (click)='zoomclick(currentIndex)' alt="" />
+                            </div>
+                        </div>
+
+                        <div class="slide-left">
+                            <div class="vertical-slide">
+                                <a (click)="prev()" class="up"></a>
+                                <a (click)="next()" class="down"></a>
+                            </div>
+                            <div *ngFor="let image of prodDetails[0]?.images  | slice:0:5; let i = index" (click)="slideclick(i)" [lazy-load-images]="{ rootMargin: '10px' }" [ngClass]="prodDetails[0]?.attributes?.category == 'accessories-caps' ? 'accessories-caps':''">
+                                <div class="images_border" [ngClass]="currentIndex == i? 'active':'inactive'">
+                                    <img src="../assets/images/details-img.jpg" [attr.data-src]="image?.file?.url | DetailChildImageKitPipe : this.detailChildImageWidth" alt="" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+                <!-- left side -->
+
+            </div>
+
+            <div class="recommended_product" *ngIf="recommendedProducts && recommendedProducts.length > 0">
+                <h2>— You might also like —</h2>
+                <common-slider-1 [data]="recommendedProducts" last="10"></common-slider-1>
+            </div>
+            <!-- recommended_product list -->
+        </div>
+
+
+
+
+    </div>
+</div>
+<!-- <ngx-json-ld [json]="schema"></ngx-json-ld> -->
+<!-- <div class="overlay" id="headerOverlay" (click)='hidenoverlay()' *ngIf="sizeguideoverlay"></div>
+<div id="sizeguidepopup" [ngClass]="  sizeguidepopupblock ? 'showguide': ''">
+    <div class="close" (click)="hidesizeguidepopup()">X</div>
+    <img [src]="contentfuldetails?.pageElements[0]?.fields?.sizeChartDesktopImages[0]?.fields?.file?.url" />
+</div> -->
+<div *ngIf="isSalePopup">
+    <app-sale-popup [popupProduct]="popupProduct" [productToAdd]="productOnPause" (addToBag)="addToBag($event)" [comboProduct]="comboProduct" (closePopup)="closeSalePopup()">
+    </app-sale-popup>
+</div>

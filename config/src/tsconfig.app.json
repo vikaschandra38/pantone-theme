@@ -1,0 +1,17 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "baseUrl": "./",
+    "paths": {
+      "@app/*": ["app/*"],
+      "@theme/*": ["app/themes/pantone-theme/*"],
+      "@env/*": ["environments/*"]
+    }
+  },
+  "angularCompilerOptions": {
+    "generateDeepReexports": true,
+    "enableIvy": false
+  },
+  "exclude": ["test.ts", "**/*.spec.ts"]
+}

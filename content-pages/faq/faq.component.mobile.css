@@ -1,0 +1,85 @@
+
+
+.flexblock {
+    display: block;
+    align-items: flex-start;
+    margin: 25px 0;
+}
+
+.flexblock .rightbar h2 {
+    font-size: 2rem;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: 300;
+    padding: 20px 0;
+    margin: 0;
+}
+.rightbar p {
+    color: #333;
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-family: 'Lato', sans-serif;
+  font-weight: 400;;
+    line-height: 20px;
+ 
+}
+.rightbar h2 ,  h2 {
+    font-size: 18px;
+    color: #000;
+}
+.loader {
+    position: absolute;
+    top: 0%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+.rightbar h2 {
+    font-size: 15px;
+    color: #000;
+}
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+    box-shadow: none;
+    /* border-top: 1px dashed #999; */
+    padding: 10px 0;
+    margin: 0;
+}
+.mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled=true]):hover{
+    background: none;
+}
+.mat-expansion-panel-header{
+    padding: 0;
+    font-size: 14px;
+    color: #999;
+    text-transform: lowercase;
+    margin: 0;
+    font-family:  'Lato', sans-serif;
+    font-weight: normal;
+    /* height: 100% !important;
+    padding: 10px 0; */
+}
+mat-panel-title.mat-expansion-panel-header-title p::first-letter {
+    text-transform: uppercase;
+} 
+.mat-expansion-panel-header.mat-expanded .mat-expansion-panel-header-title p{
+    font-family: 'Lato', sans-serif;
+  font-weight: 700;;
+}
+.page-loader mat-spinner {
+    margin: auto !important;
+  }
+  .page-loader {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+  }
+  .accordion h4 {
+    font-size: 13px !important;
+    font-family: latobold;
+    color: #3d2d17;
+    text-transform: initial;
+    line-height: normal;
+    text-transform: uppercase;
+}

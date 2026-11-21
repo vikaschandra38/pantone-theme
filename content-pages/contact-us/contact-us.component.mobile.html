@@ -1,0 +1,78 @@
+<!-- {{ contactusdata | json }} -->
+
+<section class="contact-page">
+    <div class="container">
+        <div class="contact-wrp">
+            <div class="heading">
+
+                <h1> Customer Service </h1>
+            </div>
+            <div class="col-1">
+                <div class="box-heading">
+                    <!-- <h3> {{contactusdata?.addComponents[0]?.fields?.displayMainText}} </h3> -->
+                    <!-- <p> {{contactusdata?.pageElements[0]?.fields?.description}} </p>  -->
+                </div>
+                <div class="toggle-box">
+                    <h3 class="toggle-heading" (click)="telclick()" [ngClass]="telnumber ? 'active':'in-active'"> <img src="../../assets/images/tel-icon.png" /> {{contactusdata?.addComponents[0]?.fields?.relatedContent[0]?.fields?.displayMainText}} </h3>
+                    <div class="toggle-info" [ngClass]="telnumber ? 'active':'in-active'">
+                        <p>
+                            <a href='tel:{{contactusdata?.addComponents[0]?.fields?.relatedContent[0]?.fields?.description}}' [innerHTML]="contactusdata?.addComponents[0]?.fields?.relatedContent[0]?.fields?.description"></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="toggle-box">
+                    <h3 class="toggle-heading" (click)="emailclick()" [ngClass]="showemail ? 'active':'in-active'"> <img src="../../assets/images/mail-icon.png" /> {{contactusdata?.addComponents[0]?.fields?.relatedContent[1]?.fields?.displayMainText}} </h3>
+                    <div class="toggle-info" [ngClass]="showemail ? 'active':'in-active'">
+                        <p>
+                            <a href="mailto:{{contactusdata?.addComponents[0]?.fields.relatedContent[1]?.fields?.description}}" [innerHTML]="contactusdata?.addComponents[0]?.fields?.relatedContent[1]?.fields?.description"></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="toggle-box">
+                    <h3 class="toggle-heading" (click)="addressclick()" [ngClass]="showaddress ? 'active':'in-active'"> <img src="../../assets/images/address-icon.png" /> {{contactusdata?.addComponents[0]?.fields?.relatedContent[2]?.fields?.displayMainText}} </h3>
+                    <div class="toggle-info" [ngClass]="showaddress ? 'active':'in-active'">
+                        <p [innerHTML]="contactusdata?.addComponents[0]?.fields.relatedContent[2]?.fields?.description"> </p>
+
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-2">
+                <div class="box-heading">
+                    <h3> {{'contactusdata?.addComponents[0]?.fields?.displayMainText'}} </h3>
+                </div>
+                <div class="toggle-box">
+                    <h3 class="toggle-heading" (click)="addressclick()" [ngClass]="showaddress ? 'active':'in-active'"> <img src="../../assets/images/address-icon.png" /> </h3>
+                    <div class="toggle-info" [ngClass]="showaddress ? 'active':'in-active'">
+                        <p [innerHTML]="contactusdata?.addComponents[0]?.fields.relatedContent[2]?.fields?.description"> </p>
+                    </div>
+                </div>
+            </div> -->
+            <!-- <div class="col-2 branch-office">
+        <div class="box-heading">
+          <h3> {{contactusdata?.pageElements[3]?.fields?.displayMainText}} </h3>
+        </div>
+        <div class="toggle-box" *ngFor="let listbranch of contactusdata?.pageElements[3]?.fields?.relatedContent[0]?.fields?.relatedContent; let i = index">
+            <h3 class="toggle-heading" (click)="branchclick(i)" [ngClass]="( currentindex == i) ? 'active':'in-active'"> <img src="../../assets/images/address-icon.png" />  {{listbranch?.fields?.displayMainText}} </h3>
+            <div class="toggle-info" [ngClass]="(currentindex == i) ? 'active':'in-active'">
+              <p [innerHTML]="listbranch?.fields?.description">{{listbranch?.fields?.description}} </p>
+            </div>
+          </div>
+      </div> -->
+
+            <div class="clearfix"></div>
+            <!-- <div class="col-1 margin-top-70">
+          <div class="box-heading">
+            <h3> {{contactusdata?.pageElements[2]?.fields?.displayMainText}}  </h3>
+          </div>
+          <div class="toggle-box">
+              <h3 class="toggle-heading" (click)="emailclick1()" [ngClass]="showemail1 ? 'active':'in-active'"> <img src="../../assets/images/mail-icon.png" />  {{contactusdata?.pageElements[2]?.fields?.relatedContent[0]?.fields?.displayMainText}} </h3>
+              <div class="toggle-info" [ngClass]="showemail1 ? 'active':'in-active'">
+                  <p><a href="mailto:{{contactusdata?.pageElements[2]?.fields?.relatedContent[0]?.fields?.description}}" [innerHTML]="contactusdata?.pageElements[2]?.fields?.relatedContent[0]?.fields?.description">  </a></p>
+                  <button class="email-btn"><a target="_blank" href="{{contactusdata?.pageElements[2]?.fields?.relatedContent[1]?.fields?.buttonLink}}">Apply Now </a></button>
+              </div>
+            </div>
+        </div> -->
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</section>

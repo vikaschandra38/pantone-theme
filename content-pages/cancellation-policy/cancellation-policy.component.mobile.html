@@ -1,0 +1,16 @@
+<!-- {{ privacypolicydata | json }} -->
+<section class="page">
+  <div class="container">
+    <div class="flexblock">
+      <div class="sidebar">
+        <content-sidebar></content-sidebar>
+      </div>
+      <div class="loader" *ngIf = "!privacypolicydata"></div>
+      <div class="rightbar" *ngIf = "privacypolicydata">
+        <h1>{{ privacypolicydata?.PageElements[3]?.fields?.mainHeading }}</h1>
+        <div [innerHTML]="(privacypolicydata?.PageElements[3]?.fields?.subText)">{{ privacypolicydata?.PageElements[3]?.fields?.subText }}</div>
+  
+      </div>
+    </div>
+  </div>
+</section>

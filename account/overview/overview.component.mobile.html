@@ -1,0 +1,41 @@
+<div class="overview">
+    <div class="select-menu" (click)="showDropMenu()">
+        <h1 class="categoryname">Overview</h1>
+        <span class="arrow-icon"><img src="../assets/images/down.png"></span>
+        <div class="overlay"  [ngClass]="showDropdown ? 'show': 'hide'"></div>
+        <ul class="drop-menu" [ngClass]="showDropdown ? 'show': 'hide'">
+            <li> <a  [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'overview'}">Overview</a></li>
+                                <li> <a  [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'profile'}">My Profile </a></li>                                
+                                <li> <a  [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'addresses'}">Address Book </a></li>
+                                <li> <a  [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'orders'}">Order & Returns </a></li>
+        </ul>
+    </div>
+    <ul>
+        <li [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'profile'}">
+            <div class="inner">
+                <h2>My Profile</h2>
+                <p>Edit your profile details</p>
+                <i> <img src="../../assets/images/down.png" /></i>
+            </div>
+        </li>
+        <li [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'orders'}">
+            <div class="inner order">
+                <h2>Order & Returns</h2>
+                <p>Check your order & return status</p>
+                <i> <img src="../../assets/images/down.png" /></i>
+            </div>
+        </li>
+        <li [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'addresses'}">
+            <div class="inner addresses">
+                <h2>Address Book</h2>
+                <p>Saved addresses for hassle free checkout</p>
+                <i> <img src="../../assets/images/down.png" /></i>
+            </div>
+        </li>
+    </ul>
+
+    <div>
+        <button class="btn log-out" (click)="logOut()">Logout</button>
+    </div>
+    
+</div>

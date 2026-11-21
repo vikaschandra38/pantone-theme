@@ -1,0 +1,1 @@
+export * from './component/popup/sale-popup.component';

@@ -1,0 +1,367 @@
+.page {
+    min-height: 550px;
+}
+
+.flexblock {
+    display: flex;
+    align-items: flex-start;
+    margin: 50px 0;
+}
+
+.flexblock .sidebar {
+    width: 20%;
+    margin-right: 5%;
+    position: sticky;
+    top: 90px;
+}
+
+.flexblock .rightbar {
+    width: 75%;
+    min-height: 320px;
+}
+
+.page .loader {
+    position: absolute;
+    top: 20%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    z-index: 99;
+}
+
+.heading-title {
+    padding: 0 0 20px 0px;
+    max-width: 1340px;
+    margin: 0 auto;
+    /* border-bottom: 1px solid #ccc; */
+}
+
+.heading-title h1 {
+    color: #333;
+    text-transform: uppercase;
+    font-size: 2rem;
+    display: inline;
+}
+
+.contactpage {
+    display: flex;
+    align-items: flex-start;
+    margin: 10px 0;
+}
+
+.contactpage .leftblock {
+    width: 50%;
+    margin-right: 50px;
+}
+
+.contactpage .rightblock {
+    width: 50%;
+    margin-left: 50px;
+}
+
+.contactpage h2,
+.contactform h2 {
+    color: #333;
+    text-transform: uppercase;
+    font-size: 24px;
+    letter-spacing: 2px;
+    font-weight: 300;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.contactform h2 {
+    text-align: center;
+}
+
+.link a {
+    display: block;
+    color: #0095ff;
+    margin: 5px 0;
+}
+
+.block {
+    font-size: 14px;
+    color: #666;
+    letter-spacing: .5px;
+}
+
+.contactform p {
+    font-size: 14px;
+    color: #666;
+    letter-spacing: .5px;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.contactform {
+    margin: 85px 0;
+}
+
+.inputblock {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.inputblock .colom {
+    width: 33%;
+    margin: 10px;
+}
+
+.textareablock .textareacolom {
+    width: 70%;
+}
+
+.inputblock .colom select,
+.inputblock .colom input,
+.inputblock .colom textarea {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    height: 40px;
+    padding: 0 15px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -o-box-shadow: none;
+    font-size: 16px;
+    color: #333;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color ease-in-out .3s, box-shadow ease-in-out .1
+}
+
+.inputblock .colom textarea {
+    height: 100px;
+    ;
+}
+
+.inputblock .colom select:focus,
+.inputblock .colom input:focus,
+.inputblock .colom textarea:focus {
+    outline: 0;
+    border-color: #0092ff;
+}
+
+.inputblock .colom input[type="submit"] {
+    background: #0092ff;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    ;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #fff;
+    display: block;
+    border: 0;
+    width: 170px;
+    margin: auto;
+}
+
+.inputblock .colom label {
+    display: block;
+    font-size: 14px;
+    color: #6a6a6a;
+    margin-bottom: 9px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+}
+
+.inputblock .colom label sup {
+    color: #ec0000;
+}
+
+.ourstory {
+    text-align: center;
+    margin: 0 0 35px;
+    position: relative;
+}
+
+.ourstory h1 {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    color: #fff;
+    font-size: 4.6rem;
+    letter-spacing: 10px;
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    left: 0%;
+    right: 0;
+    width: 100%;
+    border-bottom: 0;
+    padding: 0;
+}
+
+.aboutblock h2 {
+    color: #333;
+    letter-spacing: 10px;
+    margin: 60px 0 30px 0;
+    font-weight: 600;
+    font-size: 4.1rem;
+    text-align: center
+}
+
+.aboutblock p {
+    padding: 0 80px;
+    text-align: center;
+    margin: 0;
+    color: #666;
+}
+
+.grey-line {
+    border-bottom: 1px solid #ccc;
+    margin: 80px;
+}
+
+.line-space {
+    margin: 80px;
+}
+
+.flexblock .rightbar {
+    width: 75%;
+    min-height: 320px;
+    position: relative;
+}
+
+.page-loader {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 200px;
+}
+
+.page-loader mat-spinner {
+    margin: auto !important;
+}
+
+.contact-wrp .heading h1 {
+    color: #644ea2;
+    font-size: 22px;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
+    margin-bottom: 85px;
+}
+
+.contact-wrp {
+    max-width: 90%;
+    margin: 20px auto 87px auto;
+}
+
+.contact-block {
+    display: flex;
+}
+
+.contact-wrp .col-left {
+    width: 42.5%;
+}
+
+.contact-wrp .col-right {
+    width: 42.5%;
+    margin-left: 15%;
+}
+
+.col-2.branch-office {
+    margin-top: 40px;
+}
+
+.contact-wrp .box-heading h3 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    ;
+    font-size: 18px;
+    color: #333;
+    margin: 0 0 15px 0;
+    text-transform: capitalize;
+}
+
+.contact-wrp .box-heading p {
+    font-size: 15px;
+    color: #666;
+    font-family: 'Lato', sans-serif;
+}
+
+.contact-wrp .toggle-box h3 {
+    font-size: 17px;
+    color: #644ea2;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    ;
+    padding: 15px 0;
+    margin: 0;
+    line-height: 36px;
+    cursor: pointer;
+    position: relative;
+    padding-left: 20px;
+}
+
+.contact-wrp .toggle-box h3:after {
+    content: "+";
+    position: absolute;
+    right: 11px;
+}
+
+.contact-wrp .toggle-box h3.active:after {
+    content: "-";
+}
+
+.contact-wrp .box-heading+.toggle-box {
+    border-top: 1px solid #d7d7d7;
+}
+
+.contact-wrp .toggle-box {
+    border-bottom: 1px solid #d7d7d7;
+}
+
+.contact-wrp .toggle-box .toggle-info,
+.contact-wrp .toggle-box .toggle-info.active {
+    overflow-y: hidden;
+    max-height: 100%;
+    /* approximate max height */
+    box-sizing: border-box;
+    -moz-transition: all .5s ease-in-out;
+    -o-transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+
+.contact-wrp .toggle-box .toggle-info.in-active {
+    height: 0;
+}
+
+.contact-wrp .toggle-box .toggle-info p {
+    font-size: 14px;
+    color: #666;
+    font-family: 'Lato', sans-serif;
+    padding: 0 20px;
+}
+
+.contact-wrp .toggle-box .toggle-info p p {
+    margin-bottom: 0;
+}
+
+.contact-wrp .toggle-box .toggle-info p a {
+    color: #666;
+    display: inline-block;
+}
+
+.contact-wrp .toggle-box h3 img {
+    margin-right: 10px;
+}
+
+.contact-wrp .box-heading {
+    margin-bottom: 36px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.margin-top-70 {
+    margin-top: 70px;
+}

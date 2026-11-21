@@ -1,0 +1,130 @@
+<!-- {{ recentlyViewed | json }} -->
+<h2 *ngIf="!userwishlistloading" class="heading">
+  Recently Viewed <span></span>
+</h2>
+<!-- userwishlistloading: {{userwishlistloading}}
+userwishlistloaded: {{userwishlistloaded}}
+removeloading: {{wishlistremoveloading}}
+removeloaded: {{wishlistremoveloaded}} -->
+<div
+  class="primary_box"
+  id="emptywishlist"
+  *ngIf="emptywishlist && !userwishlistloading"
+>
+  <div class="wishlist_empty_inner">
+    <img
+      src="../../../../../../assets//duke-assets/images/ic-empty-wishlist.png"
+      alt=" Empty Wishlist"
+    />
+    <div class="emptytext">Your Wishlist is Empty</div>
+    <a class="continuebtn" routerLink="">Continue Shopping</a>
+  </div>
+</div>
+<!-- empty wishlish block div -->
+<div
+  class="loaderwrraper"
+  *ngIf="
+    (userwishlistloading && !userwishlistloaded) ||
+    itemaddingcart ||
+    wishlistremoveloading
+  "
+>
+  <div class="loader-spinner loader"></div>
+</div>
+<div
+  class="primary_box"
+  id="wishlistitem"
+  *ngIf="wishlist && !userwishlistloading"
+>
+  <div class="wishlist_inner">
+    <div class="wishlistitem">
+      <ul>
+        <li class="wislisttop">
+          <div></div>
+          <div></div>
+          <div>&nbsp;</div>
+          <div>PRICE</div>
+        </li>
+
+        <li *ngFor="let recent of recentlyViewed; let i = index">
+          <a [routerLink]="'/products/id/' + recent?.slug">
+            <div class="itemthumb">
+              <img src="{{ (recent?.images)[0]?.file?.url }}" width="150" />
+            </div>
+          </a>
+
+          <div class="product_info">
+            <a [routerLink]="'/products/id/' + recent?.slug">
+              <h2>{{ recent?.name }}</h2>
+            </a>
+            <p class="sizecolor">
+              <span>Colour: {{ recent?.attributes?.colour }}</span>
+            </p>
+            <div
+              *ngIf="showsizeschart(i)"
+              class="showsizeschartoverlay"
+              (click)="selectsizeclose()"
+            ></div>
+            <div class="selectsize" *ngIf="showsizeschart(i)">
+              <a class="cross" (click)="selectsizeclose()"
+                ><img src="../../assets/images/cross.png"
+              /></a>
+              <h2>Select Size</h2>
+              <div *ngIf="selectedProduct == null" class="loaderblock">
+                <div class="loader"></div>
+              </div>
+              <ul *ngIf="selectedProduct">
+                <li
+                  *ngFor="let sizes of selectedProduct[0].options[0].values"
+                  [ngClass]="activesize == sizes.name ? 'active' : ''"
+                >
+                  <span
+                    class="size-box"
+                    *ngIf="selectedProduct[0].stock_level > 0"
+                    (click)="selectedSize(sizes?.name)"
+                    >{{ sizes?.name }}</span
+                  >
+                  <span
+                    class="size-box disabled"
+                    *ngIf="selectedProduct[0].stock_level == 0"
+                    >{{ sizes.name }}</span
+                  >
+                </li>
+              </ul>
+              <a
+                class="addcart"
+                (click)="
+                  addToCart(wishlist?.wishlist_item, wishlist.wislist_id)
+                "
+                [ngClass]="itemaddingcart ? 'loaderbtn' : ''"
+                >Move to Cart</a
+              >
+            </div>
+            <div class="addremove">
+              <a
+                class="remove"
+                (click)="removewishlist(wishlist.wislist_id)"
+                [ngClass]="wishlistremoveloading ? 'loaderbtn' : ''"
+                >Remove</a
+              >
+              <!-- <a class="addcart" (click)="addToCart(wishlist?.wishlist_item, wishlist.wislist_id)" [ngClass] = " itemaddingcart ? 'loaderbtn': ''">Move to Cart</a> -->
+              <a
+                class="addcart"
+                (click)="
+                  addToCart1(wishlist?.wishlist_item, wishlist.wislist_id, i)
+                "
+                [ngClass]="itemaddingcart ? 'loaderbtn' : ''"
+                >Move to Cart</a
+              >
+            </div>
+          </div>
+          <div class="date">&nbsp;</div>
+          <div class="price">
+            {{ recent?.currency }} {{ recent?.sale_price }}
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- empty wishlish block div -->

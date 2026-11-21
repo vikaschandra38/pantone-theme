@@ -1,0 +1,116 @@
+.recentproduct li .pro_bottom{
+    text-align:center;
+    padding: 0 0 15px;
+}
+.arrow .disabled {
+    display: none;
+}
+.recentproduct li .pro_bottom .priceblock{
+    font-size: 13px;
+    color: #333;
+    font-family: 'Lato', sans-serif;
+font-weight: 700;
+}
+.recentproduct li .pro_bottom .titleblock h3{
+    font-family: 'lato', sans-serif;
+font-weight: 500;
+    font-size: 13px;
+    color: #644ea2;
+    margin: 0 0 5px;
+    text-transform: capitalize;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: normal;
+}
+.recentproduct {
+    position: relative;
+    text-align: left;
+    display: flex;
+    overflow-x: scroll;
+}
+.recentproduct .arrow a.prev {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.recentproduct .arrow a.next {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.recentproduct li {
+    display: inline-block;
+    width:70%;
+    border: 1px solid #9990;
+    padding: 0px;
+    margin:0 15px 0 0;
+}
+.recentproduct li:hover .img{
+  box-shadow: 0 0 3px #9999997d;
+  border-radius: 4px;
+}
+.recentproduct li .pro_bottom p.category{
+    font-family: 'Lato', sans-serif;
+font-weight: 500;
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 5px;
+}
+.recentproduct li .pro_bottom span.febric{
+    font-family: 'Lato', sans-serif;
+font-weight: 500;
+    font-size: 14px;
+    color: #999;
+    margin: 0 0 5px;
+    padding: 0;
+}
+.recentproduct li .img {
+    width: 100%;
+    margin:0 auto 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.recentproduct li .img img{
+  position: relative;
+  height: 250px;
+  -o-object-fit: cover;
+  object-fit: cover;
+  width: 100%;
+}
+
+
+.offer {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #644ea2;
+    margin: 0px 0 0 0px;
+    font-family: 'lato', sans-serif;
+    font-weight: 500;
+    z-index: 6;
+    /* text-align: left; */
+}
+
+.price {
+    display: flex;
+    justify-content: center;
+    width: 230px;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+}
+
+.price del {
+    color: #666;
+    font-size: 12px;
+    margin: 0 5px;
+}
+
+span.sale_on {
+    color: #644ea2;
+}

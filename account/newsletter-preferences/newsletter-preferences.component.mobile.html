@@ -1,0 +1,35 @@
+<h2 class="heading">newsletter preferences</h2>
+<div class="primary_box" id="newsletter">
+  <div class="newsletter_inner">
+    <h3>
+      Subscribe to our email newsletter to be the first to receive Clarks news,
+      promotions and offers. To subscribe to category, click an image below:
+    </h3>
+    <ul>
+      <li (click)="newslettermen()" [ngClass]="men ? 'active' : ''">
+        <img
+          src="../../assets/images/newsletter-man.jpg"
+          alt=""
+        />
+      </li>
+      <li (click)="newsletterwomen()" [ngClass]="women ? 'active' : ''">
+        <img
+          src="../../assets/images/newsletter-women.jpg"
+          alt=""
+        />
+      </li>
+      <li (click)="newsletterkids()" [ngClass]="kids ? 'active' : ''">
+        <img
+          src="../../assets/images/newsletter-kids.jpg"
+          alt=""
+        />
+      </li>
+    </ul>
+
+    <div class="newlettersubmit">
+      <a (click)="Selectall()">Select All</a>
+      <a>Join Clarks</a>
+    </div>
+  </div>
+</div>
+<!-- newsletter block div -->

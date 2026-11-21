@@ -1,0 +1,18 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../out-tsc/app",
+    "baseUrl": "./",
+    "module": "commonjs",
+    "types": [],
+    "paths": {
+      "@app/*": ["app/*"],
+      "@theme/*": ["app/themes/pantone-theme/*"],
+      "@env/*": ["environments/*"]
+    }
+  },
+  "exclude": ["test.ts", "**/*.spec.ts"],
+  "angularCompilerOptions": {
+    "entryModule": "app/app.server.module#AppServerModule"
+  }
+}

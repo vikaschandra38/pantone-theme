@@ -1,0 +1,38 @@
+.loader {
+    position: absolute;
+    top: 0%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+.pictogramblock h2 {
+    font-size: 15px;
+    color: #000;
+    margin:5px 0;
+}
+.page {
+    min-height:600px;
+    text-align: center;
+}
+img{
+    max-width: 100%;;
+}
+.ftlinks a {
+    margin: 5px;
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+font-weight: 500;
+    color: #3d2d17;
+}
+.ftlinks a:hover{
+    text-decoration: underline;
+} 
+.ftlinks {
+    margin: 0 0 70px;
+}
+.sociallink a img {
+    margin: 5px;
+    position: relative;
+    top: -2px;
+}

@@ -1,0 +1,51 @@
+<div class="paymentmethodblock" *ngIf="showpayment">
+    <h2 (click)="showpayment = !showpayment" [ngClass]="  ( showpayment ) ? 'arrowtick': ''">Select Payment Mode
+    </h2>
+
+    <div class="paymentmethod" *ngIf="showpayment">
+        <!-- <form [formGroup]="paymentmethod" (ngSubmit)="paymentmethod()"> -->
+        <ul class="paymentinner">
+            <mat-radio-group [formControl]="paymentMethod">
+                <mat-radio-button value="ONLINE">
+                    <li class="onlinepayment">
+                        <a class="paymentheading">Online Payment <span><img src="../../assets/images/ic-payment.png" />
+                                and
+                                more...</span></a>
+                        <!-- <ul *ngIf="online_error">
+                                                                <p style="margin-left: 15px;">Online Payment not Available</p>
+                                                            </ul> -->
+                    </li>
+                </mat-radio-button>
+                <mat-radio-button value="COD" *ngIf="pincodeDetails?.isCod==='1'">
+                    <li class="codorder">
+                        <a class="paymentheading">Cash on Delivery (COD)</a>
+                        <ul>
+                            <p>Cash on Delivery Available</p>
+                        </ul>
+                    </li>
+                </mat-radio-button>
+            </mat-radio-group>
+            <div class="Mukesh" *ngIf="pincodeDetails?.isCod==='0'">
+                <a class="paymentheading text-red"><i class="fa fa-times-circle" aria-hidden="true"></i>
+                    Cash on Delivery (COD) is not available at your address</a>
+            </div>
+        </ul>
+        <!-- </form> -->
+        <div style="color: red;">
+            <span *ngIf="submitted && !shippingNewAddress">Please Select Address First</span>
+            <span *ngIf="submitted && !paymentMethod.valid">Please Select Payment Method</span>
+        </div>
+        <div class="btncontinue" *ngIf="paymentMethod.valid">
+            <button type="submit" class="submit_btn" (click)="completeCheckout()"
+                [ngClass]="  ( checkoutloading ) ? 'loaderbtn': ''">{{paymentMethod.value==='COD'?'COMPLETE ORDER':'MAKE PAYMENT'}}</button>
+        </div>
+        <!-- <div class="btncontinue" *ngIf="paymentMethod.value==='ONLINE'">
+                            <button type="submit" class="submit_btn" (click)="completeCheckout('ONLINE')" [ngClass] = "  ( checkoutloading || hashLoading ) ? 'loaderbtn': ''" >MAKE PAYMENT</button>
+                        </div> -->
+    </div>
+
+    <!-- <div class="btncontinue" *ngIf = "cod || cardnumber">
+                        <button type="submit" class="submit_btn" (click)="completeCheckout()" [ngClass] = "  ( checkoutloading ) ? 'loaderbtn': ''">COMPLETE ORDER</button>
+                    </div> -->
+
+</div>

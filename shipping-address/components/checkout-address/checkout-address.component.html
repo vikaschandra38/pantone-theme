@@ -1,0 +1,63 @@
+
+<div class="cart-header">
+    <div class="container">
+        <div class="flex-block">
+            <div class="logo">
+                <a routerLink="/"><img src="../assets/images/logo.png" alt="Pantone" /></a>
+            </div>
+
+            <div class="status-bar">
+                <ul>
+                    <li><a routerLink="/checkout/cart">Bag</a></li>
+                    <li><a class="active">Address</a></li>
+                    <li><a class="disable">Payment</a></li>
+                </ul>
+            </div>
+            
+            <div class="secure">
+                <p><img src="../assets/images/ic-secure.png" alt="secure" />100 % secure</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="userInfoLoading || userAddressRemoveLoading || pincodeDataLoading || cartInfoLoading ">
+
+    <div class="loader-spinner loader">
+        <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+    </div>
+</div>
+<div class="empty-cart" *ngIf="(cartInfo?.items?.length === 0 || !cartInfo?.items) && cartInfoLoaded">
+    <img src="../assets/images/cart-empty.png" width="120" />
+    <h2>Hey, it feels so light!</h2>
+    <p>There is nothing in your bag. Let’s add some items.</p>
+    <a routerLink="/" class="shopnow">Shop Now</a>
+</div>
+
+<div class="userInfo" *ngIf="userInformation && userInfoLoaded && cartInfoLoaded &&  !(cartInfo?.items?.length === 0 || !cartInfo?.items)"
+    [ngClass]="(!addressList?.length || openAddressForm ? 'add-address' : '') + ' ' + (addressList?.length && !openAddressForm ? 'address-list' : '')">
+    <div class="checkout-address">
+        <app-checkout-address-form *ngIf="addressList && !addressList?.length || openAddressForm" [addressList]="addressList"
+            [userEditAddressSaveLoading]="userEditAddressSaveLoading" [userAddressSaveLoading]="userAddressSaveLoading" [editData]="editData"
+            [userAddressSaveLoaded]="userAddressSaveLoaded|async" [saveType]="formType"
+            [userAddressSaveFailure]="userAddressSaveFailure|async" (updateCart)="updatingCartAddress($event)"
+            (saveAddress)="saveShippingAddress($event)" (editAddress)="editAddress($event)"
+            (showAddressForm)="showAddressForm($event)" [userInfo]="userInformation">
+        </app-checkout-address-form>
+    </div>
+    <div class="shippping-address">
+        <app-shipping-address-list *ngIf="addressList?.length && !openAddressForm" [addressList]="addressList"
+            [shippingLoading]="shippingLoading " [shippingLoaded]="shippingLoaded" [cartInfo]="cartInfo"
+            [shippingUpdateFailure]="shippingUpdateFailure" (editAddressData)="getEditAddressData($event)"
+            (showAddressForm)="showAddressForm($event)" [userInfo]="userInformation" [pincodeApiData]="pincodeData"
+            (removedAddressData)="removeAddress($event)" (isPincodeServiceable)="isPincodeServiceable($event)"
+            (checkFormType)="checkFormType($event)" (shippingDetails)="continueShipping($event)">
+        </app-shipping-address-list>
+    </div>
+    <div class="purchase-summary">
+        <app-purchase-summary [cartInfo]="cartInfo" [openAddressForm]="openAddressForm" [userInfo]="userInformation"
+            [shippingLoading]="shippingLoading" [shippingLoaded]="shippingLoaded"
+            (shippingDetails)="continueShipping($event)"></app-purchase-summary>
+        <span *ngIf="shippingUpdateFailure" class="shippingUpdateFailure">Could not update Shipping Information.</span>
+    </div>
+</div>

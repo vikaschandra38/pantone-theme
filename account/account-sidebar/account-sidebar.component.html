@@ -1,0 +1,9 @@
+<div class="account-navbar">
+    <ul>
+        <li><a [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'overview'}" [ngClass]="'overview'" >Overview</a></li>
+        <li><a [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'profile'}" >Profile</a></li>
+        <li><a [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'addresses'}">Address</a></li>
+        <li><a [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'orders'}">Order & Return</a></li>
+        <!-- <li><a [routerLink]="['my-account']" [queryParams]="{ tab:'wishlist'}">Saved Item</a></li> -->
+    </ul>
+</div>

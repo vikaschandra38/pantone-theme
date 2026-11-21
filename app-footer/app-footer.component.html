@@ -1,0 +1,127 @@
+<!-- {{ footerContent | json }} -->
+<footer>
+    <ng-container *ngIf="isLoaded && !isLoading">
+        <div class="footer-links">
+            <div class="container">
+
+                <div class="footer-main">
+                    <!-- <div class="col-2">
+            <div class="lookbook">
+              <div class="img">
+                <span>&nbsp;</span>
+              </div>
+              <div class="text-lookbook" *ngIf="footerContent && footerContent.footerItems && footerContent.footerItems[0] && footerContent.footerItems[0].fields && footerContent.footerItems[0].fields.footerItems && footerContent.footerItems[0].fields.footerItems[1] && footerContent.footerItems[0].fields.footerItems[1].fields && footerContent.footerItems[0].fields.footerItems[1].fields.menuSubCategories && footerContent.footerItems[0].fields.footerItems[1].fields.menuSubCategories[0] && footerContent.footerItems[0].fields.footerItems[1].fields.menuSubCategories[0].fields">
+                <h4>{{footerContent?.footerItems[0]?.fields?.footerItems[1]?.fields?.menuSubCategories[0]?.fields?.displayMainText}}</h4>
+                <p>{{footerContent?.footerItems[0]?.fields?.footerItems[1]?.fields?.menuSubCategories[0]?.fields?.description}}
+                  <a>SARTAILORED SS19</a>
+                </p>
+              </div>      
+            </div>
+          </div> -->
+                    <div class="col-2">
+                        <ul>
+                            <li><a routerLink="/contact-us">Need Help</a></li>
+                            <!-- <li><a routerLink="/faqs">Faq's</a></li> -->
+                            <!-- <li><a routerLink="/"></a>Shipping Info</li> -->
+
+                            <!-- <li [ngClass]="sublink?.fields?.altText === 'career' ? 'career':''" *ngFor="let sublink of footerContent && footerContent?.footerItems && footerContent?.footerItems[0] && footerContent?.footerItems[0]?.fields && footerContent?.footerItems[0]?.fields && footerContent?.footerItems[0]?.fields?.footerItems[0]?.fields?.menuSubCategories" >
+              <a *ngIf="sublink?.fields?.altText === 'career'" href="{{sublink?.fields?.redirectLink}}" target="_blank">{{ sublink?.fields?.subcategoryTitle }}</a>
+              <a *ngIf="sublink?.fields?.altText != 'career'" [routerLink]="sublink?.fields?.redirectLink">{{ sublink?.fields?.subcategoryTitle }}</a>
+            </li> -->
+                        </ul>
+                    </div>
+
+                    <div class="col-2">
+                        <ul>
+                            <li><a routerLink="privacy-policy">Policies</a></li>
+                            <!-- <li><a routerLink="privacy-policy">Privacy Policy</a></li>
+                            <li><a routerLink="terms-and-conditions">Terms and conditions</a></li> -->
+                            <!-- <li><a routerLink="/">Return Policy</a></li> -->
+                            <!-- <li [ngClass]="sublink?.fields?.altText === 'career' ? 'career':''" *ngFor="let sublink of footerContent && footerContent?.footerItems && footerContent?.footerItems[0] && footerContent?.footerItems[0]?.fields && footerContent?.footerItems[0]?.fields && footerContent?.footerItems[0]?.fields?.footerItems[0]?.fields?.menuSubCategories" >
+              <a *ngIf="sublink?.fields?.altText === 'career'" href="{{sublink?.fields?.redirectLink}}" target="_blank">{{ sublink?.fields?.subcategoryTitle }}</a>
+              <a *ngIf="sublink?.fields?.altText != 'career'" [routerLink]="sublink?.fields?.redirectLink">{{ sublink?.fields?.subcategoryTitle }}</a>
+            </li> -->
+                        </ul>
+                    </div>
+
+
+                    <div class="col-2 company-url">
+                        <ul>
+                            <li><a routerLink="about-us">About Pantone</a> </li>
+                            <!-- <li><a routerLink="about-us">About Us</a></li> -->
+                            <!-- <li><a routerLink="/">Blog</a></li> -->
+                            <!-- <li><a routerLink="contact-us">Contact Us</a></li> -->
+                            <!-- <li *ngFor="let sublink of footerContent && footerContent?.footerItems && footerContent?.footerItems[0] && footerContent?.footerItems[0]?.fields && footerContent?.footerItems[0]?.fields && footerContent?.footerItems[0]?.fields?.footerItems[2]?.fields?.menuSubCategories" >
+              <a [routerLink]="sublink?.fields?.redirectLink">{{ sublink?.fields?.subcategoryTitle }}</a>
+            </li> -->
+                        </ul>
+                    </div>
+
+                </div>
+
+
+
+
+                <!-- <div class="top-footer"  >
+        <div class="social-links">
+          <h3>Follow</h3>
+          <ul>
+            <li class="facebook">
+              <a href="https://www.facebook.com/PantoneColor" target="_blank"></a>
+            </li>  
+            <li class="twitter">
+              <a href="https://twitter.com/pantone" target="_blank"></a>
+            </li>
+            <li class="instagram">
+              <a href="https://www.pinterest.com/pantonecolor/" target="_blank"></a>
+            </li>
+                     <li class="linkedin">
+              <a href="https://www.linkedin.com/pantone/" target="_blank"></a>
+            </li>              
+          </ul>
+        </div>
+        <p class="coprighttext">Copyright © 2020 <a class="blacklink" routerLink="/">eshopbox.com. </a>All rights Reserved.</p>
+      </div>  -->
+
+
+
+            </div>
+            <!-- <div class="copyright">
+      <div class="container">
+        <p>{{ footerContent?.footerItems[1]?.fields?.footerItems[0]?.fields?.description }} <a routerLink="/">TERMS OF USE</a> | <a routerLink = "/" >PRIVACY POLICY </a>Powered by    <a href="https://eshopbox.com/" target="_blank" class="eshopftlogo"><img src="assets/duke-assets/images/shop-ft-icon.png" /> eshopbox</a></p>
+      </div>
+    </div> -->
+        </div>
+    </ng-container>
+</footer>
+
+
+<footer class="Disclaimer ">
+    <ng-container *ngIf="isLoaded && !isLoading">
+        <div class="footer-links">
+            <div class="container">
+
+                <div class="footer-main">
+
+                    <div class="col-12">
+                        <ul>
+                            <li>
+                                <p>This is a Pantone-authorized Website, developed, owned, run and managed by Eshopbox. Product sold by Sudarshan Books (P) Ltd.</p>
+                            </li>
+
+                        </ul>
+                    </div>
+
+
+                </div>
+
+
+
+
+
+
+            </div>
+
+        </div>
+    </ng-container>
+</footer>

@@ -1,0 +1,30 @@
+.account_left h3 {
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+font-weight: 500;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+    letter-spacing: 1px;
+}
+ .account_left ul li a {
+    color: #999;
+    font-size: 14px;
+    font-weight: normal;
+    letter-spacing: 1px;
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+    margin-bottom: 10px;
+    display: block;
+    transition: none;
+}
+ .account_left ul li.active a , .account_left ul li a:focus , .account_left ul li a:hover{
+    color: #0195ff;
+}
+
+ul.checkout_order {
+    border-bottom: 1px solid #ccc;
+    margin: 0 15px 25px 0;
+    padding: 0 15px 15px 0;
+}

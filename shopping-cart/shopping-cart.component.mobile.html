@@ -1,0 +1,315 @@
+  <!-- Session Timeout -->
+  <div class="timeout-overlay" [ngStyle]="{ visibility: sessionTimeout == false ? 'hidden' : 'visible' }">
+    <div class="timeout-popup">
+      <div class="cross-popup" (click)="logout()">
+        <span>X</span>
+      </div>
+      <p>You have been logged out due to inactivity</p>
+    </div>
+  </div>
+
+  
+<div class="cart-page">
+    <div class="container">
+        <div class="loader-spinner loader"
+            *ngIf="getCartLoading || getremoveitemloading || productByIdLoading || updateVariantLoading || logoutLoading">
+            <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+        </div>
+        <div class="empty-cart" *ngIf="(cart?.items?.length === 0 || !cart?.items) && getCartLoaded">
+            <img src="../assets/images/cart-empty.png" width="100" />
+            <h2>Hey, it feels so light!</h2>
+            <p>There is nothing in your bag. Let’s add some items.</p>
+            <a routerLink="/" class="shopnow">Shop Now</a>
+        </div>
+
+        <div class="cart-block" *ngIf="cart && cart.items && cart.items.length > 0">
+            <div class="left-block">
+                <h2><img src="../assets/images/left-sign-arrow.png" routerLink='/' />Shopping Bag
+                    <!-- <span>({{availableItems.length}} item{{availableItems.length > 1 ? 's' : ''}})</span> -->
+                </h2>
+                <div class="cart-header">
+                    <div class="container">
+                        <div class="flex-block">
+                            <div class="status-bar">
+                                <ul>
+                                    <li><a class="active">Bag</a></li>
+                                    <li><a>Address</a></li>
+                                    <li><a>Payment</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item-list">
+                    <div class="heading-block">
+                        <h2>My Shopping Bag 
+                            <span>You have {{cartItemCount||0}} item{{cartItemCount > 1 ? 's' : ''}} in your cart</span>
+                        </h2>
+                    </div>
+                    <div class="loader-spinner loader" *ngIf="getcartqtyloading">
+                        <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+                    </div>
+                    <div class="modal-overlay" *ngIf="modaloverlay" (click)="closesizeqty()"></div>
+                    <div class="modal-block" *ngIf="sizepopup">
+                        <div class="inner">
+                            <h2>Select Size</h2>
+                            <a class="close" (click)="closesizeqty()"><img src="../assets/images/close.png"
+                                    width="15" /></a>
+                            <ul>
+                                <button *ngFor="let size of variantList" (click)="updateSize(size)"
+                                    [ngClass]="selectedSize?.variant?.name === size.name?'active':''"
+                                    [disabled]='checksize(size?.name)'>
+                                    {{size?.name}}
+                                    <span class="strike"></span>
+                                </button>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modal-block" *ngIf="qtypopup">
+                        <div class="inner">
+                            <h2>Select Quantity</h2>
+                            <a class="close" (click)="closesizeqty()"><img src="../assets/images/close.png"
+                                    width="15" /></a>
+                            <ul>
+                                <li *ngFor="let qty of selectedQtyNumbers" (click)="updateQty(qty)"
+                                    [ngClass]="selectedQty.quantity=== qty?'active':''">{{qty}}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="item" *ngFor="let item of availableItems; trackBy:trackById">
+                        <div class="itemblock">
+                            <div class="pro-img">
+                                <ng-container *ngIf="item?.product?.images">
+                                    <a routerLink="/products/id/{{item?.product?.slug}}"> <img
+                                            src="{{item?.product?.images[0]?.file?.url | MobileCartImageKitPipe : this.mobileCartImageWidth}}" alt="{{item?.product?.name}}" /></a>
+                                </ng-container>
+                            </div>
+                            <div class="pro-info">
+                                <h3 routerLink="/products/id/{{item?.product?.slug}}">{{item?.product?.name}}</h3>
+                                <div class="price-block">
+                                    <p class="sale-price" *ngIf="item?.variant === null">₹ {{item?.product?.price !== item?.product?.sale_price ? makeprice(item?.product?.sale_price) : makeprice(item?.product?.price) }}
+                                    </p>
+                                    <p class="sale-price" *ngIf="item?.variant != null">₹ {{item?.variant?.price !== item?.variant?.sale_price ? makeprice(item?.variant?.sale_price) : makeprice(item?.variant?.price) }}
+                                    </p>
+                                    <p class="mrp" *ngIf="item?.variant === null">
+                                        <del *ngIf="item?.product?.price !== item?.product?.sale_price">₹
+                                            {{makeprice(item?.product?.price)}}</del>
+                                        <span class="discount"
+                                            *ngIf="item?.product?.price !== item?.product?.sale_price">({{((item.product.price-item.product.sale_price)/(item.product.price))*100 | number : '1.0-0'}}%
+                                            OFF)</span>
+                                    </p>
+                                    <p class="mrp" *ngIf="item?.variant != null">
+                                        <del *ngIf="item?.variant?.price !== item?.variant?.sale_price">₹
+                                            {{makeprice(item?.variant?.price)}}</del>
+                                        <span class="discount"
+                                            *ngIf="item?.variant?.price !== item?.variant?.sale_price">({{((item.variant.price-item.variant.sale_price)/(item.variant.price))*100 | number : '1.0-0'}}%
+                                            OFF)</span>
+                                    </p>
+                                </div>
+                                <div class="sizeqtyblock">
+                                    <div class="size">
+                                        <p (click)="qtyclick(item)">Qty: {{item?.quantity }} <span><img
+                                                    src="../assets/images/drop-arrow.png" alt="" /></span></p>
+                                    </div>
+                                   
+                                    <div class="stock">
+                                        <p class="stock-status"
+                                            *ngIf="item?.variant?.stock_level=== null || item?.variant?.stock_level === undefined ? item?.product?.stock_level === 0: item?.variant?.stock_level === 0">
+                                            Out of Stock</p>
+                                            <p class="stock-status"
+                                            *ngIf="item?.variant?.stock_level === null || item?.variant?.stock_level === undefined ? (item?.product?.stock_level <= (item?.variant?.attributes?.alert_stock_quantity|| item?.product?.attributes?.alert_stock_quantity | number ) && item?.product?.stock_level > 0) : (item?.variant?.stock_level <= ( item?.variant?.attributes?.alert_stock_quantity|number) && item?.variant?.stock_level > 0)">
+                                            {{item?.variant?.stock_level || item?.product?.stock_level}} Left</p>
+                                        
+                                    </div>
+                                    
+                                </div>
+                                <div class="add-remove">
+                                    <a class="red-cross" (click)="removeItem(item?.id)"><img src=".../../../../assets/images/ic-delete.png" width="16"></a>
+                                </div>
+                                <span class="stock-status" *ngIf="(item?.variant?.stock_level || item?.product?.stock_level)<item.quantity && placeOrderSubmitted">
+                                    Selected quantity is more than the available stock, please decrease the quantity!</span>
+                                <!-- <p class="stock-status" *ngIf="item?.variant?.stock_level=== null || item?.variant?.stock_level === undefined ? item?.product?.stock_level === 0: item?.variant?.stock_level === 0">Out of Stock</p>
+                                <p class="stock-status" *ngIf="item?.variant?.stock_level === null || item?.variant?.stock_level === undefined ? (item?.product?.stock_level <=2 && item?.product?.stock_level > 0) : (item?.variant?.stock_level <=2 && item?.variant?.stock_level > 0)">{{item?.variant?.stock_level || item?.product?.stock_level}} Stock available.</p>
+                                <span class="stock-status" *ngIf="(item?.variant?.stock_level || item?.product?.stock_level)<item.quantity && placeOrderSubmitted"> Selected Quantity is more than available stock, please decrease quantity</span> -->
+                                <!-- <div class="add-remove">
+                                    <div class="add">
+                                        <span>Qty</span>
+                                        <p>{{item?.quantity}}</p>
+                                        <button class="minus_btn" (click)="decreaseCartItems(item)">-</button>
+                                        <button class="plus_btn" *ngIf=" (item?.variant?.stock_level > item?.quantity) && !(item?.quantity === 6)" (click)="increaseCartItems(item)">+</button>
+                                    </div>
+                                </div> -->
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="item-list no-longer" *ngIf="removedOrders.length>0">
+                    <h2>Items no longer available <span>({{removedOrders.length}}
+                            item{{removedOrders.length > 1 ? 's' : ''}})</span> </h2>
+                    <div class="item" *ngFor="let item of removedOrders">
+                        <div class="pro-img" routerLink="products/id/{{item?.product?.slug}}">
+                            <ng-container *ngIf="item?.product?.images">
+                                <img src="{{item?.product?.images[0]?.file?.url + '?width=150'}}" />
+                            </ng-container>
+                        </div>
+                        <div class="pro-info">
+                            <h3>{{item?.product?.name}}</h3>
+                            <p class="color" *ngIf="item?.product?.attributes?.colour">
+                                {{item?.product?.attributes?.colour}}</p>
+                            <ng-container *ngIf="item?.options">
+                                <p class="size" *ngIf="item?.options[0]?.value">Size: {{item?.options[0]?.value}}</p>
+                            </ng-container>
+                            <p class="stock-status"
+                                *ngIf="item?.variant?.stock_level=== null || item?.variant?.stock_level === undefined ? item?.product?.stock_level === 0: item?.variant?.stock_level === 0">
+                                Out of Stock</p>
+                            <p class="stock-status"
+                                *ngIf="item?.variant?.stock_level === null || item?.variant?.stock_level === undefined ? (item?.product?.stock_level <=2 && item?.product?.stock_level > 0) : (item?.variant?.stock_level <=2 && item?.variant?.stock_level > 0)">
+                                {{item?.variant?.stock_level || item?.product?.stock_level}} Stock available.</p>
+                        </div>
+
+                        <div class="price-block">
+                            <a class="red-cross"><img src="../assets/images/red-cross.png" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right-block" id="viewDetails">
+                <div class="price-sticky">
+                    <div class="promocode">
+                        <h2>Coupons</h2>
+                        <div class="coupon-btn" (click)="couponclick()"  *ngIf="cart && cart?.discount_total == 0">Apply Coupon</div>
+                        <div class="coupon-btn applyed" *ngIf="cart && cart?.discount_total > 0">Apply
+                            Coupon<br />
+                            <span class="red">You saved additional ₹ {{cart?.discounts[0]?.amount}}</span>
+                            <span (click)="RemoveAppliedCoupon()" class="removecoupon "><img
+                                    src="../assets/images/close.png" width="12" /></span>
+                        </div>
+
+                    </div>
+                    <div class="price-details" *ngIf="availableItems.length > 0">
+                        <h2 class="">Purchase Summary
+                        </h2>
+                        <ul>
+                            <div class="loader-spinner loader" *ngIf="getremovecouponloading">
+                                <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+                            </div>
+                            <li class="">
+                                <span>Bag Total </span>
+                                <span><b>₹ {{actualBagTotal | number:0}}</b></span>
+                            </li>
+                            <li class="">
+                                <span>Bag Discount </span>
+                                <span><b class="red">- ₹ {{totalBagDiscount | number:0}}</b></span>
+                            </li>
+
+                            <!-- <li *ngIf="cart?.coupon_code" class="applyedcoupon">
+                                <span (click)="RemoveAppliedCoupon()" class="removecoupon red">Remove Applied
+                                    Coupon</span>
+                                <span class="red" (click)="couponclick(true)">Select Coupon</span>
+                            </li> -->
+                            <li class="applyedcoupon">
+                                <span class="">Coupon Discount</span>
+                                <ng-container  *ngIf="cart && cart?.discounts && cart?.discounts[0] && cart?.discounts[0]?.amount > 0">
+                                    <span class="red" *ngIf="cart?.discounts[0]">- ₹
+                                        {{cart?.discounts[0]?.amount}}</span>
+                                </ng-container>
+                                <span class="red" (click)="couponclick(true)" *ngIf="cart && cart?.discount_total == 0">Apply
+                                    Coupon</span>
+                            </li>
+                            <li class="total">
+                                <span>Order Total</span>
+                                <span>₹
+                                    {{actualBagTotal-totalBagDiscount-(cart && cart?.discounts && cart?.discounts?.length ? cart?.discounts[0]?.amount : 0) | number:0}}</span>
+                            </li>
+                            <li>
+                                <span>Delivery Charges</span>
+                                <span *ngIf="cart?.shipment_total === 0" class="red">FREE</span>
+                                <span *ngIf="cart?.shipment_total !== 0" class="red">₹
+                                    {{cart?.shipment_total }}</span>
+
+                            </li>
+                            <li class="total total-amount">
+                                <span><b>Total</b></span>
+                                <span><b>₹
+                                        {{actualBagTotal-totalBagDiscount- (cart && cart?.discounts &&  cart?.discounts?.length ? cart?.discounts[0]?.amount : 0) +cart?.shipment_price | number:0}}</b></span>
+                            </li>
+                            <li class="including-gst">
+                                <span>Inclusive of all taxes</span>
+                                <span></span>
+
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="placeorder" *ngIf="cart && cart.items && cart.items.length > 0">
+   
+    <a class="place-order-btn" (click)="placeOrder()">Place Order</a>
+    <a (click)="scrollToDetails()" class="summery">₹
+        {{actualBagTotal-totalBagDiscount- (cart && cart?.discounts &&  cart?.discounts?.length ? cart?.discounts[0]?.amount : 0) +cart?.shipment_price | number:0}}<b>View
+            Details</b></a>
+</div>
+
+<div class="coupon-overlay" [ngClass]="couponopup ? 'visible':''" (click)="closepopup()"></div>
+<div class="coupon-main" [ngClass]="couponopup ? 'visible':''">
+    <div class="coupon-inner">
+        <div class="topbar">
+            <h2><img src="../assets/images/left-sign-arrow.png" (click)="closepopup()" />APPLY COUPON</h2>
+            <!-- <h2><img src="../assets/images/left-sign-arrow.png" (click)="goBack()" />APPLY COUPON</h2> -->
+            <!-- <a class="cross" (click)="closepopup()"><img src="../assets/images/close.png" /></a> -->
+        </div>
+        <div class="enter-coupon">
+            <!-- <h3>Enter Coupon Code</h3> -->
+            <div class="inputapply">
+                <input type="text" [formControl]="appliedCouponInput" placeholder="Enter coupon code"
+                    (keyup)="onEnterKey($event)" value="{{appliedCoupon.value || cart?.coupon_code}}" #cc>
+                
+                    <span class="errormsg" *ngIf="submitted && appliedCouponInput.hasError('required')">Please Select a
+                        Coupon!</span>
+                    <span class="errormsg" *ngIf="!showMinAmmountError && showPromoError">Sorry, this coupon code is invalid or has
+                        expired!</span>
+                    <span class="errormsg" *ngIf="showMinAmmountError">Coupon not applicable!</span>
+                    <!-- <span class="errormsg" *ngIf="excludecategoryerror">This code is only valid on non-discounted styles.</span> -->
+                    <br>
+                <a class="apply" (click)="applyPromoCode(cc.value)">APPLY</a>
+            </div>
+        </div>
+        <div class="coupon-list coupon-listed" *ngIf="couponList?.length">
+            <h3 class="text-uppercase">Best coupon for you</h3>
+            <mat-radio-group aria-label="Select an option" [formControl]="appliedCoupon">
+                <mat-radio-button [value]="coupon.name" *ngFor="let coupon of couponList">
+                    <div class="coupon-group flex-block">
+                        <div class="innerlist">
+                            <b></b>
+                            <span class="coupon-code">{{coupon?.name}}</span>
+                            <span></span>
+                        </div>
+                        <a class="apply" (click)="applyPromoCode(coupon?.name)">APPLY</a>
+                    </div>
+                    <!-- <div class="coupon-div">
+                        <a class="coupon-aply">APPLY</a>
+                    </div> -->
+                    <p class="saveamount">{{coupon?.description}}</p>
+                    <div class="Expire-time">
+                        <!-- <p>5% off. Expire on <span>3rd January 2020.</span></p> -->
+                    </div>
+                </mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="coupon-not-available" *ngIf="!couponList?.length">No other coupons available</div>
+        <div class="loader-spinner loader" *ngIf="getcouponloading">
+            <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+        </div>
+    </div>
+</div>
+<app-out-of-stock [showPopup]="messagePopup" [btnText]="'CANCEL'" (onClose)="openCloseMessagePopup($event)"
+    (confirmClicked)="openCloseMessagePopup($event)"></app-out-of-stock>

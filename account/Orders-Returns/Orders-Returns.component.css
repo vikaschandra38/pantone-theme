@@ -1,0 +1,442 @@
+
+/* ================================================== My account page css  =============================*/
+.account_top h2{
+    color: #644ea2;
+    font-family: lato,sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 40px;
+    margin: 0px 0 5px;
+    width: 70%;
+    text-align: left;
+}
+.account_top p {
+    color: #999;
+    font-size: 14px;
+}
+
+
+#no-order{
+    text-align: center;
+    padding: 0;
+    width: 400px;
+}
+.no-order_inner {
+    border: 1px solid #e4e4e4;
+    padding:20px 30px;
+    border-radius: 4px;
+}
+.btn_green{
+    max-width: 500px;
+    width: 100%;
+    height: 38px;
+    font-size: 12px;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 35px;
+    color: #fff;
+    background-color: #644ea2;
+    font-weight: normal;
+    border: 0;
+    box-sizing: border-box;
+    display: inline-block;
+    margin: 35px 0 0;
+    border: 1px solid #644ea2;
+}
+.btn_green:hover {
+    background: #e7e7e7;
+    border: 1px solid #644ea2;
+    color: #644ea2;
+}
+#no-order .heading {
+    margin: 0 0;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    padding: 0px 0 5px;
+    margin-bottom: 0px;
+    color: #333;
+    font-family: 'lato', sans-serif;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+#no-order p {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    color: #666;
+    font-size: 14px;
+}
+.order_return_block ul{
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+    font-size: 13px;
+    color: #333;
+    letter-spacing: 0.5px;
+}
+.order_return_block ul h3{
+    font-size: 14px;
+    color: #999;
+    margin: 10px 0;
+    font-weight: normal;
+}
+.order_place_block span:nth-child(1){
+    color: #999;
+    width: 100px;
+    margin-bottom: 7px;
+    display: inline-block;
+}
+
+
+.update_sent_block a{
+    color: #333;
+    display: inline-block;
+    margin-bottom: 7px;
+
+}
+.shipping_address .user_name{
+    margin: 7px 0 10px;
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+    color: #333;
+    font-size: 15px;
+}
+.update_sent_block li a{
+    display: flex;
+    align-items: center;
+    line-height: 21px;
+}
+.update_sent_block li a img{
+    margin-right: 7px;
+}
+.orderpriceplus {
+    border: 1px solid #d30000;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    line-height: 13px;
+    text-align: center;
+    font-size: 18px;
+    margin-left: 5px;
+    color:  #d30000;
+}
+.orderpriceplus:before {
+    content: "+";
+    padding-top: 6px;
+}
+a.orderpriceplus.minusiconchange:before{
+    content: "-";
+}
+#show_price_details{
+    display: none;
+}
+.order_return_block ul.payment_mode{
+    border: none;
+}
+.item_info_block{
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+}
+.item_info span {
+    display: block;
+    margin: 10px 0;
+}
+.item_thumbnail {
+    display: inline-block;
+    width: 135px;
+    margin-right: 20px;
+}
+.item_info{
+    width:70%;
+    color: #333;
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+}
+.item_productName , .item-priceInfo{
+    color: #333;
+    font-family: 'Lato', sans-serif;
+font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 3px;
+    display: block;
+}
+.item-priceInfo {
+    margin: 10px 0 0;
+}
+.qty{
+    color: #333;
+    margin-top: 5px;
+}
+.item-priceInfo{
+    /* margin: 7px 0 0 0; */
+}
+.item_productName {
+    /* margin-bottom: 5px; */
+}
+.order_right {
+    width: 20%;
+    text-align: right;
+}
+.order_right .order-status{
+    color: #666;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    border: 1px solid rgb(102 102 102 / 36%);
+    padding: 1px 5px;
+    border-radius: 2px;
+}
+.order_right .exchange_return{
+    color: #0195ff;
+}
+.order_right .cross{
+    color: #d30000;
+}
+.canceled{
+    color: #d30000;
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+}
+.item_info_block .order_right a.order-status.pending {
+    color: #d30000;
+    display: block;
+    margin: 0;
+    text-transform: none;
+    font-size: 12px;
+    text-transform: capitalize;
+}
+.item_info_block .order_right a.order-status.sucess{
+    color: #3c763d
+}
+.delivered{
+    color: #5a5e5c;
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+}
+.canceled span , .delivered span{
+    color: #999;
+    margin: 0 0 0 10px;
+}
+.order_item_block ul{
+    border: none;
+}
+.order_item_block li .order_item_list{
+    /* border: 1px solid #ccc; */
+    box-shadow:0px 0px 5px #00000020;
+    padding: 15px;
+    margin-bottom: 15px;
+    min-height: 172px;
+    max-width: 600px;
+}
+.order_item_block li .order_item_list:hover{
+    background: #f9f9f9;
+}
+.order_item_block > ul > li {
+    margin-bottom: 50px;
+}
+.item_info_block {
+    display: flex;
+    align-items: flex-start;
+    /* border-bottom: 1px solid #ccc; */
+
+}
+a.trackorder {
+    color: #fff;
+    position: absolute;
+    bottom: 5px;
+    right: 0px;
+    padding: 5px 15px;
+    background: #644ea2;
+    border-radius: 2px;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+a.trackorder.canceled{
+    position: relative;
+    height: auto;
+    background: none;
+    display: block;
+    color: #d30000;
+    right: 0;
+    padding: 0;
+    top: 0;
+    margin-top: 4px;
+}
+.order_status ul {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.order_status ul li {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    width:15%;
+    text-align: center;
+}
+.order_status ul li.delivery_status{
+    width: 70%;
+    text-align: center;
+}
+.order_item_block .order_status h3 {
+    color: #000;
+    font-family: 'Lato', sans-serif;
+font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin: 15px 0 0;
+}
+
+.order_item_block .order_status h4 {
+    color: #999;
+    font-size: 12px;
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+    margin: 0;
+}
+.status_line{
+    height: 2px;
+    background: #ccc;
+    display: block;
+    margin: 15px;
+    position: relative;
+}
+.status_line .active {
+    height: 2px;
+    width: 50%;
+    background: #0bc6a0;
+    display: block;
+    margin: 0;
+    position: absolute;
+    top: 0;
+}
+.ordered {
+    margin: 15px 0;
+}
+.order_item_block .order_status li.delivery_status h3 {
+    font-family: 'Lato', sans-serif;
+font-weight: 400;
+    text-transform: none;
+}
+.status_line .active_border {
+    height: 12px;
+    width: 12px;
+    border: 2px solid #0bc6a0;
+    display: block;
+    margin: 0;
+    position: absolute;
+    top: -6px;
+    border-radius: 50%;
+    left: -16px;
+}
+.status_line .active_border_last{
+    left: 100%;;
+}
+.status_line .active_circle {
+    height: 12px;
+    width: 12px;
+    background: #0bc6a0;
+    display: block;
+    margin: 0;
+    position: absolute;
+    top: -5px;
+    border-radius: 50%;
+    left: 50%;
+}
+.status_line .circle_border {
+    border-color: #ccc;
+    left: 100%;
+}
+.oder_price_details li span:nth-child(1) {
+    width: 150px;
+    display:inline-block;
+    /* margin-bottom: 7px; */
+}
+.oder_price_details li span{
+    margin:5px 0;
+}
+.oder_price_details ul li span {
+    display: block;
+    width: 50%;
+    float: left;
+}
+.oder_price_details ul li span:nth-child(even){
+    text-align: right;
+}
+.oder_price_details {
+    max-width: 250px;
+    display:none;
+}
+.oder_price_details span.bifurcation-info {
+    color: #d30000;
+}
+.oder_price_details ul {
+    font-size: 13px;
+    margin: 5px 0;
+    padding-bottom: 0;
+    color: #333;
+    border:none;
+}
+.oder_price_details li{
+    border: none;
+    box-shadow:none;
+    padding: 0;
+    display: flex;
+}
+.oder_price_details li.total span:nth-child(1) {
+    color: #333;
+}
+.oder_price_details li.total {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding-top: 5px;
+    color: #333;
+    font-family: 'Lato', sans-serif;
+font-weight: 700;
+}
+.orderno {
+    color: #666;
+    font-size: 13px;
+    font-family: 'lato', sans-serif;
+    text-transform: capitalize;
+    margin:10px 0 20px 0;
+}
+.size-qty {
+    /* display: flex; */
+    align-items: center;
+    margin:5px 0 6px 0;
+}
+.size-qty .item-size {
+    /* border-right: 1px solid #333; */
+    /* padding-right: 10px;
+    margin-right: 10px; */
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.item_price {
+    font-weight: 600;
+    margin: 6px 0 0px;
+}
+.loader{
+    margin: 75px auto;
+}
+/* ================================================== my account page css end  =============================*/
+
+
+/* for order date */
+.order-date span {
+  display: inline !important;
+  margin-right: 4px;
+  color: #333;
+}
+.order-date {
+  margin-top: 5px !important;
+}

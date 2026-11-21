@@ -1,0 +1,44 @@
+<!-- {{ shippingpolicydata | json }} -->
+<section class="page">
+    <div class="container">
+      <div class="flexblock">
+        <div class="sidebar">
+          <content-sidebar></content-sidebar>
+        </div>
+        <div class="loader" *ngIf = "!shippingpolicydata"></div>
+        <div class="rightbar" *ngIf = "shippingpolicydata">
+            <div class="accordion" >
+                <h1>{{ shippingpolicydata?.pageTitle }}</h1>
+  
+                <mat-accordion>
+                    <mat-expansion-panel *ngFor="let shipping of shippingpolicydata?.pageElements; let isFirst = first" [expanded]="isFirst">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <h4 [innerHTML]="( shipping?.fields?.displayMainText )">{{ shipping?.fields?.displayMainText }}</h4>
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <p [innerHTML]="( shipping?.fields?.description )">{{ shipping?.fields?.description }}</p>
+                    
+                    </mat-expansion-panel>
+                  </mat-accordion>
+  
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- <section class="page">
+  <div class="container">
+    <div class="flexblock">
+      <div class="sidebar">
+        <content-sidebar></content-sidebar>
+      </div>
+      <div class="loader" *ngIf = "!shippingpolicydatadata"></div>
+      <div class="rightbar" *ngIf = "shippingpolicydatadata">
+        <h1>{{ shippingpolicydatadata?.PageElements[2]?.fields?.mainHeading }}</h1>
+        <div [innerHTML]="(shippingpolicydatadata?.PageElements[2]?.fields?.subText)">{{ shippingpolicydatadata?.PageElements[2]?.fields?.subText }}</div>
+  
+      </div>
+    </div>
+  </div>
+</section> -->

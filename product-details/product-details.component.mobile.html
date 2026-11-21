@@ -1,0 +1,274 @@
+<!-- {{contentfuldetails | json}} -->
+<!-- {{prodDetails | json }} -->
+<!-- {{ recommendedProducts | json}} -->
+<!-- {{ slider | json}} -->
+
+<div id="proimage_popup" [ngClass]="  proimagepopup ? 'showpopup': ''">
+    <a class="crosspoup" (click)=hideprodpopup()><img src="../assets/images/cross.png" alt="cross" /></a>
+    <!-- <div class="slidercount">{{ currentIndex+1 | number }}/{{ sliderfullimage.length }}</div> -->
+    <div class="product-images" [lazy-load-images]="{ rootMargin: '10px' }">
+        <!-- <div class="images_border">
+    <img [attr.data-src]="image" class="product-img-src img-responsive" src="../assets/images/details-img.jpg" alt="">
+  </div>  -->
+        <div class="arrow-button">
+            <a (click)="prev()" class="prev"><img src="../assets/images/arrow-left.png" alt="arrow left" /></a>
+            <a (click)="next()" class="next"><img src="../assets/images/arrow-right.png" alt="arrow right" /></a>
+        </div>
+        <div class="slidercount">{{ currentIndex+1 | number }}/{{ sliderimage.length }}</div>
+
+        <!-- <div class="zoomloaing"><span>Loading...</span></div> -->
+        <pinch-zoom [zoom-button]="true">
+            <img [src]="image2 | DetailZoomImageKitPipe : this.detailZoomImageWidth" (swipe)="onSwipe($event)" alt="{{ prodDetails[0]?.name }}" />
+        </pinch-zoom>
+
+        <!-- <img [src]=" (prodDetails[0]?.images)[currentIndex]?.file?.url "/> -->
+    </div>
+</div>
+
+<div class="detailspage">
+    <div *ngIf="loading && !loaded" class="loader">
+        <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+    </div>
+    <div class="container1" *ngIf="!loading && loaded">
+
+        <div class="breadcrumb">
+            <div class="breadcrumb-inner">
+                <div class="selected-tags">
+                    <ul>
+                        <!-- <li routerLink="/">Home</li> -->
+                        <!-- <li routerLink="/categories/{{prodDetails[0]?.attributes?.parent_category}}"> {{prodDetails[0]?.attributes?.parent_category}}</li> -->
+                        <li routerLink="/categories/{{prodDetails[0]?.attributes?.category}}"> {{prodDetails[0]?.attributes?.category}}</li>
+                        <li>{{ prodDetails[0]?.name }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="product-details">
+            <div class="product_imagelist">
+                <!-- <div class="product-images" *ngFor = "let image of slider; let i = index" [lazy-load-images]="{ rootMargin: '10px' }">
+          <div  (click)="slideclick(i)" class="extendpopup"><img src="../assets/images/ic_extend_popup.png" /></div>
+            <div class="images_border" (click)="slideclick(i)">
+              <img [attr.data-src]="image" class="product-img-src img-responsive" src="../assets/images/details-img.jpg" alt="">
+            </div> 
+        </div> -->
+                <div class="product-images" [lazy-load-images]="{ rootMargin: '10px' }">
+                    <owl-carousel [options]="{items: 1, dots: true, nav: false, loop:true}" [items]="prodDetails[0]?.images" [carouselClasses]="['owl-theme', 'sliding' ]">
+                        <div class="item" *ngFor="let image of prodDetails[0]?.images; let i = index">
+                            <div (click)="zoomclick(i)" class="extendpopup"><img src="../assets/images/ic_extend_popup.png" alt="Extend" /></div>
+                            <div (click)="zoomclick(i)">
+                                <img class="index" [attr.data-src]="image?.file?.url | DetailMainImageKitPipe : this.mobiledetailMainImageWidth" src="../assets/images/details-img.jpg" alt="{{ prodDetails[0]?.name }}" />
+                                <!-- src="../assets/images/details-img.jpg" -->
+                            </div>
+                        </div>
+                    </owl-carousel>
+                    <!-- [attr.data-src]="product?.images[0]?.file.url + '?width=350'" -->
+                    <!-- <div class="arrow">
+              <a class="prev" [ngClass] = "first == 0? 'disabled':''" (click) = "prevSlider()" ><img src="../assets/images/arrow-left.png" /></a>
+              <a class="next" [ngClass] = "last == (imageInarray.length)? 'disabled':''" (click) = "nextSlider()" ><img src="../assets/images/arrow-right.png" /></a>
+            </div>  -->
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="sliderbottom">
+                <div class="review">
+                    <!-- {{ prodDetails[0]?.images | json }} -->
+                </div>
+                <ul class="thumbnail_slider">
+                    <!-- <li *ngFor = "let image of slider"><img class="main-image img-responsive" [src]="image"></li> -->
+
+                </ul>
+            </div>
+            <!-- left side -->
+            <div class="details-section">
+                <div class="product-name">
+                    <h1 class="proname"> {{prodDetails[0]?.name}}<br />
+                        <span>{{ prodDetails[0]?.sku}}</span></h1>
+                    <div class="priceblock">
+                        <span *ngIf="prodDetails[0] && prodDetails[0].sale">
+              <span [ngClass]="(prodDetails[0] && prodDetails[0].sale) ? 'sale_on' : 'sale_off'">INR&nbsp;<span class="fullname" [innerText]="detailSalePrice | number:0"></span>
+                        </span>
+                        </span>
+                        <span>
+              <span *ngIf="prodDetails[0] && prodDetails[0].sale">
+                  <span><del>INR&nbsp;<span [innerText]="detailPrice | number:0"></span></del>
+                        </span>
+                        </span>
+                        <span *ngIf="prodDetails[0] && !prodDetails[0].sale">
+                  INR&nbsp;<span [innerText]="detailPrice | number:0"></span>
+                        </span>
+                        </span>
+
+                        <!-- <span [ngClass]="(prodDetails[0]?.price !== prodDetails[0]?.sale_price) ? 'sale_on' : 'sale_off'">INR {{prodDetails[0]?.sale_price | number:0}}</span>
+            <span *ngIf="prodDetails[0]?.price !== prodDetails[0]?.sale_price"><del>INR&nbsp; {{prodDetails[0]?.price | number:0}}</del></span> -->
+                        <div class="offer" *ngIf="percentage(prodDetails[0]?.sale_price, prodDetails[0]?.price) > 0">
+                            ({{ percentage(prodDetails[0]?.sale_price, prodDetails[0]?.price)}}% OFF)
+                        </div>
+                    </div>
+                    <div class="including-gst">
+                        <span>Inclusive of all taxes</span>
+                    </div>
+                </div>
+
+
+                <div class="sizes_select" *ngFor="let option of prodDetails[0]?.options">
+                    <div *ngIf="getuserwishlistloading" class="loader wishlistloader">
+                        <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+                    </div>
+                    <div *ngIf="getwishlistremoveloading" class="loader wishlistloader">
+                        <mat-spinner [diameter]="30" [strokeWidth]="3" class="centre-align"></mat-spinner>
+                    </div>
+                    <div *ngIf="option?.name === 'size' || option?.name === 'Size'">
+                        <div class="sizeoverlay" *ngIf="isSize === 'notfound'" (click)="closesizeoverlay()"></div>
+                        <div class="size_error" *ngIf="isSize === 'notfound'">Please select size</div>
+                        <div class="sizeoverlay" *ngIf="outofstockerror" (click)="outofstockerroroverlay()"></div>
+                        <div class="size_error" *ngIf="outofstockerror">Please add to wishlist</div>
+                        <h2>{{option?.name | uppercase}}</h2>
+                        <ul class="select-size-block" *ngIf="sort(option?.values)">
+                            <li *ngFor="let size of option?.values">
+                                <span class="size-box disabled" *ngIf="checksize(size.name)">{{size?.name}}</span>
+                                <span class="size-box" *ngIf="!checksize(size.name)" (click)="selectSize(option?.id, size?.id, size?.name)" [ngClass]="activesize == size.name ? 'activesize':''  ">{{size?.name}}</span>
+                            </li>
+                        </ul>
+
+                        <div *ngIf="prodDetails[0]?.attributes?.category != 'Masks'">
+                            <div class="size_guide" *ngIf="prodDetails[0].attributes.category !== 'Wallet' && prodDetails[0].attributes.category !== 'Tie' && prodDetails[0].attributes.category !== 'Belts' && prodDetails[0].attributes.category !== 'Socks'">
+                                <a routerLink="/size_guide" [queryParams]="{ category: 'all' }" target="_blank" title="Size Guide">Size Guide</a>
+                            </div>
+                        </div>
+                        <div *ngIf="prodDetails[0]?.attributes?.category === 'Masks'" class="size_guide">
+                            <a routerLink="/size_guide" [queryParams]="{ category: 'all' }" target="_blank" title="Size Guide">Size Guide</a>
+                        </div>
+
+                    </div>
+                    <div class="out-of-stock" *ngIf="(prodDetails[0].options).length == 0">Sorry we're temporarily out of stock.</div>
+                </div>
+
+                <div *ngIf="wishlistloginerror" class="errormsg">Please Login!</div>
+                <div *ngIf="wishlistaddederror" class="errormsg">Product already added to wishlist!</div>
+
+
+            </div>
+            <!-- details right side bar -->
+        </div>
+
+    </div>
+
+    <section class="product-attribute-details">
+        <div class="block">
+            <!-- <h2 class="description">Description</h2> -->
+            <p [innerHTML]="( prodDetails[0]?.description )">{{ prodDetails[0]?.description }}</p>
+        </div>
+
+        <div class="accordion">
+            <mat-accordion>
+                <mat-expansion-panel *ngIf="prodDetails[0]?.attributes?.features">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Features
+                        </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+                    <p class="content-details" [innerHTML]="( prodDetails[0]?.attributes?.features )">{{ prodDetails[0]?.attributes?.features }}</p>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel *ngIf="prodDetails[0]?.attributes?.color_description">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Color
+                        </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+                    <p class="content-details" [innerHTML]="( prodDetails[0]?.attributes?.color_description )">{{ prodDetails[0]?.attributes?.color_description }}</p>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel *ngIf="prodDetails[0]?.attributes?.applications">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Application
+                        </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+                    <p class="content-details" [innerHTML]="( prodDetails[0]?.attributes?.applications )">{{ prodDetails[0]?.attributes?.applications }}</p>
+                </mat-expansion-panel>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            More Information
+                        </mat-panel-title>
+
+                    </mat-expansion-panel-header>
+                    <p *ngIf="prodDetails[0]?.attributes?.sold_by"><span>Sold by:</span> {{ prodDetails[0]?.attributes?.sold_by }}</p>
+                    <p><span>Manufature Detail : {{ prodDetails[0]?.attributes?.manufacturer }}</span>
+                        <!-- <p *ngIf="prodDetails[0]?.attributes?.manufacturer">{{ prodDetails[0]?.attributes?.manufacturer }}</p> -->
+                        <p *ngIf="prodDetails[0]?.attributes?.country_of_origin"><span>Country of Origin:</span> {{ prodDetails[0]?.attributes?.country_of_origin }}</p>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+
+    </section>
+
+
+    <!-- <div class="more-info" (click)="toggleinfo()">
+        <div class="more-info-div">More Information
+            <img src="../assets/images/info_arrow_down.png" class="info-img" *ngIf="!info">
+            <img src="../assets/images/info_arrow_up.png" class="info-img" *ngIf="info">
+            <div class="info_detail" *ngIf="info">
+                <p *ngIf="prodDetails[0]?.attributes?.sold_by"><span>Sold by:</span> {{ prodDetails[0]?.attributes?.sold_by }}</p>
+                <p><span>Manufature Detail</span> <br/>
+                    <p *ngIf="prodDetails[0]?.attributes?.manufacturing_information">{{ prodDetails[0]?.attributes?.manufacturing_information }}</p>
+                    <p *ngIf="prodDetails[0]?.attributes?.country_of_origin"><span>Country of Origin:</span> {{ prodDetails[0]?.attributes?.country_of_origin }}</p>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="shopbtn_block">
+        <!-- <div class="wishlistdetails" *ngIf="!showInWishlist1">
+      <a class="wishlistbtn" (click)="addToWishlist(prodDetails)">Add to wishlist</a>
+    </div>
+    <div class="wishlistdetails" *ngIf="showInWishlist1">
+      <a class="wishlistsuccessbtn" (click)="addedInWishlist(prodDetails)">Added to wishlist</a>
+    </div> -->
+        <!-- <div class="shopping-bag-btn" (click)="addToWishlistoutstock()"  *ngIf = "(prodDetails[0].options).length == 0">
+          <span>Add to wishlist</span>
+        </div> -->
+        <div class="shopping-bag-btn" (click)="addToCart(prodDetails)" [ngClass]=" itemaddingcart ? 'loaderbtn': ''">
+            <span>Add To Bag</span>
+        </div>
+        <!-- <div class="shopping-bag-btn disabled-btn" *ngIf="prodDetails[0].stock_status == 'out_of_stock'">
+      <span>Out Of Stock</span>
+    </div> -->
+    </div>
+    <!-- ====Shopping bag button ===== -->
+
+    <div class="recommended_product" *ngIf="recommendedProducts.length > 0">
+        <h2>— You Might Also Like —</h2>
+        <common-slider-1 [data]="recommendedProducts" last="10"></common-slider-1>
+    </div>
+    <!-- recommended_product list -->
+
+    <!-- <div class="recommended_product" *ngIf = "recentlyViewed.length > 0">
+    <h2 class="text-center recent-heading">Recently viewed</h2>
+    <common-slider-1 [data] = "recentlyViewed" last = "1"></common-slider-1>
+  </div> -->
+
+</div>
+
+
+
+<!-- <a (click)="sizeguide = !sizeguide"></a>
+<div class="overlay " id="headerOverlay" [ngClass] = "  ( sizeguide ) ? 'visible': ''" (click)="sizeguide = !sizeguide"></div>
+<div id="navigation" [ngClass] = "  ( sizeguide ) ? 'visible': ''">
+  <a class="close" (click)="sizeguide = !sizeguide">X</a> -->
+
+<!-- <ngx-json-ld [json]="schema"></ngx-json-ld> -->
+<!-- <div class="overlay" id="headerOverlay" (click)='hidenoverlay()' *ngIf = "sizeguideoverlay"></div>
+<div id="sizeguidepopup" [ngClass] = "  sizeguidepopupblock ? 'showguide': ''">
+<div class="close" (click)="hidesizeguidepopup()">X</div>
+<img [src]="prodDetails[0]?.attributes?.size_guide?.file?.url" />
+</div> -->
+<div *ngIf="isSalePopup">
+    <app-sale-popup [popupProduct]="popupProduct" [productToAdd]="productOnPause" (addToBag)="addToBag($event)" [comboProduct]="comboProduct" (closePopup)="closeSalePopup()">
+    </app-sale-popup>
+</div>

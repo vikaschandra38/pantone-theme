@@ -1,0 +1,29 @@
+<div class="overview">
+    <ul>
+        <li [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'profile'}">
+            <div class="inner">
+                <img src="../../assets/images/icon-profile.jpg" />
+                <h2>My Profile</h2>
+                <p>Change your profile details 
+                    & passwords</p>
+            </div>
+        </li>
+        <li [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'orders'}">
+            <div class="inner">
+                <img src="../../assets/images/icon-order.jpg">
+                <h2>Order & Returns</h2>
+                <p>Check your order status</p>
+            </div>
+        </li>
+        <li [routerLink]="['/my-account']" routerLinkActive="active-link" [queryParams]="{ tab:'addresses'}">
+            <div class="inner ">
+                <img src="../../assets/images/icon-address.jpg">
+                <h2>Address Book</h2>
+                <p>Saved addresses for hassle free checkout</p>
+            </div>
+        </li>
+    </ul>
+    <div>
+        <button class="btn log-out" (click)="logOut()">Logout</button>
+    </div>
+</div>

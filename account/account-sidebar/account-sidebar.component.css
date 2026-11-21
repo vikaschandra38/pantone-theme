@@ -1,0 +1,52 @@
+
+.account_top{
+    margin:0 0 40px 0;;
+    padding: 15px 0;
+    border-bottom: 1px solid #ccc;
+}
+.account_top h2{
+    margin:10px 0 5px;
+    font-size: 18px;
+    color: #333;
+    text-transform: uppercase;
+}
+.account_top p.userid {
+    font-family: 'Lato', sans-serif;
+font-weight: 500;
+    color: #999;
+    font-size: 14px;
+    margin: 0;
+}
+.account-navbar ul {
+    /* display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin: 0 10px;
+    border-bottom: 1px solid #ccc; */
+}
+.account-navbar ul li a {
+    padding: 0;
+    display: inline-block;
+    color: #333;
+    font-family: 'lato', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+}
+.account-navbar ul li a:hover{
+    color:#644ea2;
+} 
+.account-navbar ul li {
+    text-align: left;
+    margin: 0px 10px 20px;
+}
+.account-navbar {
+    margin: 0 0 15px;
+}
+.account-navbar ul li a.active-link {
+    color: #644ea2;
+}
+/* .account-navbar ul li a.unactive {
+    border-bottom: none;
+} */

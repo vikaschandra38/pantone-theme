@@ -1,0 +1,20 @@
+<div class="login-signup-overlay" *ngIf="!miniCart && overlaypupup" (click)="onClosePopup()"></div>
+<div class="login-signup-popup {{miniCart ? 'mini-cart-login' : ''}}" *ngIf="loginSignUpPopup">    
+    <!--  ===================================login popup start here ====================================================  -->
+    <div class="login-form" *ngIf="loginpopup">
+        <div *ngIf="!miniCart" class="popup-header"><img src="../assets/images/close.png" (click)="onClosePopup()" /></div>
+        <otp-process (getCurrentPage)="getCurrentPage($event)" (closepopup)="closepopup($event)">
+        </otp-process>
+    </div>
+</div>
+    <!--  ===================================login popup ends here ====================================================  -->
+    <div *ngIf="router.url === '/login'">
+    <div class="login-signup-popup login-page" [ngClass]=" router.url === '/login'? 'showpage': 'hidepage'">     
+        <!--  ===================================login popup start here ====================================================  -->
+        <div class="login-form">
+            <otp-process (getCurrentPage)="getCurrentPage($event)" (closepopup)="closepopup($event)">
+            </otp-process>
+        </div>
+    </div>
+    </div>
+        <!--  ===================================login popup ends here ====================================================  -->    

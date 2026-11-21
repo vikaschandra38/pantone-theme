@@ -1,0 +1,131 @@
+<!--{{userprofileInfo | async | json}} -->
+<!-- <app-account-topbar></app-account-topbar> -->
+<!-- <app-account-sidebar></app-account-sidebar> -->
+<!-- <profile-sidebar></profile-sidebar> -->
+<!-- <app-account-sidebar></app-account-sidebar>
+<app-account-topbar></app-account-topbar> -->
+<!-- <orders-returns></orders-returns> -->
+
+<div id="account">
+  
+    <app-account-topbar
+      [userprofileInfo]="userprofileInfo | async"
+    ></app-account-topbar>
+    
+  <div class="container">
+    <div class="account_main">
+      <!-- account left -->
+      
+      <div class="account_left">
+        <app-account-sidebar></app-account-sidebar>
+        <!-- <app-account-topbar
+          [userprofileInfo]="userprofileInfo | async"
+        ></app-account-topbar> -->
+      </div>
+      <!-- account left end -->
+      <div class="account_right">
+        <div class="account_inner" id="account_inner">
+          <app-address
+            *ngIf="addnewaddress"
+            (addressData)="addressSubmit($event)"
+            (editAddressData)="editAddressSubmit($event)"
+            (removedAddressData)="removedAddressSubmit($event)"
+            [allAddresses]="allAddresses | async"
+            [alladdressloading]="alladdressloading | async"
+            [alladdressloaded]="alladdressloaded | async"
+            [useraddresssaveloading]="useraddresssaveloading | async"
+            [useraddresssaveloaded]="useraddresssaveloaded | async"
+            [useraddresssavefailure]="useraddresssavefailure | async"
+            [usereditaddresssaveloading]="usereditaddresssaveloading | async"
+            [usereditaddresssaveloaded]="usereditaddresssaveloaded | async"
+            [usereditaddresssavefailure]="usereditaddresssavefailure | async"
+            [useraddressremoveloading]="useraddressremoveloading | async"
+            [useraddressremoveloaded]="useraddressremoveloaded | async"
+            [useraddressremovefailure]="useraddressremovefailure | async"
+            [useraddressnullloading]="useraddressnullloading | async"
+            [useraddressnullloaded]="useraddressnullloaded | async"
+            [useraddressnullfailure]="useraddressnullfailure | async"
+          ></app-address>
+          <app-profile
+            *ngIf="appProfile"
+            [userprofileInfo]="userprofileInfo | async"
+            (profileData)="profileSubmit($event)"
+            [userprofilesubmitfailure]="userprofilesubmitfailure | async"
+            [userprofilesubmitloading]="userprofilesubmitloading | async"
+            [userprofilesubmitloaded]="userprofilesubmitloaded | async"
+            (updateMobileOtpVerification)="profileMobileUpdate($event)"
+            (generateOTP)="generateOTPForMobile($event)"
+          ></app-profile>
+          <orders-returns
+            *ngIf="OrdersReturns"
+            [userorders]="userorders | async"
+            [userorderloading]="userorderloading | async"
+            [userorderloaded]="getuserorderloaded | async"
+          ></orders-returns>
+          <app-overview *ngIf="overview"></app-overview>
+
+          <!-- <app-save-card
+            *ngIf="SaveCards"
+            (cardData)="cardSubmit($event)"
+            (removedCardData)="removedCardData($event)"
+            (editCardDataFinal)="editCardSubmit($event)"
+            [allCards]="allCards | async"
+            [usercardsaveloading]="usercardsaveloading | async"
+            [usercardsaveloaded]="usercardsaveloaded | async"
+            [usercardsavefailure]="usercardsavefailure | async"
+            [usercardeditloading]="usercardeditloading | async"
+            [usercardeditloaded]="usercardeditloaded | async"
+            [usercardeditfailure]="usercardeditfailure | async"
+            [getusercardremoveloading]="getusercardremoveloading | async"
+            [getusercardremoveloaded]="getusercardremoveloaded | async"
+            [getusercardremovefailure]="getusercardremovefailure | async"
+            [getusercardnullloaded]="getusercardnullloaded | async"
+            [usercardnullloading]="usercardnullloading | async"
+            [getusercardnullfailure]="getusercardnullfailure | async"
+          ></app-save-card> -->
+          <app-reward-points *ngIf="rewardpoint"></app-reward-points>
+          <app-wishlist
+            *ngIf="wishlist"
+            (removedWishlistData)="removedWishlistData($event)"
+            [userwishlist]="userwishlist | async"
+            [userwishlistloading]="userwishlistloading | async"
+            [userwishlistloaded]="userwishlistloaded | async"
+            (cartItems)="addToCart($event)"
+            [itemaddingcart]="itemaddingcart | async"
+            [wishlistremoveloading]="wishlistremoveloading | async"
+            [wishlistremoveloaded]="wishlistremoveloaded | async"
+            [wishlistremovefailure]="wishlistremovefailure | async"
+            [wishlistnullloaded]="wishlistnullloaded | async"
+            (moveToCart)="moveToCart($event)"
+            (selectedSizeWishlist)="selectedSizeWishlist($event)"
+            [selectedProduct]="selectedProduct | async"
+          ></app-wishlist>
+          <app-newsletter-preferences
+            *ngIf="newsletter"
+          ></app-newsletter-preferences>
+          <app-recent
+            *ngIf="RecentlyView"
+            (removedWishlistData)="removedWishlistData($event)"
+            [userwishlist]="userwishlist | async"
+            [userwishlistloading]="userwishlistloading | async"
+            [userwishlistloaded]="userwishlistloaded | async"
+            (cartItems)="addToCart($event)"
+            [itemaddingcart]="itemaddingcart | async"
+            [wishlistremoveloading]="wishlistremoveloading | async"
+            [wishlistremoveloaded]="wishlistremoveloaded | async"
+            [wishlistremovefailure]="wishlistremovefailure | async"
+            [wishlistnullloaded]="wishlistnullloaded | async"
+            (moveToCart)="moveToCart($event)"
+            (selectedSizeWishlist)="selectedSizeWishlist($event)"
+            [selectedProduct]="selectedProduct | async"
+          ></app-recent>
+        </div>
+        <!-- account_inner div -->
+      </div>
+      <!-- account_right div -->
+    </div>
+    <!-- account_main div -->
+  </div>
+  <!-- container -->
+</div>
+<!-- account main div -->
